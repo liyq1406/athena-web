@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="rongqi" extend="toft-default" namespace="/ck">
+		<!--601 投入容器入库页面 -->
+		<action name="601" class="rongqiAction" method="rongqiYm">
+		<result name="select">/WEB-INF/pages/ck/rongqi/601.jsp</result>
+		</action>
+		 <!-- 60101 投入容器入库新增提交-->
+		<action name="60101" class="rongqiAction" method="rongqirkTj"></action>
+		<!-- 60102投入容器入库列表-->
+		<action name="60102" class="rongqiAction" method="rongqirklb"></action>
+		<!-- 60103投入容器入库列表-->
+		<action name="60103" class="rongqiAction" method="rongqirkTjfy"></action>
+		<!-- 60104 容器接收单打印-->
+        <action name="60104" class="rongqiAction" method="rongqjsdDy"></action>        
+        <!-- 60106 容器接收单打印-->
+        <action name="60106" class="rongqiAction" method="rongqiDAYFW"></action>		
+		<!--602 容器入库撤销页面 -->
+		<action name="602" class="rongqiAction" method="rongqrkcx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/602.jsp</result>
+		</action>
+		 <!--60201 容器入库撤销查询-->
+		<action name="60201" class="rongqiAction" method="rongqrkcxsearch"></action>
+		<!--60202 容器入库撤销查看-->
+		<action name="60202" class="rongqiAction" method="rongqrkcxinfo"></action>
+		<!--60203 容器入库撤销撤销-->
+		<action name="60203" class="rongqiAction" method="rongqrkcxchex"></action>
+		<!--60201容器入库撤销详细页面-->
+        <action name="6020101" class="rongqiAction" method="rongqrkcxxx">
+			<result name="select">/WEB-INF/pages/ck/rongqi/60201.jsp</result>
+		</action>		
+		
+		<!--603 空容器申报页面 -->
+		<action name="603" class="rongqiAction" method="kongrqsb">
+		<result name="select">/WEB-INF/pages/ck/rongqi/603.jsp</result>
+		</action>
+		 <!--60301 空容器申报确认-->
+		<action name="60301" class="rongqiAction" method="kongrqsbok"></action>
+		<!-- 60302 容器入库撤销打印-->
+		<action name="60302" class="rongqiAction" method="kongrqsbprint"></action>
+		<!-- 60302 容器入库撤销删除-->
+		<action name="60305" class="rongqiAction" method="kongrqsbdelete"></action>
+		
+		
+		<!-- 60303 容器供应商代码得到容器供应商名称-->
+		<action name="60306" class="rongqiAction" method="kongrqsbxgprint"></action>
+		
+		<!--604 空容器申报修改页面 -->
+		<action name="604" class="rongqiAction" method="kongrqsbxg">
+		<result name="select">/WEB-INF/pages/ck/rongqi/604.jsp</result>
+		</action>
+		 <!--60401 空容器申报修改查询-->
+		<action name="60401" class="rongqiAction" method="kongrqsbxgsearch"></action>
+		<!-- 60402 空容器申报修改-->
+		<action name="60402" class="rongqiAction" method="kongrqsbxgupdate"></action>
+		<!-- 60403 空容器申报修改删除-->
+		<action name="60403" class="rongqiAction" method="kongrqsbxgdelete"></action>
+		<!-- 60501空容器申报撤销详细页面-->
+        <action name="6040101" class="rongqiAction" method="kongrqsbxgxxx">
+			<result name="select">/WEB-INF/pages/ck/rongqi/60401.jsp</result>
+		</action>		
+		
+		<!--605空容器申报撤销页面 -->
+		<action name="605" class="rongqiAction" method="kongrqsbcx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/605.jsp</result>
+		</action>
+		 <!--60501 空容器申报撤销查询-->
+		<action name="60501" class="rongqiAction" method="kongrqsbcxsearch"></action>
+		<!-- 60502 空容器申报撤销查看-->
+		<action name="60502" class="rongqiAction" method="kongrqsbcxinfo"></action>
+		<!--60503 空容器申报撤销-->
+		<action name="60503" class="rongqiAction" method="kongrqsbcxchex"></action>
+		<!-- 60501空容器申报撤销详细页面-->
+        <action name="6050101" class="rongqiAction" method="kongrqsbcxxx">
+			<result name="select">/WEB-INF/pages/ck/rongqi/60501.jsp</result>
+		</action>		
+		
+		<!--606容器报废申请页面 -->
+		<action name="606" class="rongqiAction" method="rongqbfsq">
+		<result name="select">/WEB-INF/pages/ck/rongqi/606.jsp</result>
+		</action>
+		 <!--60601 容器报废申请确认-->
+		<action name="60601" class="rongqiAction" method="rongqbfsqok"></action>
+		<!--60602 容器报废申请删除-->
+		<action name="60602" class="rongqiAction" method="rongqbfsqdelete"></action>
+		<!--60602 容器报废申请删除-->
+		<action name="60603" class="rongqiAction" method="rongqbfsqprint"></action>
+		<!--60604容器报废申请进入页面查询 -->
+		<action name="60604" class="rongqiAction" method="rongqbfsqcx"></action>
+		<!--607报废容器查询修改页面 -->
+		<action name="607" class="rongqiAction" method="baofrqcxxg">
+		<result name="select">/WEB-INF/pages/ck/rongqi/607.jsp</result>
+		</action>
+		 <!--60701 报废容器查询修改查询-->
+		<action name="60701" class="rongqiAction" method="baofrqcxxgsearch"></action>
+		<!--60702 报废容器查询修改-->
+		<action name="60702" class="rongqiAction" method="baofrqcxxgupdate"></action>
+		<!--60703报废容器查询修改删除-->
+		<action name="60703" class="rongqiAction" method="baofrqcxxgdelete"></action>
+		<!-- 60704报废容器查询修改详细页面-->
+        <action name="6070101" class="rongqiAction" method="baofrqcxxgxx">
+			<result name="select">/WEB-INF/pages/ck/rongqi/60701.jsp</result>
+		</action>		
+		
+		<!--608报废容器撤销页面 -->
+		<action name="608" class="rongqiAction" method="baofrqcx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/608.jsp</result>
+		</action>
+		 <!--60801 报废容器撤销查询-->
+		<action name="60801" class="rongqiAction" method="baofrqcxsearch"></action>
+		<!-- 60802 报废容器撤销查看-->
+		<action name="60802" class="rongqiAction" method="baofrqcxinfo"></action>
+		<!--60803 报废容器撤销-->
+		<action name="60803" class="rongqiAction" method="baofrqcxchex"></action>
+		<!-- 60801报废容器撤销详细页面-->
+        <action name="6080101" class="rongqiAction" method="baofrqcxxx">
+			<result name="select">/WEB-INF/pages/ck/rongqi/60801.jsp</result>
+		</action>		
+		
+		<!--609容器报废确认页面 -->
+		<action name="609" class="rongqiAction" method="rqbfqr">
+		<result name="select">/WEB-INF/pages/ck/rongqi/609.jsp</result>
+		</action>
+		 <!--60901 容器报废确认-->
+		<action name="60901" class="rongqiAction" method="rqbfqrok"></action>
+		 <!--60902容器报废确认-->
+		<action name="60902" class="rongqiAction" method="rqbfqrokfy"></action>
+		<!--60902容器报废确认-->
+		<action name="60701" class="rongqiAction" method="rqbfqrsearch"></action>
+		<!--60902容器报废确认-->
+		<action name="60702" class="rongqiAction" method="rqbfqrupdate"></action>
+		
+		
+		<!--610容器报废确认撤销页面 -->
+		<action name="610" class="rongqiAction" method="rqbfqrcx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/610.jsp</result>
+		</action>
+		 <!--61001 容器报废确认撤销-->
+		<action name="61001" class="rongqiAction" method="rqbfqrcxcx"></action>
+		<!--61002 容器报废确认撤销-->
+		<action name="61002" class="rongqiAction" method="rqbfqrcxcxfy"></action>
+		
+		
+		<!--611容器调拨申请页面 -->
+		<action name="611" class="rongqiAction" method="rqtbsq">
+		<result name="select">/WEB-INF/pages/ck/rongqi/611.jsp</result>
+		</action>
+		 <!--61101 容器调拨申请确认-->
+		<action name="61101" class="rongqiAction" method="rqtbsqok"></action>
+		 <!--61102容器调拨申请修改-->
+		<action name="61102" class="rongqiAction" method="rqtbsqupdate"></action>
+		 <!--61102容器调拨申请修改-->
+		<action name="61103" class="rongqiAction" method="rongqidiaobo"></action>
+		 <!--61102容器调拨申请修改-->
+		<action name="61104" class="rongqiAction" method="rqtbsqprint"></action>
+		
+		<!--612容器调拨申请查询修改页面 -->
+		<action name="612" class="rongqiAction" method="rqtbsqcxxg">
+		<result name="select">/WEB-INF/pages/ck/rongqi/612.jsp</result>
+		</action>
+		 <!--61201 容器调拨申请查询修改查询-->
+		<action name="61201" class="rongqiAction" method="rqtbsqcxxgsearch"></action>
+		 <!--61202容器调拨申请查询修改-->
+		<action name="61202" class="rongqiAction" method="rqtbsqcxxgupdate"></action>
+		<!--61203容器调拨申请查询修改删除-->
+		<action name="61203" class="rongqiAction" method="rqtbsqcxxgdelete"></action>
+		<!--6120101容器调拨申请查询查看详细页面-->	
+		<action name="6120101" class="rongqiAction" method="detail_6120101">
+			<result name="select">/WEB-INF/pages/ck/rongqi/61201.jsp</result>
+		</action>	
+		
+		<!--614容器调拨入库页面 -->
+		<action name="614" class="rongqiAction" method="rqtbrk">
+		<result name="select">/WEB-INF/pages/ck/rongqi/614.jsp</result>
+		</action>
+		 <!--61401 容器调拨入库查询-->
+		<action name="61401" class="rongqiAction" method="rqtbrksearch"></action>
+		 <!--61402容器调拨入库修改-->
+		<action name="61402" class="rongqiAction" method="rqtbrkupdate"></action>
+		 <!--61402容器出库入库修改-->
+		<action name="61403" class="rongqiAction" method="rqtbckrk"></action>
+		<!--61402容器出库入库型号-->
+		<action name="61404" class="rongqiAction" method="rongqixh"></action>		
+		<!--61405容器出库入库查询-->
+		<action name="61405" class="rongqiAction" method="rongqicx"></action>	
+		<!--617容器调拨执行清单查询页面 -->
+		<action name="617" class="rongqiAction" method="rqtbzxqdcx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/617.jsp</result>
+		</action>
+		 <!--61701 容器调拨执行清单查询-->
+		<action name="61701" class="rongqiAction" method="rqtbzxqdcxsearch"></action>
+		 <!--61702容器调拨执行清单查询查看-->
+		 <action name="61702" class="rongqiAction" method="rqtbzxqdcxinfoo"></action>
+        <action name="6170101" class="rongqiAction" method="rqtbzxqdcxinfo">
+			<result name="select">/WEB-INF/pages/ck/rongqi/61701.jsp</result>
+		</action>
+		<!--61703容器调拨执行清单查询撤销-->
+		<action name="61703" class="rongqiAction" method="rqtbzxqdcxchex"></action>		
+		
+		<!--618容器调拨执行汇总查询页面 -->
+		<action name="618" class="rongqiAction" method="rqtbzxhzcx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/618.jsp</result>
+		</action>
+		 <!--61801 容器调拨执行汇总查询查询-->
+		<action name="61801" class="rongqiAction" method="rqtbzxhzcxsearch"></action>		
+		
+		<!--619容器维修申请页面 -->
+		<action name="619" class="rongqiAction" method="rqwxsq">
+		<result name="select">/WEB-INF/pages/ck/rongqi/619.jsp</result>
+		</action>
+		 <!--61901容器维修申请确认-->
+		<action name="61901" class="rongqiAction" method="rqwxsqok"></action>
+		 <!--61902 容器维修申请打印-->
+		<action name="61902" class="rongqiAction" method="rqwxsqprint"></action>
+		<!--61903 容器维修申请删除-->
+		<action name="61903" class="rongqiAction" method="rqwxsqcxdelete"></action>
+			<!--61903 容器维修申请删除-->
+		<action name="61904" class="rongqiAction" method="rqwxsqprintxx"></action>		
+		
+		<!--620容器维修申请撤销页面 -->
+		<action name="620" class="rongqiAction" method="rqwxsqcx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/620.jsp</result>
+		</action>
+		 <!--62001容器维修申请撤销查询-->
+		<action name="62001" class="rongqiAction" method="rqwxsqcxsearch"></action>
+		 <!--62002 容器维修申请撤销查看-->
+		<action name="62002" class="rongqiAction" method="rqwxsqcxinfo"></action>
+		 <!--62003 容器维修申请撤销-->
+		<action name="62003" class="rongqiAction" method="rqwxsqcxchex"></action>
+		<!-- 6200101 容器维修详情查看页面-->
+        <action name="6200101" class="rongqiAction" method="rqwxsqcxxxx">
+            <result name="select">/WEB-INF/pages/ck/rongqi/62001.jsp</result>
+        </action>		
+		
+		<!--621容器退供应商页面 -->
+		<action name="621" class="rongqiAction" method="rongqtgys">
+		<result name="select">/WEB-INF/pages/ck/rongqi/621.jsp</result>
+		</action>
+		 <!--62101容器退供应商确认-->
+		<action name="62101" class="rongqiAction" method="rongqtgysok"></action>
+		 <!--62102 容器退供应商删除-->
+		<action name="62102" class="rongqiAction" method="rongqtgysdelete"></action>
+		 <!--62103 容器退供应商-->
+		<action name="62103" class="rongqiAction" method="rongqtgysbzd"></action>
+		 <!--62104 容器退供应商确认退供应商-->
+		<action name="62104" class="rongqiAction" method="rongqtgysoktuigys"></action>
+		<!--62105 容器返还单打印-->
+        <action name="62105" class="rongqiAction" method="rongqfhdDy"></action>		
+        <action name="62106" class="rongqiAction" method="rqfhdDy">
+        <result name="select" >/WEB-INF/pages/ck/rongqi/62101.jsp</result>
+        </action>		
+		<!--622容器退供应商查询修改页面 -->
+		<action name="622" class="rongqiAction" method="rongqtgyscxxg">
+		<result name="select">/WEB-INF/pages/ck/rongqi/622.jsp</result>
+		</action>
+		 <!--62201容器退供应商查询-->
+		<action name="62201" class="rongqiAction" method="rongqtgyscxxgsearch"></action>
+		 <!--62202 容器退供应商查询修改-->
+		<action name="62202" class="rongqiAction" method="rongqtgyscxxgupdate"></action>
+		 <!--62203 容器退供应商查询删除-->
+		<action name="62203" class="rongqiAction" method="rongqtgyscxxgdelete"></action>		
+		 <!--62204 容器退供应商查询确认-->
+		<action name="62204" class="rongqiAction" method="rongqtgyscxqr"></action>
+		 <!--6220101 容器退供应商查询确认-->
+		<action name="6220101" class="rongqiAction" method="rongqtgyscxxglookup">
+		  <result name="select">/WEB-INF/pages/ck/rongqi/62201.jsp</result>
+		</action>
+		<!--623容器退供应商撤销页面 -->
+		<action name="623" class="rongqiAction" method="rongqtgyscx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/623.jsp</result>
+		</action>
+		 <!--62301容器退供应商撤销查询-->
+		<action name="62301" class="rongqiAction" method="rongqtgyscxsearch"></action>
+		 <!--62302 容器退供应商撤销查看-->
+		<action name="62302" class="rongqiAction" method="rongqtgyscxinfo"></action>
+		<!-- 6230101 容器维修详情查看页面-->
+        <action name="6230101" class="rongqiAction" method="rongqtgyscxxx">
+            <result name="select">/WEB-INF/pages/ck/rongqi/62301.jsp</result>
+        </action>
+		 <!--62303 容器退供应商撤销-->
+		<action name="62303" class="rongqiAction" method="rongqtgyscxchex"></action>
+		
+		<!--624容器盘点申报页面 -->
+		<action name="624" class="rongqiAction" method="rongqpdsb">
+		<result name="select">/WEB-INF/pages/ck/rongqi/624.jsp</result>
+		</action>
+		 <!--62401容器盘点申报查询-->
+		<action name="62401" class="rongqiAction" method="rongqpdsbsearch"></action>
+		 <!--62402 容器盘点申报-->
+		<action name="62402" class="rongqiAction" method="rongqpdsbadd"></action>
+		 <!--62403 容器盘点申报-->
+		<action name="62403" class="rongqiAction" method="rongqpdsbupdate"></action>
+		<!--62403 容器盘点申报-->
+		<action name="62404" class="rongqiAction" method="rongqpdsbwucy"></action>
+		<!--62403 容器盘点申报-->
+		<action name="62405" class="rongqiAction" method="rongqpdsbycy"></action>
+		<!--62403 容器盘点申报-->
+		<action name="62406" class="rongqiAction" method="rongqpdsbdaoc"></action>
+		<!--62403 容器盘点申报-->
+		<action name="62407" class="rongqiAction" method="rongqpdjgcyb"></action>
+		<!--62403 容器盘点申报-->
+		<action name="62408" class="rongqiAction" method="rongqpdupdate"></action>	
+		<!-- 62409容器盘点补打 -->
+		<action name="62409" class="rongqiAction" method="rongqpdbd"></action>	
+		<!--625容器调拨执行结束页面 -->
+		<action name="625" class="rongqiAction" method="rongqdbzxjs">
+		<result name="select">/WEB-INF/pages/ck/rongqi/625.jsp</result>
+		</action>
+		 <!--62501容器调拨执行结束查询-->
+		<action name="62501" class="rongqiAction" method="rongqdbzxjssearch"></action>
+		 <!--62502 容器调拨执行结束结束-->
+		<action name="62502" class="rongqiAction" method="rongqdbzxjsjies"></action>
+		 <!--62503 容器调拨执行结束-->
+		<action name="62503" class="rongqiAction" method="rongqdbzxjsdbjs"></action>		
+		
+		<!--626容器流水帐明细查询页面 -->
+		<action name="626" class="rongqiAction" method="rongqlszmxcx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/626.jsp</result>
+		</action>
+		 <!--62601容器流水帐明细查询-->
+		<action name="62601" class="rongqiAction" method="rongqlszmxcxsearch"></action>		
+		
+		<!--627容器流水帐汇总查询页面 -->
+		<action name="627" class="rongqiAction" method="rongqlszhzcx">
+		<result name="select">/WEB-INF/pages/ck/rongqi/627.jsp</result>
+		</action>
+		 <!--62701容器流水帐汇总查询查询-->
+		<action name="62701" class="rongqiAction" method="rongqlszhzcxsearch"></action>		
+		
+		<!--628创建容器流水帐页面 -->
+		<action name="628" class="rongqiAction" method="chuangjrqlsz">
+		<result name="select">/WEB-INF/pages/ck/rongqi/628.jsp</result>
+		</action>
+		 <!--62801创建容器流水帐确认-->
+		<action name="62801" class="rongqiAction" method="chuangjrqlszok"></action>
+		 <!--62802 创建容器流水帐删除-->
+		<action name="62802" class="rongqiAction" method="chuangjrqlszdelete"></action>
+		 <!--62803 创建容器流水帐-->
+		<action name="62803" class="rongqiAction" method="chuangjrqlszxx"></action>		
+		
+		<!-- 629 容器维修查询-->
+        <action name="629" class="rongqiAction" method="rongqwxcxYm">
+            <result name="select">/WEB-INF/pages/ck/rongqi/629.jsp</result>
+        </action>
+        <!-- 62901 容器维修查询页面查询-->
+        <action name="62901" class="rongqiAction" method="rongqwxcxCx"></action>
+        <!-- 62902 容器维修查询页面查看-->
+        <action name="62902" class="rongqiAction" method="rongqwxcxCk"></action>
+        <!-- P62901 容器维修详情查看页面-->
+        <action name="P62901" class="rongqiAction" method="rongqwxxqckYm">
+            <result name="select">/WEB-INF/pages/ck/rongqi/62901.jsp</result>
+        </action>
+        <!-- 62903 容器维修单打印-->
+        <action name="62903" class="rongqiAction" method="rongqwxdDy"></action>	
+		
+		<!-- 630 容器报废查询-->
+        <action name="630" class="rongqiAction" method="rongqbfcxYm">
+            <result name="select">/WEB-INF/pages/ck/rongqi/630.jsp</result>
+        </action>
+        <!-- 63001 容器报废查询页面查询-->
+        <action name="63001" class="rongqiAction" method="rongqbfcxCx"></action>
+        <!-- 63002 容器报废申请单打印-->
+        <action name="63002" class="rongqiAction" method="rongqbfsqdDy"></action>       
+        
+        <!--631容器维修结果维护页面-->
+        <action name="631" class="rongqiAction" method="rongqwxjgwh">
+            <result name="select">/WEB-INF/pages/ck/rongqi/631.jsp</result>
+        </action>
+        <!-- 63101容器维修结果维护查询-->
+        <action name="63101" class="rongqiAction" method="rongqwxjgwhsearch"></action>
+        <!--63102容器维修结果维护修改-->
+        <action name="63102" class="rongqiAction" method="rongqwxjgwhupdate"></action>
+          <!--63102容器维修结果维护修改-->
+        <action name="63103" class="rongqiAction" method="rongqwxjgwhok"></action>        
+        
+        <!--632 容器总账查询页面-->
+        <action name="632" class="rongqiAction" method="rongqzzcx">
+            <result name="select">/WEB-INF/pages/ck/rongqi/632.jsp</result>
+        </action>
+        <!--63201容器总账查询查询-->
+        <action name="63201" class="rongqiAction" method="rongqzzcxsearch"></action>        
+        
+         <!--632 盘点启动结束页面-->
+        <action name="633" class="rongqiAction" method="pandqdjs">
+            <result name="select">/WEB-INF/pages/ck/rongqi/633.jsp</result>
+        </action>
+        
+        <!--634 盘点启动结束页面-->
+        <action name="634" class="rongqiAction" method="gongysjs">
+            <result name="select">/WEB-INF/pages/ck/rongqi/634.jsp</result>
+        </action>
+        <!-- 634 容器接收单打印
+        <action name="print_634" class="rongqiAction" method="print_634"></action>-->
+        <!-- 634 单据打印 -->
+         <action name="63401" class="rongqiAction" method="printRongQijsd">
+        <result name="select" >/WEB-INF/pages/ck/rongqi/63401.jsp</result>
+        </action>	
+        <!-- 63403 容器接收返还查询 -->
+         <action name="63403" class="rongqiAction" method="rongqjsfhcx"></action>
+         <!-- 63405 容器接收返还确认 -->
+         <action name="63405" class="rongqiAction" method="rongqjsfhqr"></action>
+          <!-- 63404 容器接收返还结束录入 -->
+         <action name="63404" class="rongqiAction" method="rongqjsfhjs"></action> 
+          <!-- 63406 容器接收返还修改 -->
+         <action name="63406" class="rongqiAction" method="rongqjsfhxg"></action> 
+        <!--635 容器接收返还查询-->
+        <action name="635" class="rongqiAction" method="rongqijsfh">
+            <result name="select">/WEB-INF/pages/ck/rongqi/635.jsp</result>
+        </action>
+        
+        <!--636 容器移库入库-->
+        <action name="636" class="rongqiAction" method="rongqi636">
+            <result name="select">/WEB-INF/pages/ck/rongqi/636.jsp</result>
+        </action>
+        <!--63601容器移库入库查询-->
+        <action name="63601" class="rongqiAction" method="rongqiruksearch"></action>  
+        
+        <!--637 容器移库出库-->
+        <action name="637" class="rongqiAction" method="rongqi637">
+            <result name="select">/WEB-INF/pages/ck/rongqi/637.jsp</result>
+        </action>
+        <!--63701容器移库出库查询-->
+        <action name="63701" class="rongqiAction" method="rongqi637search"></action>  
+        
+        <!--638 容器移库汇总查询-->
+        <action name="638" class="rongqiAction" method="rongqi638">
+            <result name="select">/WEB-INF/pages/ck/rongqi/638.jsp</result>
+        </action>
+        <!--63801容器移库汇总查询-->
+        <action name="63801" class="rongqiAction" method="rongqi638search"></action>  
+         <!--63802容器移库汇总撤销-->
+        <action name="63802" class="rongqiAction" method="rongqi638cancel"></action>  
+         <!--63803容器移库汇总查看-->
+        <action name="63803" class="rongqiAction" method="rongqi638info">
+			<result name="select">/WEB-INF/pages/ck/rongqi/639.jsp</result>
+		</action>        
+        <!--639 容器移库执行查询-->
+        <action name="639" class="rongqiAction" method="rongqi639">
+            <result name="select">/WEB-INF/pages/ck/rongqi/639.jsp</result>
+        </action>
+        <!--63901容器移库执行查询-->
+        <action name="63901" class="rongqiAction" method="rongqi639search"></action> 
+        <!--637 打印容器移库单-->
+        <action name="print_637" class="rongqiAction" method="print_637"></action> 
+        
+        <!--640 容器打包查询页面 0010495-->
+        <action name="640" class="rongqiAction" method="rongqdb">
+            <result name="select">/WEB-INF/pages/ck/rongqi/640.jsp</result>
+        </action>
+        
+        <!-- 64001 容器打包查询 -->
+        <action name="64001" class="rongqiAction" method="rongqdbcx"></action>
+                
+        <!-- 64002 容器打包增加 -->
+        <action name="64002" class="rongqiAction" method="rongqdbadd"></action>
+                        
+        <!-- 64003 容器打包删除 -->
+        <action name="64003" class="rongqiAction" method="rongqdbdel"></action>
+                        
+        <!-- 64004 容器打包删除全部 -->
+        <action name="64004" class="rongqiAction" method="rongqdbdelall"></action>
+                        
+        <!-- 64005 容器打包结束录入 -->
+        <action name="64005" class="rongqiAction" method="rongqdbend"></action>
+        
+        
+        
+        <!--641 容器包裹查询页面-->
+        <action name="641" class="rongqiAction" method="rongqbgxgym">
+            <result name="select">/WEB-INF/pages/ck/rongqi/641.jsp</result>
+        </action>
+        
+        <!-- 64101 容器包裹查询 -->
+        <action name="64101" class="rongqiAction" method="rongqbgcx"></action>
+        
+        <!-- 64102 容器维修查询页面查看-->
+        <action name="64102" class="rongqiAction" method="rongqbgck"></action>    
+        
+        
+        <!-- 64103 容器维修查询撤销-->
+        <action name="64103" class="rongqiAction" method="rongqbgchex"></action>      
+           
+       	<!-- P64101 容器包裹查询查看-->
+        <action name="P64102" class="rongqiAction" method="rongqbgckym">
+			<result name="select">/WEB-INF/pages/ck/rongqi/64101.jsp</result>
+		</action> 
+				
+        <!-- 64104 容器维修打印-->
+        <action name="64104" class="rongqiAction" method="rongqbgchexdy"></action>    
+       
+       
+        <!--642 容器退供应商（包）页面-->
+        <action name="642" class="rongqiAction" method="rongqtgysym">
+            <result name="select">/WEB-INF/pages/ck/rongqi/642.jsp</result>
+        </action>
+        
+        <!-- 64201 容器退供应商（包）查询 -->
+        <action name="64201" class="rongqiAction" method="rongqtgysbcx"></action>
+                
+        <!-- 64202 容器退供应商（包）增加 -->
+        <action name="64202" class="rongqiAction" method="rongqtgysbadd"></action>
+                 
+        <!-- 64203 容器退供应商（包）删除 -->
+        <action name="64203" class="rongqiAction" method="rongqtgysbdel"></action>
+        
+        <!-- 64204 容器退供应商（包）删除全部 -->
+        <action name="64204" class="rongqiAction" method="rongqtgysbdelall"></action>
+        
+        <!-- 64205 容器退供应商（包）确认返还 -->
+        <action name="64205" class="rongqiAction" method="rongqtgysbqrfh"></action>
+        
+        <!-- 64206 打印 -->                          
+        <action name="64206" class="rongqiAction" method="rongqtgysdy">
+        <result name="select" >/WEB-INF/pages/ck/rongqi/64201.jsp</result>
+        </action>	
+        
+        
+        <!--643 容器退供应商（包）查询撤销页面-->
+        <action name="643" class="rongqiAction" method="rongqtgscxym">
+            <result name="select">/WEB-INF/pages/ck/rongqi/643.jsp</result>
+        </action>        
+        
+        <!-- 64301 容器退供应商（包）查询 -->
+        <action name="64301" class="rongqiAction" method="rongqtgscxcx"></action>
+                
+        <!-- 64302 容器退供应商（包）明细 -->
+        <action name="64302" class="rongqiAction" method="rongqtgscxmx"></action>
+        
+       <!-- P64301 容器退供应商（包）明细 查看-->
+        <action name="P64302" class="rongqiAction" method="rongqtgscxmxym">
+			<result name="select">/WEB-INF/pages/ck/rongqi/64301.jsp</result>
+		</action> 
+                
+        <!-- 64303 容器退供应商（包）撤销 -->
+        <action name="64303" class="rongqiAction" method="rongqtgscxchex"></action>
+        
+        <!-- 64306 打印 -->                          
+        <action name="64306" class="rongqiAction" method="rongqtgysdy">
+       	 <result name="select" >/WEB-INF/pages/ck/rongqi/64302.jsp</result>
+        </action>        
+                
+        <!-- 64307 判断该单号是否可以打印 -->                          
+        <action name="64307" class="rongqiAction" method="rongqtgysdypd">
+        </action>	
+        	
+        <!-- 11891 -->
+        <action name="644" class="rongqiAction" method="rongqanfhdjs">
+			<result name="select">/WEB-INF/pages/ck/rongqi/644.jsp</result>
+		</action> 
+		<action name="64401" class="rongqiAction" method="rongqanfhdjssel"></action> 
+		<action name="64402" class="rongqiAction" method="rongqanfhdjsxg"></action> 
+		<action name="64403" class="rongqiAction" method="rongqanfhdjsmx"></action> 
+       <!-- P64401 容器按返还单介绍查看明细-->
+        <action name="P64401" class="rongqiAction" method="rongqanfhdjsmxck">
+			<result name="select">/WEB-INF/pages/ck/rongqi/64401.jsp</result>
+		</action> 
+		<action name="64404" class="rongqiAction" method="rongqanfhdjsqr"></action>
+		<action name="64405" class="rongqiAction" method="rongqanfhdjsqrcr"></action>
+		
+		<!-- huxy_13142 -->
+		<action name="64308" class="rongqiAction" method="rongqfhdgshdy"></action>
+	</package>
+</toft>

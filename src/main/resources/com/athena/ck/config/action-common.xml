@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="common" extend="toft-default" namespace="/ck">
+		 <!--页面菜单内容-->
+		<action name="menuHtmlBuilder" class="commonAction" method="menuHtmlBuilder"></action>
+		<!--页面跳转-->
+		<action name="pageJump" class="commonAction" method="pageJump"></action>
+		<!--用户中心-->
+		<action name="userCenter" class="commonAction" method="userCenter"></action>
+		<!--仓库-->
+		<action name="wareHouse" class="commonAction" method="wareHouse"></action>
+		<!--子仓库-->
+		<action name="childWareHouse" class="commonAction" method="childWareHouse"></action>
+		<!--容器场-->
+		<action name="rongqc" class="commonAction" method="rongqc"></action>
+		<!--容器盘点维护_624-->
+		<action name="flagJudge624" class="commonAction" method="flagJudge624"></action>
+		<!--调入容器区_614-->
+		<action name="diaorurqq614" class="commonAction" method="diaorurqq614"></action>
+		<!--调入容器区-->
+		<action name="diaorurqq611" class="commonAction" method="diaorurqq611"></action>
+		<!--返空区-->
+		<action name="fankongq" class="commonAction" method="fankongq"></action>
+		<!--返空区603-->
+		<action name="fankongq603" class="commonAction" method="fankongq603"></action>
+		<!-- 获取返空区——603 604 605 -->
+		<action name="getrongqc" class="commonAction" method="getrongqc"></action>
+	    <!--根据返空区返回值判断是否显示供应商承运商-->
+		<action name="judgeFlag" class="commonAction" method="judgeFlag"></action>
+		<!--质检组 -->
+		<action name="zhijz" class="commonAction" method="zhijz"></action>
+		<!--退库类别 -->
+		<action name="tuiklb" class="commonAction" method="tuiklb"></action>
+		<!--零件类型 -->
+		<action name="lingjlx" class="commonAction" method="lingjlx"></action>
+		<!--容器总账类型 -->
+		<action name="rongqilx" class="commonAction" method="rongqilx"></action>
+		<!--容器入库单据类型 -->
+		<action name="danjuleix" class="commonAction" method="danjuleix"></action>
+		<!--是或否 -->
+		<action name="yesOrNo" class="commonAction" method="yesOrNo"></action>
+		<!--料废/随废 hzg 2014.9.24 -->
+		<action name="yiclxStr" class="commonAction" method="yiclxStr"></action>
+		<!--生成状态 -->
+		<action name="shengczt" class="commonAction" method="shengczt"></action>
+		<!--包装状态 -->
+		<action name="baozzt" class="commonAction" method="baozzt"></action>
+		<!--排序方式-->
+		<action name="paixfs" class="commonAction" method="paixfs"></action>
+		<!--拒收原因-->
+		<action name="jusyy" class="commonAction" method="jusyy"></action>
+		<!--纠纷原因-->
+		<action name="jiufyy" class="commonAction" method="jiufyy"></action>
+		<!--故障类型-->
+		<action name="guzlx" class="commonAction" method="guzlx"></action>
+		<!--状态-->
+		<action name="zhuangt" class="commonAction" method="zhuangt"></action>
+		<!--内部模式-->
+		<action name="neibghms" class="commonAction" method="neibghms"></action>
+		<!--上线方式-->
+        <action name="shangxfs" class="commonAction" method="shangxfs"></action>
+        <!-- 拒收状态 -->
+        <action name="juszt" class="commonAction" method="juszt"></action>
+        <!-- 打印状态 -->
+        <action name="dayzt" class="commonAction" method="dayzt"></action>
+        <!-- 备货单状态 -->
+        <action name="beihdzt" class="commonAction" method="beihdzt"></action>
+        <!-- 仓库间移库状态 -->
+        <action name="ckykzt" class="commonAction" method="ckykzt"></action>
+        <!-- 配送类别 -->
+        <action name="peislb" class="commonAction" method="peislb"></action>
+        <!-- 卸货站台 -->
+        <action  name="xiehzt" class="commonAction" method="xiehzt"></action>
+        <!-- 质检跟踪单状态 -->
+        <action  name="zjgzdzt" class="commonAction" method="zhijgzdzt"></action>
+        <!--物理点 -->
+		<action name="wulidian" class="commonAction" method="wulidian"></action>
+		<!--状态 -->
+		<action name="chulzt" class="commonAction" method="chulzt"></action>
+		<!--责任主体 -->
+		<action name="zerzt" class="commonAction" method="zerzt"></action>
+		<!--320获取客户字段 huxy_11463 -->
+		<action name="getKeh" class="commonAction" method="getKeh"></action>
+		<!--单据类型 -->
+		<action name="danjlx" class="commonAction" method="danjlx"></action>
+		<!--单据类型614页面 -->
+		<action name="danjlxx" class="commonAction" method="danjlxx"></action>
+		<!--异常类型 -->
+		<action name="yichanglx" class="commonAction" method="yichanglx"></action>
+		<!--调拨执行状态 -->
+		<action name="diaobzxzt" class="commonAction" method="diaobzxzt"></action>
+		<!--调拨类型 -->
+		<action name="diaoblx" class="commonAction" method="diaoblx"></action>
+		<!--调拨类型 2出库-->
+		<action name="rongqc2" class="commonAction" method="rongqc2"></action>
+		<!--调出容器区 614-->
+		<action name="diaochurqq614" class="commonAction" method="diaochurqq614"></action>
+		<!--根据盘点类型确定容器区的值 633-->
+		<action name="showRongqc633" class="commonAction" method="showRongqc633"></action>
+		<!--质检类型 -->
+		<action name="zhijlx" class="commonAction" method="zhijlx"></action>
+		<!--接受返还类型  -->
+		<action name="jiesfhlx" class="commonAction" method="jiesfhlx"></action>
+		<!-- 改包装跟踪单查询状态 -->
+		<action name="gbzgzdzt" class="commonAction" method="gbzgzdzt"></action>
+		<!-- 质检处理状态 -->
+		<action name="zhijchulzt" class="commonAction" method="zhijchulzt"></action>
+		<!--外部模式-->
+        <action name="waibghms" class="commonAction" method="waibghms"></action>
+        <!--要货令状态-->
+        <action name="yaohlzt" class="commonAction" method="yaohlzt"></action>
+        <!--拒收跟踪单状态-->
+        <action name="jusgzdzt" class="commonAction" method="jusgzdzt"></action>
+        <!--外部模式和内部模式-->
+        <action name="waibandneibghms" class="commonAction" method="waibandneibghms"></action>
+        <!-- 供应商 -->
+        <action name="lingjgys" class="commonAction" method="lingjGys"></action>
+        <!--零件配送类别 -->
+        <action name="lingjpslb" class="commonAction" method="lingjPeislb"></action>
+        <!--产线 -->
+        <action name="shengcx" class="commonAction" method="chanx"></action>
+        <!--盘点方式 -->
+        <action name="pandfs" class="commonAction" method="pandfs"></action>
+        <!-- 155卸货站台 -->
+        <action  name="zickxhzt" class="commonAction" method="zickxhzt"></action>
+        <!-- 要货令类型 -->
+        <action name="yaohllx" class="commonAction" method="yaohllx"></action>
+        <!-- 操作码类型 -->
+        <action name="caozuomalx" class="commonAction" method="caozuomalx"></action>
+        <!-- 容器报废申请单的状态 -->
+        <action name="rongqbfdzt" class="commonAction" method="rongqbfsqdzt"></action>
+        <!--发货通知单状态  -->
+        <action name="fahtzdzt" class="commonAction" method="fahtzdzt"></action>
+        <!-- 通过配送类别查询产线 -->
+         <action name="Peislxchanx" class="commonAction" method="Peislxchanx"></action>
+        <!-- 备货单类型 -->
+        <action name="beihdlx" class="commonAction" method="beihdlx"></action>
+        <!-- 导出类型 -->
+        <action name="daoclx" class="commonAction" method="daoclx"></action>
+         <!--342排序方式-->
+		<action name="paixfs2" class="commonAction" method="paixfs2"></action>
+		 <!--511集装箱状态-->
+		<action name="jizxzt" class="commonAction" method="jizxzt"></action>
+		<!-- 60303 容器供应商代码得到容器供应商名称-->
+		<action name="60303" class="commonAction" method="kongrqgongysmc"></action>
+		<!-- 60303 容器供应商代码得到容器供应商名称-->
+		<action name="60304" class="commonAction" method="kongrqwulsmc"></action>
+		<!-- 60105 容器接收单打印-->
+        <action name="60105" class="commonAction" method="xzchengysdm"></action>
+        <!-- 40103 异常消耗申报通过供应商编号查询-->
+		<action name="40106" class="commonAction" method="yichangshenbd"></action>
+		<!-- 40103 异常消耗申报通过供应商编号查询-->
+		<action name="40105" class="commonAction" method="yichangGONGYSbhx"></action>
+		<!-- 40102异常消耗申报通过零件编号查询-->
+		<action name="40104" class="commonAction" method="yichangLINGJbhx"></action>
+		<!-- 40103 异常消耗申报通过供应商编号查询-->
+		<action name="40107" class="commonAction" method="yichanglingjgongys"></action>
+		<!-- wareHouseck-->
+		<action name="wareHouseck" class="commonAction" method="wareHouseck"></action>
+		<action name="wareHouseLjck" class="commonAction" method="wareHouseLjck"></action>
+		<!-- huxy_11470成品仓库 362 -->
+		<action name="wareHousecpck" class="commonAction" method="wareHousecpck"></action>
+	 <!-- 35103 创建临时要货令-->
+        <action name="35103" class="commonAction" method="selectucrl"></action>
+        <!-- 35104 创建临时要货令-->
+        <action name="35104" class="commonAction" method="selectuaucgs"></action>
+        <!-- 125补打功能-->
+        <action name="12501" class="commonAction" method="budgnprint"></action>
+        <action name="12502" class="commonAction" method="budgnprintmor"></action>
+        <!--419 查询批次及失效期管理信息  -->
+         <action name="pcsxq" class="commonAction" method="selectPcsxq"></action>
+         <!--状态属性  -->
+         <action name="zhuangtsx" class="commonAction" method="zhuangtsx"></action>
+         <!--标签属性 hzg 2014.10.16 -->
+         <action name="zhuangtbq" class="commonAction" method="zhuangtbq"></action>
+         <!--单据盘点类型 -->
+         <action name="danjpdlx" class="commonAction" method="danjpdlx"></action>
+         <!--容器移库状态 -->
+         <action name="rongqykzt" class="commonAction" method="rongqykzt"></action>
+         <!-- 扫包装状态 -->
+         <action  name="beihdbs" class="commonAction" method="beihdbs"></action>
+          <!-- 167故障类型 -->
+         <action  name="gzlx167" class="commonAction" method="gzlx167"></action>
+         <!--处理标识 -->
+         <action  name="chulbs" class="commonAction" method="chulbs"></action> 
+           <!--150配送类别 -->
+         <action  name="pieslb150" class="commonAction" method="pieslb150"></action> 
+         <!-- 410状态属性7与8 -->
+           <action  name="zhuangtsx410" class="commonAction" method="zhuangtsx410"></action> 
+         <!-- 346筛选 -->
+           <action  name="shaixuan" class="commonAction" method="shaixuan"></action> 
+          <!-- 入库类型 -->
+           <action  name="ruklx" class="commonAction" method="ruklx"></action>   
+           <!-- 工废/料废 -->
+           <action  name="zhijzl" class="commonAction" method="zhijzl"></action>   
+          <!-- 358备货方式 --> 
+           <action  name="beihfs" class="commonAction" method="beihfs"></action>
+           <!-- 129状态--> 
+           <action  name="yszhuangt" class="commonAction" method="yszhuangt"></action>
+           <!-- 361模式--> 
+           <action  name="axywmosh" class="commonAction" method="axywmosh"></action>         
+           <!-- 查询实际零件编号--> 
+           <action  name="querySjljmc" class="commonAction" method="querySjljmc"></action>
+           <!-- 查询原因  0010509--> 
+           <action  name="getYuanYin" class="commonAction" method="getYuanYin"></action>
+           <!-- 容器状态  0010495--> 
+           <action  name="rongqbglx" class="commonAction" method="rongqbglx"></action>
+           <!-- 容器状态2  0010495--> 
+           <action  name="rongqbglx2" class="commonAction" method="rongqbglx2"></action>
+           
+           <!--  空车出厂查询撤销类型--> 
+           <action  name="kongcclx" class="commonAction" method="kongcclx"></action>
+           
+           
+           <!--  164删除类别 0010438--> 
+           <action  name="shanclb" class="commonAction" method="shanclb"></action>
+           
+           <!-- V4_022 卷料库-->
+           <action name="wareHousejlck" class="commonAction" method="wareHousejlck"></action>
+	</package>
+</toft>

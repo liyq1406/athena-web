@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="common">
+<!--查询PLT_TRSCODE_J数据-->
+	<resultMap class="com.athena.authority.entity.PltTrscode" id="PltTrscode">
+		<result column="USERCENTER" property="usercenter" />
+		<result column="TRSCODE" property="trscode" />
+		<result column="TRSNAME" property="trsname" />
+		<result column="TRSTYPE" property="trstype" />
+		<result column="TIMEOUT" property="timeout" />
+		<result column="LOGFLAG" property="logflag" />
+		<result column="CTRLFLAG" property="ctrlflag" />
+		<result column="SERVICE" property="service" />
+		<result column="COMMMODE" property="commmode" />
+		<result column="COMMTYPE" property="commtype" />
+	</resultMap>
+	<select id="queryPltTrscode" resultMap="PltTrscode">
+		select 
+		trim(USERCENTER) USERCENTER,
+		trim(TRSCODE) TRSCODE,
+		trim(TRSNAME) TRSNAME,
+		TRSTYPE,
+		TIMEOUT,
+		LOGFLAG,
+		trim(CTRLFLAG) CTRLFLAG,
+		trim(SERVICE) SERVICE,
+		COMMMODE,
+		COMMTYPE
+	from ${dbSchemal0}PLT_TRSCODE_J 
+	order by TRSCODE
+	</select>
+
+	<!--查询用户中心数据-->
+	<resultMap class="com.athena.ck.entity.common.UserCenter" id="UserCenter">
+		<result column="USERCENTER" property="usercenter" />
+		<result column="CENTERNAME" property="centername" />
+		<result column="CREATOR" property="creator" />
+		<result column="CREATE_TIME" property="create_time" />
+		<result column="EDITOR" property="editor" />
+		<result column="EDIT_TIME" property="edit_time" />
+	</resultMap>
+	<select id="queryUserCenter" resultMap="UserCenter">
+		select 
+		USERCENTER,
+		CENTERNAME,
+		CREATOR,
+		CREATE_TIME,
+		EDITOR,
+		EDIT_TIME
+	from ${dbSchemal0}CKX_USERCENTER 
+	where BIAOS = '1' 
+	order by USERCENTER
+	</select>
+	
+	<!--查询用户管辖的仓库数据-->
+	<resultMap class="com.athena.ck.entity.common.WareHouse" id="WareHouse">
+		<result column="ID" property="id" />
+		<result column="POST_ID" property="post_Id" />
+		<result column="USERCENTER" property="usercenter" />
+		<result column="CANGKBH" property="cangkbh" />
+		<result column="MENDER" property="mender" />
+		<result column="MODIFY_TIME" property="modify_time" />
+		<result column="CREATOR" property="creator" />
+		<result column="CREATE_TIME" property="create_time" />		
+		<result column="ACTIVE" property="active" />
+		<result column="CANGKLX" property="cangklx" />
+		<result column="DAOCTQQ" property="daoctqq" />
+		<result column="RONGQCBH" property="rongqcbh" />
+	</resultMap>
+	<select id="queryWareHouse" resultMap="WareHouse">
+		select 
+		t1.ID,
+		t1.POST_ID,
+		t1.USERCENTER,
+		t1.CANGKBH,
+		t1.MENDER,
+		t1.MODIFY_TIME,
+		t1.CREATOR,
+		t1.CREATE_TIME,
+		t1.ACTIVE,
+		t2.CANGKLX,
+		t2.DAOCTQQ,
+		t2.RONGQCBH
+	from ${dbSchemal0}SYS_CK_GROUP t1 inner join ${dbSchemal0}CKX_CANGK t2 
+	on t1.USERCENTER=t2.USERCENTER and t1.CANGKBH=t2.CANGKBH
+	where t1.ACTIVE = '1' and t2.BIAOS = '1' and t1.USERCENTER = #usercenter# and t1.POST_ID = #post_Id# 
+	order by CANGKBH
+	</select>
+	
+	<!--查询子仓库数据-->
+	<resultMap class="com.athena.ck.entity.common.ChildWareHouse" id="ChildWareHouse">
+		<result column="USERCENTER" property="usercenter" />
+		<result column="CANGKBH" property="cangkbh" />
+		<result column="ZICKBH" property="zickbh" />
+		<result column="SHIFELGL" property="shifelgl" />
+		<result column="GUANLYZBH" property="guanlyzbh" />
+		<result column="ZHANTBH" property="zhantbh" />
+		<result column="BIAOS" property="biaos" />		
+		<result column="CREATOR" property="creator" />
+		<result column="CREATE_TIME" property="create_time" />
+		<result column="EDITOR" property="editor" />
+		<result column="EDIT_TIME" property="edit_time" />
+	</resultMap>
+	<select id="queryChildWareHouse" resultMap="ChildWareHouse">
+		select 
+		t1.USERCENTER,
+		t1.CANGKBH,
+		t1.ZICKBH,
+		t1.SHIFELGL,
+		t1.GUANLYZBH,
+		t1.ZHANTBH,
+		t1.BIAOS,
+		t1.CREATOR,
+		t1.CREATE_TIME,
+		t1.EDITOR,
+		t1.EDIT_TIME
+	from ${dbSchemal0}CKX_ZICK t1 
+	where t1.BIAOS = '1' and t1.USERCENTER = #usercenter# and t1.CANGKBH = #cangkbh# 
+	order by t1.ZICKBH
+	</select>
+	
+	<!--查询容器场-->
+	<resultMap class="com.athena.ck.entity.common.Rongqc" id="Rongqc">
+		<result column="ID" property="id" />
+		<result column="POST_ID" property="post_Id" />
+		<result column="USERCENTER" property="usercenter" />
+		<result column="RONGQCBH" property="rongqcbh" />
+		<result column="MENDER" property="mender" />
+		<result column="MODIFY_TIME" property="modify_time" />
+		<result column="CREATOR" property="creator" />
+		<result column="CREATE_TIME" property="create_time" />	
+		<result column="SHIFFK" property="shiffk" />
+		<result column="JIZQBH" property="jizqbh" />	
+		<result column="ACTIVE" property="active" />
+	</resultMap>
+	<select id="queryRongqc" resultMap="Rongqc">
+		select 
+		t1.ID,
+		t1.POST_ID,
+		t1.USERCENTER,
+		t1.RONGQCBH,
+		t1.MENDER,
+		t1.MODIFY_TIME,
+		t1.CREATOR,
+		t1.CREATE_TIME,
+		t2.SHIFFK,
+		t2.JIZQBH,
+		t1.ACTIVE
+	from ${dbSchemal0}SYS_RQC_GROUP t1 inner join ${dbSchemal0}CKX_RONGQC t2 
+	on t1.USERCENTER=t2.USERCENTER and t1.RONGQCBH=t2.RONGQCBH 
+	where t1.ACTIVE = '1' and t2.BIAOS = '1' and t1.USERCENTER = #usercenter# and t1.POST_ID = #post_Id# 
+	order by t1.RONGQCBH
+	</select>
+	
+	<!--  0010495-->
+	<select id="PdaqueryRongqc" resultMap="Rongqc">
+		select 
+		t1.ID,
+		t1.POST_ID,
+		t1.USERCENTER,
+		t1.RONGQCBH,
+		t1.MENDER,
+		t1.MODIFY_TIME,
+		t1.CREATOR,
+		t1.CREATE_TIME,
+		t2.SHIFFK,
+		t2.JIZQBH,
+		t1.ACTIVE
+	from ${dbSchemal0}SYS_RQC_GROUP t1 inner join ${dbSchemal0}CKX_RONGQC t2 
+	on t1.USERCENTER=t2.USERCENTER and t1.RONGQCBH=t2.RONGQCBH 
+	where t1.ACTIVE = '1' and t2.BIAOS = '1' and t1.USERCENTER = #usercenter# and t1.POST_ID = #post_Id# 
+	and (t2.shiffk='F' or t2.shiffk='R')
+	order by t1.RONGQCBH
+	</select>
+	
+	<!--查询仓库流水-->
+	<resultMap class="com.athena.ck.entity.common.LIUSB" id="LIUSB">
+		<result column="CAOZM" property="caozm" />
+		<result column="LINGJBH" property="lingjbh" />
+		<result column="FASSJ" property="fassj" />
+		<result column="NEIR" property="neir" />
+		<result column="USERCENTER" property="usercenter" />
+		<result column="CANGKBH" property="cangkbh" />
+		<result column="ZICKBH" property="zickbh" />
+		<result column="GONGYSDM" property="gongysdm" />	
+		<result column="BEIZ1" property="beiz1" />
+		<result column="BEIZ2" property="beiz2" />	
+		<result column="BEIZ3" property="beiz3" />
+		<result column="BEIZ4" property="beiz4" />	
+		<result column="BEIZ5" property="beiz5" />
+	</resultMap>
+	<select id="queryLiusb" resultMap="LIUSB">
+		select 
+		CAOZM,
+		LINGJBH,
+		FASSJ,
+		NEIR,
+		USERCENTER,
+		CANGKBH,
+		ZICKBH,
+		GONGYSDM,
+		BEIZ1,
+		BEIZ2,
+		BEIZ3,
+		BEIZ4,
+		BEIZ5
+	from ${dbSchemal0}CK_LIUSB WHERE 1=1 
+	<dynamic>
+		<isNotEmpty property="caozm">
+			and CAOZM = #caozm#
+		</isNotEmpty>
+		<isNotEmpty property="usercenter">
+			and USERCENTER = #usercenter#
+		</isNotEmpty>
+		<isNotEmpty property="papBoxId">
+			and LINGJBH = #lingjbh# 
+		</isNotEmpty>
+	</dynamic>
+	order by caozm,lingjbh,usercenter
+	</select>
+	
+	
+	<!--查询返空区-->
+	
+	<select id="queryFankongq"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+	    select 
+	    DISTINCT A.RONGQCBH rongqcbh 
+	    from ${dbSchemal0}ckx_rongqc a 
+	    where a.usercenter= #usercenter# and a.shiffk!='J'
+	    order by RONGQCBH		
+	</select>
+	
+	<!--查询返空区603-->	
+	<select id="queryFankongq603"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+	   <!--  select 
+	    DISTINCT A.RONGQCBH rongqcbh 
+	    from ${dbSchemal0}ckx_rongqc a 
+	    where a.usercenter= #usercenter# and a.shiffk='F'
+	    order by RONGQCBH		 -->
+	     SELECT A.RONGQCBH rongqcbh 
+	     FROM ${dbSchemal0}CKX_RONGQC A 
+	     WHERE A.JIZQBH =(
+                  SELECT B.JIZQBH FROM ${dbSchemal0}CKX_RONGQC B 
+                  WHERE B.RONGQCBH=#rongqcbh# AND B.USERCENTER=#usercenter# ) AND A.SHIFFK='F' AND A.BIAOS='1'
+         AND A.USERCENTER=#usercenter#
+	    
+	</select>
+	
+	<!--查询返空区603 604 605 -->	
+	<select id="queryJiZhangqbh"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+         select w.jizqbh from ${dbSchemal0}ckx_rongqc w where w.rongqcbh=#rongqcbh#	    
+	</select>
+	
+	<!--查询调入容器区-->
+	
+	<select id="queryDiaoRurqq"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+	   select rongqcbh 
+	   from ${dbSchemal0}ckx_rongqc c 
+	   where c.shiffk!='J' 
+	   order by rongqcbh		
+	</select>
+	
+	<!--查询调入容器区 611-->	
+	<select id="queryDiaoRurqq611"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+	   select distinct a.rongqcbh rongqcbh
+  		from ${dbSchemal0}ckx_rongqc a
+ 		where a.jizqbh != (select jizqbh
+                      		from ${dbSchemal0}ckx_rongqc
+                     		where rongqcbh =#rongqcbh#
+                       		and usercenter =#usercenter#)
+                       		and a.shiffk!='J'		
+	</select>
+	
+	<!--根据盘点类型确定容器区的值 63301-->	
+	<select id="showRongqq63301"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+	  SELECT A.RONGQCBH　rongqcbh FROM ${dbSchemal0}CKX_RONGQC A
+      WHERE A.USERCENTER =#usercenter#
+        AND A.SHIFFK IN ('R', 'F')	
+        AND A.BIAOS='1'	
+	</select>
+	
+	<!--根据盘点类型确定容器区的值 63302-->	
+	<select id="showRongqq63302"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+		SELECT A.RONGQCBH
+	       FROM ${dbSchemal0}CKX_RONGQC A
+	      WHERE A.USERCENTER = #usercenter#
+	        AND A.SHIFFK = 'J'	
+	        AND A.BIAOS='1'
+	</select>
+	
+	<!--查询调入容器区 614-->
+	
+	<select id="queryDiaoRurqq614"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+	   <!-- select rongqcbh 
+	   from ${dbSchemal0}ckx_rongqc c 
+	   where c.shiffk='R' 
+	   and c.usercenter=#usercenter#
+	   order by rongqcbh		 -->
+	    SELECT A.RONGQCBH rongqcbh 
+	     FROM ${dbSchemal0}CKX_RONGQC A 
+	     WHERE A.JIZQBH =(
+                  SELECT B.JIZQBH FROM ${dbSchemal0}CKX_RONGQC B 
+                  WHERE B.RONGQCBH = #rongqcbh# AND B.USERCENTER = #usercenter# ) AND A.SHIFFK='R' AND A.BIAOS='1'
+         AND A.USERCENTER = #usercenter#
+         AND A.RONGQCBH != #rongqcbh#
+	</select>
+	
+	<!--容器盘点维护 624-->
+	
+	<select id="queryRongqPanD624"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+	   select a.rongqcbh
+		  from ${dbSchemal0}ckx_rongqc a
+		 where a.usercenter = #usercenter#
+		   and a.shiffk = 'R'
+		   and a.rongqcbh = #rongqcbh#		
+	</select>
+	
+	<!--查询调出容器区-->
+	
+	<select id="queryDiaoChurqq614"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+	    select A.RONGQCBH rongqcbh
+         from ${dbSchemal0}ckx_rongqc a
+         where a.shiffk ='R'
+         order by rongqcbh		
+	</select>
+	
+	<!--查询调出容器区-->
+	
+	<select id="queryDiaoChurqq"  resultClass="com.athena.ck.entity.common.Rongqc"  parameterClass="java.util.Map">
+	    select A.RONGQCBH rongqcbh
+         from ${dbSchemal0}ckx_rongqc a
+         where a.shiffk IN ('R', 'F')
+         order by rongqcbh		
+	</select>
+	
+	<!--查询质检组-->
+	<resultMap class="com.athena.ck.entity.common.Zhijz" id="Zhijz">
+		<result column="ZHIJZBH" property="zhijzbh" />
+		<result column="ZHIJZMC" property="zhijzmc" />
+		<result column="DIC_CODE" property="dic_code" />
+		<result column="USERCENTER" property="usercenter" />
+		<result column="BIAOS" property="biaos" />
+	</resultMap>
+	<select id="queryZhijz" resultMap="Zhijz">
+	select 
+    P.POST_CODE as ZHIJZBH,
+		P.POST_NAME as ZHIJZMC,
+		P.DIC_CODE,
+		P.USERCENTER,
+		P.BIAOS
+	from ${dbSchemal0}SYS_POST P,
+	     ${dbSchemal0}SYS_R_POST_USERCENTER U
+	where P.DIC_CODE = #dic_code# 
+	  and P.BIAOS = #biaos# 
+	  and P.POST_CODE = U.POST_CODE
+	  and U.Usercenter = #usercenter#
+	order by P.POST_CODE
+	</select>
+	
+	
+	<!--查询字典数据-->
+	<resultMap class="com.athena.ck.entity.common.Xitcsdy" id="Xitcsdy">
+		<result column="USERCENTER" property="usercenter" />
+		<result column="ZIDLX" property="zidlx" />
+		<result column="ZIDLXMC" property="zidlxmc" />
+		<result column="ZIDBM" property="zidbm" />
+		<result column="ZIDMC" property="zidmc" />
+		<result column="BEIZ" property="beiz" />
+		<result column="SHIFQJ" property="shifqj" />
+		<result column="QUJZDZ" property="qujzdz" />		
+		<result column="QUJZXZ" property="qujzxz" />
+		<result column="PAIX" property="paix" />
+		<result column="CREATOR" property="creator" />		
+		<result column="CREATE_TIME" property="create_time" />
+		<result column="EDITOR" property="editor" />		
+		<result column="EDIT_TIME" property="edit_time" />
+	</resultMap>
+	<select id="queryXitcsdy" resultMap="Xitcsdy">
+		select 
+		USERCENTER,
+		ZIDLX,
+		ZIDLXMC,
+		ZIDBM,
+		ZIDMC,
+		BEIZ,
+		SHIFQJ,
+		QUJZDZ,
+		QUJZXZ,
+		PAIX,
+		CREATOR,
+		CREATE_TIME,
+		EDITOR,
+		EDIT_TIME
+	from ${dbSchemal0}CKX_XITCSDY where ZIDLX = #zidlx# 
+	order by ZIDBM
+	</select>
+	
+	<!-- 查询包装型号 -->
+	<select id="queryBaozxh" resultClass="com.athena.ck.entity.shouhuo.Chengpbz" parameterClass="java.util.Map">
+	   select  baozlx from ${dbSchemal0}CKX_BAOZ where biaos = '1' and  baozlx=#xinbzxh#
+	</select>
+	<!-- 查询配货类型 -->
+	<resultMap class="com.athena.ck.entity.common.Peislb" id="Peislb">
+        <result column="PEISLX" property="peislx" />
+        <result column="PEISLXMC" property="peislxmc" />
+    </resultMap>
+	<select id="queryPeislb" resultMap="Peislb">
+       select PEISLX,PEISLXMC FROM ${dbSchemal0}CKX_PEISLB where BIAOS = '1'
+    </select>
+   <!-- 查询卸货站台 -->
+   <select   id="queryXiehzt" parameterClass="java.util.Map"  resultClass="com.athena.ck.entity.common.Xiehzt">
+   select  cangkbh,xiehztbh xiehzt,xiehztmc ,usercenter  
+   from  ${dbSchemal0}CKX_XIEHZT  
+   where  cangkbh=#cangkbh# and usercenter=#usercenter#
+   <dynamic>
+      <isNotEmpty prepend=" and " property="biaos"><![CDATA[ biaos ='1' ]]></isNotEmpty>
+   </dynamic>
+   </select>
+   <!-- 查询零件名称 -->
+   <select id="queryLingjmc" parameterClass="java.util.Map"  
+    resultClass="com.athena.ck.entity.shouhuo.Tongbyhl" >
+   select  lingjbh,zhongwmc lingjmc  from  ${dbSchemal0}CKX_LINGJ  where biaos ='1' and lingjbh=#lingjbh# 
+   and  usercenter=#usercenter#
+   </select>
+    <!-- 查询供应商名称 -->
+   <select id="queryGongysmc"  resultClass="com.athena.ck.entity.shouhuo.Tongbyhl" parameterClass="java.util.Map" >
+   select  gcbh gongysdm,gongsmc gongysmc  from  ${dbSchemal0}CKX_GONGYS  where  biaos ='1' and gcbh=#gongysdm# and  usercenter=#usercenter#
+   </select>
+   <!-- 物理点 -->
+   <resultMap class="com.athena.ck.entity.common.Wuld" id="Wuld">
+		<result column="WULDBH" property="wuldbh" />
+		<result column="WULDMC" property="wuldmc" />
+		<result column="WULDLX" property="wuldlx" />
+		<result column="SHUNXH" property="shunxh" />
+		<result column="QUY" property="quy" />
+		<result column="BIAOS" property="biaos" />
+	</resultMap>
+	<select id="queryWuld"  resultMap="Wuld" parameterClass="java.util.Map">
+		SELECT 
+		WULDBH,
+		WULDMC,
+		WULDLX,
+		SHUNXH,
+		QUY,
+		BIAOS FROM ${dbSchemal0}CKX_YUNSWLD WHERE BIAOS = '1'  $leix$
+	</select>
+   <!-- 产线 -->
+   <select  id="queryChanx"  resultClass="com.athena.ck.entity.shouhuo.Shengcx" parameterClass="java.util.Map">
+   select  distinct(shengcxbh) chanx  from ${dbSchemal0}ckx_shengcx_lingj
+   where  usercenter=#usercenter#  and lingjbh=#lingjbh# and cangkbh=#cangkbh#
+   </select>
+   <!-- 服务码 -->
+   <select id="queryTrscode"   resultClass="com.athena.ck.entity.common.Trscode">
+      select trim(trscode) trancode,trim(trsname) trsname,timeout,trim(service) service from ${dbSchemal0}plt_trscode  
+   </select>
+   <!-- 收货20120917 夏晖 -->	
+    <!-- 查询零件供应商表查询供应商及卸货站台信息 -->
+    <select   id="queryLingjCangk"  resultClass="com.athena.ck.entity.common.Xiehzt"  parameterClass="java.util.Map">
+      select  xiehztbh
+      from    ${dbSchemal0}CKX_LINGJCK
+      where   usercenter=#usercenter#
+      and     cangkbh=#cangkbh#
+      and     lingjbh=#lingjbh#
+      <dynamic>
+			<isNotEmpty prepend=" and " property="xiehzt"><![CDATA[xiehztbh = #xiehzt#]]></isNotEmpty>
+	  </dynamic>
+    </select>
+    
+    <!--通过零件编号查询供应列表  -->
+    <select   id="queryLingjGongys"  resultClass="com.athena.ck.entity.shouhuo.Lingjgys"  parameterClass="java.util.Map">
+     select  lg.gongysbh  gongysdm ,
+             g.gongsmc    gongysmc ,
+             lg.shifsxgl  shifsxgl ,
+             lg.shifyzpch shifyzpch  
+      from    ${dbSchemal0}CKX_LINGJGYS lg ,
+              ${dbSchemal0}CKX_GONGYS    g
+      where   lg.usercenter = g.usercenter
+      and     lg.gongysbh   = g.gcbh
+      and     lg.lingjbh=#lingjbh#
+      and     lg.usercenter=#usercenter#
+      and     g.biaos ='1'
+    </select>
+	<!--134页面通过零件编号 查询配送类别-->
+	<select id="queryLingjPeislb" resultClass="com.athena.ck.entity.common.Peislb"  parameterClass="java.util.Map">
+	select  distinct(peislxbh) peislx from  ${dbSchemal0}ckx_lingjxhd x
+	where   x.lingjbh=#lingjbh#
+      and   x.usercenter=#usercenter#
+      and   x.biaos = '1'
+	</select>
+	<!--134  通过配送类别查询卸货站台   -->
+	<select id="queryPeislbXiehzt" resultClass="java.lang.String"  parameterClass="java.util.Map">
+	select z.zhantbh xiehzt   
+	 from  ${dbSchemal0}ckx_peislb  p , ${dbSchemal0}ckx_zick    z
+	where   p.zickbh = z.zickbh
+	  and   z.cangkbh = p.cangkbh
+	  and   p.biaos = '1'
+	  and   z.biaos = '1'
+	  and   z.usercenter =  #usercenter#
+	  and   p.peislx =  #peislb#
+	  and   p.cangkbh = #cangkbh#
+	</select>
+	<!--11505查询零件序列号是否存在 -->
+	<select id="queryLingjxlh" resultClass="java.lang.String" parameterClass="java.util.Map">
+	  select usercenter from ${dbSchemal0}ckx_lingjxlh_qud where #lingjxlh# between (xulhqz||xulhks) and (xulhqz||xulhjs) and instr( #lingjxlh#,xulhqz)=1 and length(#lingjxlh#)=length(xulhqz||xulhks)
+	     and to_char(sysdate,'yyyy-MM-dd') between to_char(QISRQ,'yyyy-MM-dd')  and to_char(JIESRQ,'yyyy-MM-dd')  
+	     and lingjbh=#lingjbh# and usercenter=#usercenter# and biaos='1'
+
+	</select>
+	<!-- 查询零件序列号是否在成品包装中存在  xss 0011259-->
+	<select  id="queryChengpbz" resultClass="java.lang.String" parameterClass="java.util.Map">
+	select  usercenter from ${dbSchemal0}ck_chengpbz  where 
+	 usercenter=#usercenter# and lingjxlh=#xlh#   and rownum=1
+	</select>
+	<!-- 155查询卸货站台 -->
+	<select id="queryZickxhzt" resultClass="com.athena.ck.entity.common.Xiehzt"  parameterClass="java.util.Map">
+	select   distinct(zhantbh) xiehzt   from   ${dbSchemal0}ckx_zick  
+	where  usercenter=#usercenter# 
+	  and  cangkbh=#cangkbh#
+	</select>
+	<!-- 147通过配送类别查找产线 20120818 夏晖 -->
+	<select id="queryPeislbcx" resultClass="com.athena.ck.entity.shouhuo.Shengcx" parameterClass="java.util.Map">
+	select  distinct(shengcxbh) chanx  from ${dbSchemal0}ckx_tongbjplj  
+	where   usercenter=#usercenter# 
+	  and   peislx=#peislb# and rownum=1
+	</select>
+	<!-- 收货结束 -->
+	
+	
+	
+	
+	   
+   
+   
+   
+   <!--聂柳-->
+   
+  
+   
+   
+	 <!--查询供应商名称-->
+	<select id="searchgongysmc" resultClass="com.athena.ck.entity.yichang.Yic"  parameterClass="java.util.Map">
+	select gongsmc as chengysmc
+          from ${dbSchemal0}ckx_gongys
+         where gcbh = #chengysdm#
+           and biaos = '1'
+           and usercenter = #usercenter#
+          
+	</select> 
+		<!--查询承运商代码-->
+	<select id="searchchengysdm" resultClass="com.athena.ck.entity.yichang.Yic"  parameterClass="java.util.Map">
+	select a.gcbh as chengysdm from ${dbSchemal0}ckx_waibwl t
+left join ${dbSchemal0}ckx_waibwlxx a on t.lujbh=a.lujbh
+where t.gongysbh=#gongysbh#
+	</select> 
+
+
+
+		<!--查询零件名称-->
+	<select id="querylingjmcc" resultClass="com.athena.ck.entity.yichang.Yic"  parameterClass="java.util.Map">
+	select zhongwmc as lingjmc,danw
+      from ${dbSchemal0}ckx_lingj t
+     where t.lingjbh = #lingjbh#
+       and t.usercenter = #usercenter#
+	</select> 
+			<!--查询零件名称-->
+	<select id="querylingjgongyss" resultClass="com.athena.ck.entity.yichang.Yic"  parameterClass="java.util.Map">
+select gongysbh as gongysdm from ${dbSchemal0}CKX_LINGJGYS where lingjbh = #lingjbh# and usercenter=#usercenter#
+	</select> 
+			<!--查询供应商名称-->
+	<select id="querygongysmcc" resultClass="com.athena.ck.entity.yichang.Yic"  parameterClass="java.util.Map">
+	select gongsmc as gongysmc
+          from ${dbSchemal0}ckx_gongys
+         where gcbh = #gongysdm#
+           and usercenter = #usercenter#
+           and leix in ('1','2')
+	</select> 
+		<!--查询承应商编号和名称-->
+	<select id="querychengysmc" resultClass="com.athena.ck.entity.yichang.Yic"  parameterClass="java.util.Map">
+	  select gcbh as chengysdm, gongsmc as chengysmc
+          from ${dbSchemal0}ckx_gongys
+         where gcbh = (select gcbh
+                         FROM ${dbSchemal0}ckx_wullj
+                        where lingjbh = #lingjbh#
+                          and usercenter = #usercenter#
+                          and fenpqh = #shengbd#
+                          and gongysbh = #gongysdm#)
+                           and usercenter = #usercenter#
+                           and biaos='1'
+	</select> 
+	
+	
+	
+	
+	
+	
+	
+		<!--查询补打数据-->
+
+	<select id="queryzirwid" resultClass="com.athena.ck.entity.kunei.Budinfo"  parameterClass="java.util.Map">
+   select t.qid,
+         t.seq
+    from ${dbSchemal0}ckx_print_qtask_info t
+    left join ${dbSchemal0}ckx_print_qtask_main m on t.qid=m.qid
+   where substr( seq , 0 , 7 ) = #danjbh# and modelnumber in ($danjlx$)
+   order by m.createtime
+	</select>
+		<select id="queryzirwidtwo" resultClass="com.athena.ck.entity.kunei.Budinfo"  parameterClass="java.util.Map">
+   select t.qid,
+         t.seq
+    from ${dbSchemal0}ckx_print_qtask_info t
+    left join ${dbSchemal0}ckx_print_qtask_main m on t.qid=m.qid
+   where  seq = #danjbh# and modelnumber in ($danjlx$)
+   order by m.createtime
+	</select>
+	
+		<!--查询补打数据-->
+
+	<select id="queryzirwidall" resultClass="com.athena.ck.entity.kunei.Budinfo"  parameterClass="java.util.Map">
+   select t.seq
+    from ${dbSchemal0}ckx_print_qtask_info t
+    left join ${dbSchemal0}ckx_print_qtask_main m on t.qid=m.qid
+   where t.qid = #qid# and t.modelnumber in ($danjlx$)
+	</select>
+	
+	<!--查询补打随机qid数据-->
+	<select id="querysuijid" resultClass="com.athena.ck.entity.kunei.Budinfo">
+select SUBSTR(#usercenter#, 2, 1) ||
+       SUBSTR('000000000' || DAYZY_SEQ.Nextval, -10, 10) as sjqid
+  from dual
+	</select>
+	
+	
+		<!--查询补打主表数据-->
+	<insert id="insertmain" parameterClass="com.athena.ck.entity.kunei.Budinfo">
+insert into ${dbSchemal0}ckx_print_qtask_main(
+       usercenter,
+       qid,
+       saccount,
+       pgid,
+       scode,
+       storagecode,
+       sdevicecode,
+       createtime,
+       finishedtime,
+       status,
+       biaos)
+select t.usercenter,
+      #sjqid# as qid,
+       t.saccount,
+       t.pgid,
+       t.scode,
+       t.storagecode,
+       'NONE' as sdevicecode,
+       t.createtime,
+       t.finishedtime,
+       '-1' as status,
+       '0' as biaos
+  from ${dbSchemal0}ckx_print_qtask_main t
+ where t.qid = #qid#
+	</insert>
+	
+	
+			<!--查询补打子任务数据-->
+	<insert id="insertinfo" parameterClass="com.athena.ck.entity.kunei.Budinfo">
+ insert into ${dbSchemal0}ckx_print_qtask_info(qid,
+                            seq,
+                            sfilename,
+                            modelnumber,
+                            printnumber,
+                            printunitcount,
+                            printtype,
+                            status,
+                            daypc,
+                            quyzs,
+                            usercenter)
+  select #sjqid# as qid,
+         seq,
+         '' as sfilename,
+         modelnumber,
+         printnumber,
+         printunitcount,
+         printtype,
+         '0' as status,
+         daypc,
+         quyzs,
+         usercenter
+          from ${dbSchemal0}ckx_print_qtask_info t
+         where t.seq = #danjbh#
+           and t.modelnumber = $danjlx$
+	</insert>
+	
+	<!--查询补打表单数据-->
+	<insert id="insertsheet" parameterClass="com.athena.ck.entity.kunei.Budinfo">
+insert into ${dbSchemal0}ckx_print_qtask_sheet(qid,seq,area,spars)
+            select #sjqid# as qid,a.seq,a.area,a.spars from ${dbSchemal0}ckx_print_qtask_sheet a
+            where a.qid=#qid# and a.seq=#danjbh#
+	</insert>
+	
+	<!--查询补打清单数据-->
+	<insert id="insertlist" parameterClass="com.athena.ck.entity.kunei.Budinfo">
+insert into ${dbSchemal0}ckx_print_qtask_list(qid,seq,area,xuh,spars)
+            select #sjqid# as qid,b.seq,b.area,b.xuh,b.spars from ${dbSchemal0}ckx_print_qtask_list b
+            where b.qid=#qid# and b.seq=#danjbh#
+	</insert>
+	<!--查询补打数据-->
+
+	<select id="querycangkbh" resultClass="java.lang.String" parameterClass="java.util.Map">
+   select cangkbh from ${dbSchemal0}ckx_cangk  where usercenter=#usercenter#  and  $buhgpk$ and cangkbh=#cangkbh#
+	</select>
+	
+	<!--41901 返修单仓库编号查询 hzg 2014.10.14 -->
+	<select id="queryCangkbhOfLjck" resultClass="java.lang.String" parameterClass="java.util.Map">
+   		select cangkbh from ${dbSchemal0}ckx_lingjck  where usercenter=#usercenter#  and lingjbh=#lingjbh# 
+	</select>
+	
+	<!--102通过零件编号，供应商编号查询 UA、UC型号是否正确 -->
+	<!--102通过零件编号，供应商编号查询 UA、UC型号是否正确 -->
+	<select id="queryUaucxh" resultClass="java.lang.String" parameterClass="java.util.Map">
+	  <![CDATA[
+            select usercenter  
+              from ${dbSchemal0}ckx_lingjgys 
+             where lingjbh=#lingjbh# 
+               and gongysbh=#gongysdm#
+               and usercenter=#usercenter#
+        ]]> 
+      <dynamic>
+      <isNotEmpty prepend=" and " property="ucxh"><![CDATA[ucbzlx = #ucxh#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="uaxh"><![CDATA[uabzlx = #uaxh#]]></isNotEmpty>
+      </dynamic>
+     </select>
+	<!--查询UCRL-->
+	<select id="queryucrl" resultClass="com.athena.ck.entity.beihuo.Kuccx"  parameterClass="java.util.Map">
+	select t.ucrl as baozrl from ${dbSchemal0}ckx_lingjck t where t.usercenter=#usercenter# and t.lingjbh=#lingjbh# and t.cangkbh=#cangkbh#
+	</select> 
+	<!--查询UAUCGS-->
+	<select id="queryuaucgs" resultClass="com.athena.ck.entity.beihuo.Kuccx"  parameterClass="java.util.Map">
+	select t.ucrl * t.uaucgs as baozrl from ${dbSchemal0}ckx_lingjgys t where t.usercenter=#usercenter# and t.lingjbh=#lingjbh# and t.gongysbh=#gongysbh#
+	</select> 
+	<!-- 查询零件供应商  获取相关批次及失效期信息 -->
+	<select id="queryPcsxq" resultClass="com.athena.ck.entity.shouhuo.Lingjgys"  parameterClass="java.util.Map">
+     select  lg.gongysbh  gongysdm ,
+             lg.shifsxgl  shifsxgl ,
+             lg.shifyzpch shifyzpch  
+      from    ${dbSchemal0}CKX_LINGJGYS lg 
+      where   lg.lingjbh=#lingjbh#
+      and     lg.usercenter=#usercenter#
+      and     lg.gongysbh = #gongysdm#
+    </select>
+	<!--查询ckx_tongbjplj获得配送类别信息 -->
+	<select id="150Peislb" resultClass="com.athena.ck.entity.common.Peislb"  parameterClass="java.util.Map">
+     select distinct t2.peislx  peislx
+       from ${dbSchemal0}ckx_tongbjplj t1,
+            ${dbSchemal0}ckx_peislb t2
+      where t1.usercenter=t2.usercenter 
+        and t1.peislx=t2.peislx
+	    and t1.lingjbh=#lingjbh# 
+	    and t2.cangkbh=#cangkbh#
+	    and t1.usercenter=#usercenter#
+      
+    </select>
+    
+   <!-- 查询实际零件名称 -->
+   <select id="querySjljmc" parameterClass="java.util.Map" resultClass="java.lang.String">
+   select  zhongwmc  from  ${dbSchemal0}CKX_LINGJ  where lingjbh=#lingjbh# and  usercenter=#usercenter#
+   </select>
+</sqlMap>

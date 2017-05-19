@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="shouhuo" extend="toft-default" namespace="/ck">
+		<!-- 到货申报模块开始 -->
+		<action name="101" class="daohsbAction" method="daohsbym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/101.jsp</result>
+		</action>
+
+		<action name="102" class="daohsbAction" method="daohxxlrym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/102.jsp</result>
+		</action>
+
+		<!-- 到货通知单验收查询页面 -->
+		<action name="103" class="daohtzdAction" method="daohtzdyscxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/10301.jsp</result>F
+		</action>
+
+		<!-- 到货通知单验收查询 -->
+		<action name="10301" class="daohtzdAction" method="daohtzdysCx">
+		</action>
+
+		<!-- 到货通知单验收页面 -->
+		<action name="P10302" class="daohtzdAction" method="daohtzdysym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/10302.jsp</result>
+		</action>
+       <!-- 到货通知单验收页面分页 -->
+       <action name="10302" class="daohtzdAction" method="daohtzdys"></action>
+        <!-- 到货通知单验收修改信息查询 -->
+       <action name="10303" class="daohtzdAction" method="daohtzdysxxcx"></action>
+		<!-- 到货通知单验收修改页面 -->
+		<action name="P10303" class="daohtzdAction" method="daohtzdysxgym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/10303.jsp</result>
+		</action>
+		<!-- 到货通知单验收拒收确认 -->
+		<action name="10304" class="daohtzdAction" method="daohtzdymjsqr"></action>
+		<!--到货通知单拒收页面 -->
+		<action name="P10304" class="daohtzdAction" method="daohtzdjsym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/10304.jsp</result>
+		</action>
+		<!-- 到货通知单验收修改提交 -->
+		<action name="10305" class="daohtzdAction" method="daohtzdysxg">
+		</action>
+		<!-- 到货通知单验收确认 -->
+		<action name="10306" class="daohtzdAction" method="daohtzdQr">
+		</action>
+
+		<!-- 到货通知单验收打印 -->
+		<action name="10307" class="daohtzdAction" method="daohtzdysDy">
+		</action>
+        <!--通过零件编号 查询零件名称 -->
+        <action name="10308" class="daohtzdAction" method="selectLingjmc">
+		</action>
+	    <!--通过供应商代码查询供应商名称 -->
+	     <action name="10309" class="daohtzdAction" method="selectGongysmc">
+		</action>
+		<!-- EL验收查询页面 -->
+		<action name="104" class="daohtzdAction" method="elyscxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/104.jsp</result>F
+		</action>
+		
+		<!--EL验收查询-->
+	     <action name="10401" class="daohtzdAction" method="elyscx">
+		</action>
+		<!--EL验收/打印-->
+	     <action name="10402" class="daohtzdAction" method="elysdy">
+		</action>
+		<!-- 到货通知单验收修改页面 -->
+		<action name="P10401" class="daohtzdAction" method="daohtzdysxgym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/10401.jsp</result>
+		</action>
+		<!--到货通知单拒收页面 -->
+		<action name="P10402" class="daohtzdAction" method="daohtzdjsym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/10402.jsp</result>
+		</action>
+		<action name="126" class="daohsbAction" method="daohxxlrcxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/126.jsp</result>
+		</action>
+
+		<action name="127" class="daohsbAction" method="daohxxlrsqym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/127.jsp</result>
+		</action>
+
+		<!-- 10101 到货单查询 -->
+		<action name="10101" class="daohsbAction" method="daohsbCx">
+		</action>
+
+		<!-- 10102 到货单打印 -->
+		<action name="10102" class="daohsbAction" method="daohdDy">
+		</action>
+
+		<!-- 10201 到货信息录入BL号查询 -->
+		<action name="10201" class="daohsbAction" method="daohxxlrblhCx">
+		</action>
+
+		<!-- 10202 到货信息录入要货令查询 -->
+		<action name="10202" class="daohsbAction" method="daohxxyhlCx">
+		</action>
+
+		<!-- 10203 到货信息录入 -->
+		<action name="10203" class="daohsbAction" method="daohxxLr">
+		</action>
+
+		<!-- 10204到货信息录入删除 -->
+		<action name="10204" class="daohsbAction" method="daohxxlrXc">
+		</action>
+
+		<!-- 10205到货信息录入结束 -->
+		<action name="10205" class="daohsbAction" method="daohxxlrJs">
+		</action>
+		<!-- 10206通过零件供应商查询yanssl -->
+		<action name="10206" class="daohsbAction" method="selectYanssl">
+		</action>
+        <!-- 10208 查询零件表号获取卸货站台 -->
+        <action name="10208" class="daohsbAction" method="selectXieh">
+		</action>
+		<!-- 10209通过零件编号供应商编号获取ucxh -->
+		 <action name="10209" class="daohsbAction" method="selectLJGYSucxh">
+		</action>
+		<!-- 10210通过零件编号供应商编号获取uaxh -->
+		 <action name="10210" class="daohsbAction" method="selectLJGYSuaxh">
+		</action>
+		<!-- 10211 查询序列生成BLH -->
+		 <action name="10211" class="daohsbAction" method="selectBLH">
+		</action>
+		<!-- 12601 到货信息录入查询 -->
+		<action name="12601" class="daohsbAction" method="daohxxlrCx">
+		</action>
+        <!-- 12602 到货信息 录入初始化查询 -->
+        <action name="12602" class="daohsbAction" method="initdaohxxlr">
+		</action>
+		<!-- 12701 到货信息录入删除 -->
+		<action name="12701" class="daohsbAction" method="daohdlrSc">
+		</action>
+
+		<!-- 12702 到货信息录入根据UT号查询 -->
+		<action name="12702" class="daohsbAction" method="daohdCxForUth">
+		</action>
+
+		<!-- 12703 到货信息录入根据UL号查询 -->
+		<action name="12703" class="daohsbAction" method="daohdCxForUlh">
+		</action>
+
+		<!-- 12704 到货信息录入根据EL号查询 -->
+		<action name="12704" class="daohsbAction" method="daohdCxForElh">
+		</action>
+
+		<!-- 到货申报模块结束 -->
+
+
+		<!-- 拒收跟踪单开始 -->
+		<action name="104" class="jusgzdAction" method="jusgzdxzym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/104.jsp</result>
+		</action>
+
+		<action name="105" class="jusgzdAction" method="jusgzdcxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/105.jsp</result>
+		</action>
+
+		<action name="106" class="jusgzdAction" method="jusgzdqxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/106.jsp</result>
+		</action>
+
+		<!-- 根据拒收跟踪单收货 -->
+		<action name="151" class="jusgzdAction" method="genjjsgzdshym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/151.jsp</result>
+		</action>
+
+		<!-- 10401 拒收跟踪单新增 -->
+		<!-- <action name="10401" class="jusgzdAction" method="jusgzdXz">
+		</action> -->
+
+		<!-- 10501 拒收跟踪单查询 -->
+		<action name="10501" class="jusgzdAction" method="jusgzdCx">
+		</action>
+        <!-- 10502 拒收跟踪单明细 -->
+		<action name="10502" class="jusgzdAction" method="jusgzdInfo">
+		</action>
+		 <!-- 跳转到ua标签页面 -->
+         <action  name="P10501"  class="jusgzdAction"  method="tiaozjugzd">
+         <result name="select" >/WEB-INF/pages/ck/shouhuo/10501.jsp</result>
+         </action>
+		<!-- 10601 拒收跟踪单取消 -->
+		<action name="10601" class="jusgzdAction" method="jusgzdQx">
+		</action>
+
+		<!-- 根据拒收跟踪单收货查询 -->
+		<action name="15101" class="jusgzdAction" method="genjjsgzdshCx">
+		</action>
+        <!-- 根据拒收跟踪单收货增加页面 -->
+        <action name="15101ym" class="jusgzdAction" method="genjjsgzdshTj">
+        <result name="select">/WEB-INF/pages/ck/shouhuo/15101.jsp</result>
+		</action>
+		<!-- 根据拒收跟踪单收货(通过条件查询拒收跟踪单) -->
+		<action name="15102" class="jusgzdAction" method="queryjsgZd">
+		</action>
+        <!-- 根据拒收跟踪单收货(拒收跟踪单改变状态并添加相应UA到BL单) -->
+		<action name="15103" class="jusgzdAction" method="jsgzdtjdBl">
+		</action>
+        <!-- 根据拒收跟踪单收货 (删除BL下选中的UA，并将拒收跟踪单状态返回)-->
+		<action name="15104" class="jusgzdAction" method="scbljsgZd">
+		</action>
+        <!-- 根据拒收跟踪单收货(拒收跟踪单收货确认) -->
+		<action name="15105" class="jusgzdAction" method="jsgzdqrSh">
+		</action>
+        <!-- 根据拒收跟踪单收货（根据用户中心及登录人信息查询相关信息） -->
+        <action name="15106" class="jusgzdAction" method="jsgzdInit">
+		</action>
+        
+		<!-- 拒收跟踪单结束 -->
+
+
+
+		<!-- 拒收单开始 -->
+		<action name="107" class="jusdAction" method="jusdxzym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/107.jsp</result>
+		</action>
+		<action name="108" class="jusdAction" method="jusdcxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/108.jsp</result>
+		</action>
+		<action name="109" class="jusdAction" method="jusdscym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/109.jsp</result>
+		</action>
+		<action name="110" class="jusdAction" method="jusdqxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/110.jsp</result>
+		</action>
+		<action name="111" class="jusdAction" method="jusdxgym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/111.jsp</result>
+		</action>
+		<action name="112" class="jusdAction" method="jusddyym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/112.jsp</result>
+		</action>
+		<action name="113" class="jusdAction" method="jusdzxqrym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/113.jsp</result>
+		</action>
+
+		<!-- 10701 拒收跟踪单查询 -->
+		<action name="10701" class="jusdAction" method="jusgzdCx">
+		</action>
+
+		<!-- 10702 拒收单生成 -->
+		<action name="10702" class="jusdAction" method="jusdShengCheng">
+		</action>
+
+		<!-- 10703 拒收单打印 -->
+		<action name="10703" class="jusdAction" method="jusdDaYing">
+		</action>
+
+		<!-- 10801 拒收单查询 -->
+		<action name="10801" class="jusdAction" method="jusdCx">
+		</action>
+
+		<!-- 10901 拒收单删除 -->
+		<action name="10901" class="jusdAction" method="jusdSc">
+		</action>
+
+		<!-- 11001 拒收单取消 -->
+		<action name="11001" class="jusdAction" method="jusdQx">
+		</action>
+
+		<!-- 11101 拒收单修改查询 -->
+		<action name="11101" class="jusdAction" method="jusdxgCx">
+		</action>
+        <!-- 11102拒收单修改新增查询 -->
+        <action name="11102" class="jusdAction" method="jusdxgxzCx">
+		</action>
+		<!-- 11102 拒收单修改新增页面 -->
+		<action name="11102ym" class="jusdAction" method="jusdxgxzcxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/11102.jsp</result>
+		</action>
+
+		<!-- 11103 拒收单修改新增确定 -->
+		<action name="11103" class="jusdAction" method="jusdxgxzQd">
+		</action>
+
+		<!-- 11104 拒收单修改删除拒收跟踪单 -->
+		<action name="11104" class="jusdAction" method="jusdxgscjsgZd">
+		</action>
+
+		<!-- 11105 拒收单修改打印拒收单 -->
+		<action name="11105" class="jusdAction" method="jusdxgdyjSd">
+		</action>
+
+		<!-- 11201 拒收单查询承运商代码和名称 -->
+		<action name="11201" class="jusdAction" method="jusdcxcysdmhMc">
+		</action>
+
+		<!-- 11202 拒收单打印 -->
+		<action name="11202" class="jusdAction" method="jusdDy">
+		</action>
+
+		<!-- 11301 拒收单确认执行 -->
+		<action name="11301" class="jusdAction" method="jusdzxQr">
+		</action>
+		<!-- 拒收单结束 -->
+
+
+
+		<!-- 发货通知开始 -->
+		<!-- 139 发货通知查询页面 -->
+		<action name="139" class="fahtzAction" method="fahtzcxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/139.jsp</result>
+		</action>
+
+		<!-- 140 发货通知纠正页面 -->
+		<action name="140" class="fahtzAction" method="fahtzgzym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/140.jsp</result>
+		</action>
+
+		<!-- 141 发货通知删除页面 -->
+		<action name="141" class="fahtzAction" method="fahtzscym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/141.jsp</result>
+		</action>
+
+		<!-- 13901 发货通知查询 -->
+		<action name="13901" class="fahtzAction" method="fahtzCx">
+		</action>
+		<!-- 13901 发货通知查询  huxy_11459-->
+		<action name="13902" class="fahtzAction" method="fahtzPrint">
+		</action>
+
+       
+		<!-- 13902 发货通知查询 打印  0011460/0011522-->
+		<action name="13902" class="fahtzAction" method="fahtzdy">
+		</action>
+
+		<!-- 14001 发货通知纠正查询 -->
+		<action name="14001" class="fahtzAction" method="fahtzgzCx">
+		</action>
+
+		<!-- 14002 发货通知纠正修改 -->
+		<action name="14002" class="fahtzAction" method="fahtzgzXg">
+		</action>
+
+		<!-- 14101 货通知删除 -->
+		<action name="14101" class="fahtzAction" method="fahtzgzSc">
+		</action>
+		<!-- 14102 货通知查询 -->
+		<action name="14102" class="fahtzAction" method="fahtzgzCc">
+		</action>
+		<!-- 发货通知结束 -->
+
+
+
+		<!-- 验收单操作 开始 -->
+		<!-- 验收单查询页面 -->
+		<action name="142" class="daohtzdAction" method="yansdcxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/142.jsp</result>
+		</action>
+
+		<!-- 验收单删除页面 -->
+		<action name="143" class="daohtzdAction" method="yansdscym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/143.jsp</result>
+		</action>
+
+		<!-- 验收单查询 -->
+		<action name="14201" class="daohtzdAction" method="yansdCx">
+		</action>
+		<!-- 验收单明细页面 -->
+		<action name="P14201"  class="daohtzdAction" method="yansdmxYm">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/14201.jsp</result>
+		</action>
+		
+		<!-- 验收单明细查询 -->
+		<action name="14202" class="daohtzdAction" method="yansdmxCx">
+		</action>
+
+		<!-- BL验收单删除 -->
+		<action name="14301" class="daohtzdAction" method="yansdSc">
+		</action>
+		<!-- EL验收单删除 -->
+		<action name="14302" class="daohtzdAction" method="elyansdSc">
+		</action>
+		
+		
+		<!-- 验收单操作结束 -->
+
+
+
+		<!-- 质检跟踪单开始 -->
+		<!-- 质检跟踪单查询页面 -->
+		<action name="144" class="zhijgzdAction" method="zhijgzdcxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/144.jsp</result>
+		</action>
+
+		<!-- 质检跟踪单查询 -->
+		<action name="14401" class="zhijgzdAction" method="zhijgzdCx">
+		</action>
+		<!-- 质检跟踪单结束 -->
+
+		<!-- 改包装跟踪单开始 -->
+		<!-- 改包装跟踪单查询页面 -->
+		<action name="145" class="gaibzgzdAction" method="gaibzgzdcxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/145.jsp</result>
+		</action>
+
+		<!-- 改包装跟踪单查询 -->
+		<action name="14501" class="gaibzgzdAction" method="gaibzgzdCx">
+		</action>
+		<!-- 改包装跟踪单结束 -->
+
+
+		<!-- 预批量开始 -->
+		<!-- 预批量零件维护 -->
+		<action name="149" class="yuplAction" method="yuplljwhym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/149.jsp</result>
+		</action>
+
+		<action name="14901" class="yuplAction" method="yuplljwhCx">
+		</action>
+
+		<action name="14902" class="yuplAction" method="yuplljwhXz">
+		</action>
+		
+		<action name="14903" class="yuplAction" method="yuplljwhDel">
+		</action>
+		<!-- 预批量结束 -->
+
+		<!-- 同步收货开始 -->
+		<!-- 补货申报 -->
+		<action name="150" class="tongbshAction" method="buhsbym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/150.jsp</result>
+		</action>
+      <!-- 补货申报 -->
+		<action name="15001" class="tongbshAction" method="buhSb">
+		</action>
+	   <!-- 补货申报查询 -->
+		<action name="15002" class="tongbshAction" method="buhSbcx">
+		</action>
+		 <!-- 补货申报 添加-->
+		<action name="15003" class="tongbshAction" method="buhSbtj">
+		</action>
+		 <!-- 补货申报删除 -->
+		<action name="15004" class="tongbshAction" method="buhSbsc">
+		</action>
+		 <!-- 补货申报修改 -->
+		<action name="15005" class="tongbshAction" method="buhSbxg">
+		</action>
+		<!--补货申报零件回车查询 -->
+			<action name="15006" class="tongbshAction" method="buhSbljcx">
+		</action>
+		<!--补货申报查询客户 -->
+			<action name="15007" class="tongbshAction" method="buhSbkehcx">
+		</action>
+	<!-- 补货申报查询页面 -->
+		<action name="162" class="tongbshAction" method="buhsbcxym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/162.jsp</result>
+		</action>
+		
+      <!-- 补货申报 -->
+		<action name="15002" class="tongbshAction" method="buhSbcx">
+		</action>
+		<!-- 同步要货令修订页面 -->
+		<action name="137" class="tongbshAction" method="tongbyhlxdym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/137.jsp</result>
+		</action>
+
+		<!-- 同步要货令修订 -->
+		<action name="13701" class="tongbshAction" method="tongbyhlXd">
+		</action>
+
+		<!-- 同步包装单元卡收货页面 -->
+		<action name="117" class="tongbshAction" method="tongbbzdykshym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/117.jsp</result>
+		</action>
+
+		<!-- 同步包装单元卡收货查询 -->
+		<action name="11701" class="tongbshAction" method="tongbbzdykshCx">
+		</action>
+
+		<!-- 同步包装单元卡收货收货-->
+		<action name="11702" class="tongbshAction" method="tongbbzdykshQr">
+		</action>
+        <!-- 同步包装单元卡收货收货-->
+		<action name="11703" class="tongbshAction" method="tongbbzdykSh">
+		</action>
+
+		<!-- 同步包装单元卡收货拒收-->
+		<action name="11704" class="tongbshAction" method="tongbbzdykJs">
+		</action>
+        
+		<!-- 同步收货结束 -->
+
+
+		<!-- 改包装开始 -->
+		<!-- 入库改包装 -->
+		<action name="119" class="gaibzgzdAction" method="rukgbzym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/119.jsp</result>
+		</action>
+
+		<action name="11901" class="gaibzgzdAction" method="rukgbzCx">
+		</action>
+
+		<action name="11902" class="gaibzgzdAction" method="rukgbzQr">
+		</action>
+		<!-- 改包装结束 -->
+
+		<!-- 成品开始 -->
+		<!-- 成品入库页面 -->
+		<action name="138" class="chengpAction" method="chengprkym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/138.jsp</result>
+		</action>
+
+		<!-- 成品唯一标签页面 -->
+		<action name="115" class="chengpAction" method="chengpwybqym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/115.jsp</result>
+		</action>
+
+		<!-- 成品批量标签页面 -->
+		<action name="116" class="chengpAction" method="chengpplbqym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/116.jsp</result>
+		</action>
+
+		<!-- 成品库内改包装页面 -->
+		<action name="148" class="chengpAction" method="chengpkngbzym">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/148.jsp</result>
+		</action>
+        <!-- 成品库内改包装查询 -->
+        <action name="14801" class="chengpAction" method="chengpkngbzcx">
+		</action>
+		 <!-- 成品库内改包装 -->
+        <action name="14802" class="chengpAction" method="chengpkngbz">
+		</action>
+		<!--判断新包装型号是否存在  -->
+		<action  name="14803" class="chengpAction" method="checkbaozxh"></action>
+		<!-- 成品唯一标签查询 -->
+		<action name="11501" class="chengpAction" method="chengpwybqCx">
+		</action>
+        <!-- 成品唯一标签打印 -->
+		<action name="11502" class="chengpAction" method="chengpwybqDy">
+		</action>
+        <!-- 零件序列号是否存在 -->
+        <action name="11505" class="chengpAction" method="selectLingjxlh">
+		</action>
+		<!-- 查询产线列表是否存在 -->
+		<action name="11508" class="chengpAction" method="selectCxlb">
+		</action>
+		<!-- 成品批量标签查询 -->
+		<action name="11601" class="chengpAction" method="chengpplbqCx">
+		</action>
+
+	 <!-- 成品批量标签打印 -->
+		<action name="11602" class="chengpAction" method="chengpplbqDy">
+		</action>
+
+		<!-- 成品入库 -->
+		<action name="13801" class="chengpAction" method="chengpRk">
+		</action>
+
+
+
+		<!-- 成品结束 -->
+		
+		
+        <!-- 同步交货单收货 -->
+        <action  name="118" class="tongbshAction" method="tongbjhd" >
+        <result name="select" >/WEB-INF/pages/ck/shouhuo/118.jsp</result>
+        </action>
+        <!-- 查询包装单元卡号 -->
+         <action  name="11801" class="tongbshAction" method="cxtongbjhd" >
+        </action>
+        <!-- 交货单号查询 -->
+        <action  name="jiaohdh" class="tongbshAction" method="jiaohdh" >
+        </action>
+        
+         <action  name="11804" class="tongbshAction" method="tongbysdPrintYm" >
+         <result name="select" >/WEB-INF/pages/ck/shouhuo/11805.jsp</result>
+        </action>
+        
+        <action  name="11805" class="tongbshAction" method="tongbysdPrint" >
+        </action>
+        
+       
+        <!-- 同步包装单元卡查询 -->
+        <action  name="129"  class="tongbshAction"  method="tongbdyk">
+         <result name="select" >/WEB-INF/pages/ck/shouhuo/129.jsp</result>
+        </action>
+        <!-- 同步包装单元卡 查询到货通知单 -->
+        <action  name="12901"  class="tongbshAction"  method="daohtzd"></action>
+         <!-- 同步包装单元卡 通过UT号查询UA标签 -->
+          <action  name="12902"  class="tongbshAction"  method="utselectua">
+        </action>
+         <!-- 跳转到ua标签页面 -->
+         <action  name="P12901"  class="tongbshAction"  method="queryua">
+         <result name="select" >/WEB-INF/pages/ck/shouhuo/12901.jsp</result>
+         </action>
+        <!-- 同步包装单元卡 通过包装单元卡号查询UA -->
+          <action  name="12903"  class="tongbshAction"  method="selecttbua"></action>
+        <!-- 同步包装单元卡  查询包装单元卡明细 -->  
+          <action  name="12904"  class="tongbshAction"  method="selectuamx">
+        </action>
+         <!-- 同步包装单元卡  查询包装单元卡汇总 -->  
+          <action  name="12905"  class="tongbshAction"  method="selectuahz1">
+        </action>
+        
+        <!-- 同步包装单元卡查询汇总 -->  
+          <action  name="12906"  class="tongbshAction"  method="selectuahz2">
+        </action>
+        
+        
+        
+        
+         <!-- 跳转到 包装单元卡明细页面-->  
+          <action  name="P12902"  class="tongbshAction"  method="tiaozuamx">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/12902.jsp</result>
+        </action>
+         <!-- 同步整车流水号查询清单页面 -->
+         <action  name="131"  class="tongbshAction"  method="zclshcxqdym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/131.jsp</result>
+        </action>
+         <!-- 同步整车流水号查询清单  -->
+         <action  name="13101"  class="tongbshAction"  method="zclshcxqd"></action>
+          <!-- 同步整车流水号查询汇总页面 -->
+         <action  name="132"  class="tongbshAction"  method="zclshcxhzym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/131.jsp</result>
+        </action>
+         <!-- 同步整车流水号查询汇总  -->
+         <action  name="13201"  class="tongbshAction"  method="zclshcxhz"></action>
+        <!-- 同步上线时间查询 -->
+         <action  name="133"  class="tongbshAction"  method="selecttbqd">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/133.jsp</result>
+        </action>
+         <!-- 同步上线时间查询清单  -->
+         <action  name="13301"  class="tongbshAction"  method="selecttbsxsj"></action>
+        <!-- 同步上线时间查询汇总  -->
+         <action  name="134"  class="tongbshAction"  method="selecttbqdhz">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/134.jsp</result>
+        </action>
+         <!--13401 同步上线时间查询汇总查询  -->
+         <action  name="13401"  class="tongbshAction"  method="selecttbsxsjhz"></action>
+          <!--13402 同步上线时间查询卸货站台  -->
+         <action  name="13402"  class="tongbshAction"  method="selectxiehzt"></action>
+          <!-- 同步零件查询清单页面-->
+         <action  name="135"  class="tongbshAction"  method="tongbljqd">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/135.jsp</result>
+        </action>
+         <!-- 同步零件查询清单查询  -->
+         <action  name="13501"  class="tongbshAction"  method="selecttongbljqd"></action>
+           <!-- 同步零件查询汇总页面-->
+         <action  name="136"  class="tongbshAction"  method="tongbljhz">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/136.jsp</result>
+        </action>
+         <!-- 同步零件查询汇总查询  -->
+         <action  name="13601"  class="tongbshAction"  method="selecttongbljhz"></action>
+           <!-- 流水号跳号查询页面-->
+         <action  name="146"  class="tongbshAction"  method="liushth">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/146.jsp</result>
+        </action>
+         <!-- 同步零件查询汇总查询  -->
+         <action  name="14601"  class="tongbshAction"  method="selectliushth"></action> 
+            <!-- 降级生成包装单元卡号-->
+         <action  name="147"  class="tongbshAction"  method="jiangjscbzdyk">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/147.jsp</result>
+        </action>
+         <!-- 降级生成包装单元卡号查询  -->
+         <action  name="14701"  class="tongbshAction"  method="selectjjscbzdyk"></action> 
+          <!-- 打印降级生成包装单元卡号  -->
+         <action  name="14702"  class="tongbshAction"  method="printjjscbzdyk"></action> 
+          <!-- 导出降级生成包装单元卡号  -->
+         <action  name="14703"  class="tongbshAction"  method="daocjjscbzdyk"></action> 
+         <!-- 包装单元卡查询BL -->
+         <action  name="152"  class="tongbshAction"  method="baozdykhbl">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/152.jsp</result>
+        </action>
+         <!-- 通过bl号查询包装单元卡号！  -->
+         <action  name="15201"  class="tongbshAction"  method="selectbaozdykhbl"></action> 
+         <!--通过 包装单元卡号查询详细信息-->
+          <action name="15601" class="tongbshAction"  method="baozdykhinfo"></action> 
+         <!--跳转页面显示包装单元卡号详细信息 -->
+         <action  name="15203"  class="tongbshAction"  method="tiaozhuaninfo"></action>
+          <!--跳转页面显示包装单元卡号详细信息 -->
+         <action  name="15602"  class="tongbshAction"  method="tiaozinfo"></action>
+         <!-- 跳转页面  -->
+          <action  name="15203ym"  class="tongbshAction"  method="tiaozym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/15203.jsp</result></action>
+          <!-- 跳转页面  -->
+           <action  name="15602ym"  class="tongbshAction"  method="tiaozym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/15602.jsp</result></action>
+          <!--156 页面 包装单元卡号 -->
+          <action  name="156"  class="tongbshAction"  method="baozdykh">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/156.jsp</result></action>
+          <!--153 包装单元卡查询(执行状态) 页面-->
+          <action  name="153"  class="tongbshAction"  method="baozdykym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/153.jsp</result></action>
+          <!--153 包装单元卡查询(执行状态) 查询-->
+          <action  name="15301"  class="tongbshAction"  method="baozdykzxzt"></action>
+          <!--154 包装单元卡查询(配送类别) 页面-->
+          <action  name="154"  class="tongbshAction"  method="baozdykpsym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/154.jsp</result></action>
+           <!--153 包装单元卡查询(配送类别) 查询-->
+            <action  name="15401"  class="tongbshAction"  method="baozdykpslb"></action>
+              <!--155 包装单元卡查询(卸货站台) 页面-->
+          <action  name="155"  class="tongbshAction"  method="baozdykxhym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/155.jsp</result></action>
+           <!--155 包装单元卡查询(卸货站台) 查询-->
+           <action  name="15501"  class="tongbshAction"  method="baozdykxhzt"></action>
+           <!--15602 包装单元卡明细查询页面-->
+          <action  name="15502"  class="tongbshAction"  method="baozdykmx">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/156.jsp</result></action>  
+          <!-- 157同步包装单元卡(BL)页面 -->
+          <action  name="157"  class="tongbshAction"  method="baozdykblym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/157.jsp</result></action> 
+          <!--157 同步包装单元卡(BL)查询-->
+           <action  name="15701"  class="tongbshAction"  method="baozdykbl"></action>
+            <!-- 158同步包装单元卡(零件)页面 -->
+          <action  name="158"  class="tongbshAction"  method="baozdykljym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/158.jsp</result></action> 
+          <!--158 同步包装单元卡(零件)查询-->
+           <action  name="15801"  class="tongbshAction"  method="baozdyklj"></action>
+            <!-- 159树状图页面 -->
+          <action  name="159"  class="tongbshAction"  method="sztym">
+          <result name="select" >/WEB-INF/pages/ck/shouhuo/159.jsp</result></action> 
+          <!--159 树状图(UT)查询-->
+           <action  name="15901"  class="tongbshAction"  method="utszt"></action>
+          <!--跳转到15901页面 -->
+           <action  name="P15901" class="tongbshAction"  method="tiaozyem">
+           <result name="select" >/WEB-INF/pages/ck/shouhuo/15901.jsp</result></action> 
+           <!--159 树状图(UL)查询-->
+           <action  name="15902"  class="tongbshAction"  method="ulszt"></action>
+           <!--跳转到15902页面 -->
+           <action  name="P15902" class="tongbshAction"  method="tiaozyem">
+           <result name="select" >/WEB-INF/pages/ck/shouhuo/15902.jsp</result></action> 
+           <!--159 树状图(EL)查询-->
+           <action  name="15903"  class="tongbshAction"  method="elszt"></action>
+           <!--跳转到15903页面 -->
+           <action  name="P15903" class="tongbshAction"  method="tiaozyem">
+           <result name="select" >/WEB-INF/pages/ck/shouhuo/15903.jsp</result></action> 
+           <!--159 树状图(US)查询-->
+           <action  name="15904"  class="tongbshAction"  method="usszt"></action>
+           <!--跳转到15904页面 -->
+           <action  name="P15904" class="tongbshAction"  method="tiaozyem">
+           <result name="select" >/WEB-INF/pages/ck/shouhuo/15904.jsp</result></action> 
+           <!--159 树状图(UC)查询-->
+           <action  name="15905"  class="tongbshAction"  method="ucszt"></action>
+           <!--跳转到15901页面 -->
+           <action  name="P15905" class="tongbshAction"  method="tiaozyem">
+           <result name="select" >/WEB-INF/pages/ck/shouhuo/15905.jsp</result></action> 
+           <!-- huxy_11459 -->
+           <action  name="15906" class="tongbshAction"  method="utprint"></action> 
+           <action  name="15907" class="tongbshAction"  method="ulprint"></action> 
+           <action  name="15908" class="tongbshAction"  method="elprint"></action>
+           <action  name="15909" class="tongbshAction"  method="usprint"></action>
+           <action  name="15910" class="tongbshAction"  method="ucprint"></action>    
+          <!-- 160 移库跟踪单收货 -->
+          <action  name="160"  class="daohsbAction"  method="yikgzdsh">
+           <result name="select" >/WEB-INF/pages/ck/shouhuo/160.jsp</result></action> 
+           	<!-- 16001 移库跟踪单查询 -->
+			<action name="16001" class="daohsbAction" method="yikgzdshCx">
+			</action>
+			<!-- 16002 移库跟踪单打印 -->
+			<action name="16002" class="daohsbAction" method="yikgzdDy">
+			</action>
+	           <!-- 161 到货信息录入修改 -->
+	        <action   name="161"  class ="tongbshAction"  method="daohxxlrxg">
+	        <result name="select">/WEB-INF/pages/ck/shouhuo/161.jsp</result>
+	        </action>
+	        <!-- 根据BL单号查询EL  -->
+	        <action  name="16107" class="tongbshAction"  method="selectel"></action>
+	        <!-- 修改承运商 -->
+	        <action  name="16108" class="tongbshAction"  method="updatecys"></action>
+	        <!--修改EL -->
+	        <action   name="16109" class="tongbshAction"  method ="updateel"></action>
+	        <!-- 修改UA -->
+	         <action   name="16110" class="tongbshAction"  method ="updateua"></action>
+	        <!-- 查询UA -->
+	        <action    name="16111" class="tongbshAction"  method="selectua"></action>
+	      
+	        <!-- 删除UA 及El信息 -->
+	        <action    name="16112" class="tongbshAction"  method="deleteua"></action>
+	         <!-- 163 单位纠正 页面-->
+	        <action   name="163"  class ="daohtzdAction"  method="danwjzym">
+	        <result name="select">/WEB-INF/pages/ck/shouhuo/163.jsp</result>
+	        </action>
+	        <!-- 16301单位纠正查询 -->
+		    <action name="16301" class="daohtzdAction" method="danwjzcx">
+		    </action>
+		     <!-- 16301单位纠正查询 -->
+		    <action name="16302" class="daohtzdAction" method="danwjz">
+		    </action>
+		    
+		      <!-- 164 EL删除流水查询页面-->
+	        <action   name="164"  class ="daohtzdAction"  method="ellscxym">
+	        <result name="select">/WEB-INF/pages/ck/shouhuo/164.jsp</result>
+	        </action>
+	        <!-- 16401EL删除流水查询 -->
+		    <action name="16401" class="daohtzdAction" method="ellscx">
+		    </action>
+		    <!-- 16402 EL删除流水打印 //0010438 -->
+		    <action name="16402" class="daohtzdAction" method="ellscxdy">
+		    </action>
+		    
+		    <!-- 165按订货单收货页面 -->
+		     <action   name="165"  class ="daohtzdAction"  method="dhdshym">
+	        <result name="select">/WEB-INF/pages/ck/shouhuo/165.jsp</result>
+	        </action>
+	          <!-- 16501EL按订货单收货查询 -->
+		    <action name="16501" class="daohtzdAction" method="dhdshcx">
+		    </action>
+		      <!-- 16502EL按订货单收货申报 -->
+		    <action name="16502" class="daohtzdAction" method="dhdshsb">
+	        </action>
+	        <!--判断新包装型号是否存在  -->
+		    <action  name="16503" class="daohtzdAction" method="checkbaozxh"></action>
+		    <!-- R1验收单删除页面 -->
+		    <action   name="166"  class ="daohtzdAction"  method="r1ysdscym">
+	        <result name="select">/WEB-INF/pages/ck/shouhuo/166.jsp</result></action>
+	         <!-- R1验收单删除 -->
+		    <action   name="16601"  class ="daohtzdAction"  method="r1ysdsc"></action>
+	         <!-- R1验收单EL删除 -->
+	          <action   name="16602"  class ="daohtzdAction"  method="r1elysdsc"></action>
+	         <!-- 167预处理故障数据删除页面 -->
+	         <action   name="167"  class ="daohtzdAction"  method="yclgzsjscym">
+	         <result name="select">/WEB-INF/pages/ck/shouhuo/167.jsp</result></action>
+	         <!-- 16701预处理故障数据查询 -->
+		     <action   name="16701"  class ="daohtzdAction"  method="yclgzsjcx"></action>
+	         <!-- 16702预处理故障数据删除 -->
+	          <action   name="16702"  class ="daohtzdAction"  method="yclgzsjsc"></action>
+	          <!-- 167预处理故障数据删除 -->
+	          <!-- 168在途要货令查询页面 -->
+	            <action   name="168"  class ="daohtzdAction"  method="ztyhlcxym">
+	         <result name="select">/WEB-INF/pages/ck/shouhuo/168.jsp</result></action>
+	         <!-- 16801在途要货令查询 -->
+	            <action   name="16801"  class ="daohtzdAction"  method="ztyhlcx"></action>
+	          <!-- 169补打UA卡页面 -->
+	            <action   name="169"  class ="daohtzdAction"  method="buduakym">
+	         <result name="select">/WEB-INF/pages/ck/shouhuo/169.jsp</result></action>
+	         <!-- 16901补打UA卡查询 -->
+	            <action   name="16901"  class ="daohtzdAction"  method="buduakcx"></action> 
+	         <!-- 16902补打UA卡打印-->
+	            <action   name="16902"  class ="daohtzdAction"  method="buduakdy"></action> 
+	          
+	         <!-- 170成品唯一标签删除 -->
+	            <action   name="170"  class ="chengpAction"  method="cpwybqscym">
+	         <result name="select">/WEB-INF/pages/ck/shouhuo/170.jsp</result></action>
+	         <!-- 17001成品唯一标签删除查询 -->
+	            <action   name="17001"  class ="chengpAction"  method="cpwybqsccx"></action> 
+	         <!-- 17002成品唯一标签删除确认-->
+	            <action   name="17002"  class ="chengpAction"  method="cpwybqscqr"></action>     
+	          <!-- 17003成品唯一标签删除查看-->
+	            <action   name="17003"  class ="chengpAction"  method="cpwybqscck"></action>  
+	            <!-- 17004成品唯一标签删除过期标签-->
+	            <action   name="17004"  class ="chengpAction"  method="cpwybqscgqbq"></action>  
+	            <!-- P17001成品唯一标签删除查看页面-->
+	            <action   name="P17001"  class ="chengpAction"  method="cpwybqscckym">
+	         <result name="select">/WEB-INF/pages/ck/shouhuo/17001.jsp</result></action>    
+	        
+	       <!-- V4_022 -->
+	      <action   name="175"  class ="daohsbAction"  method="juanlkdhsb">
+	     	 <result name="select">/WEB-INF/pages/ck/shouhuo/175.jsp</result>
+	      </action>  
+	      <action   name="17501"  class ="daohsbAction"  method="juanlkdhsbcx"></action>
+	      <action   name="176"  class ="daohsbAction"  method="juanldhxxlr">
+	     	 <result name="select">/WEB-INF/pages/ck/shouhuo/176.jsp</result>
+	      </action>
+	      <action   name="17601"  class ="daohsbAction"  method="juanldhjslr">
+	      </action>    
+	      <action   name="177"  class ="daohtzdAction"  method="juanldhys">
+	     	 <result name="select">/WEB-INF/pages/ck/shouhuo/17701.jsp</result>
+	      </action>
+	      <action   name="17701"  class ="daohtzdAction"  method="juanldhys4"></action>
+	      <action   name="P17702"  class ="daohtzdAction"  method="juanldhys1">
+	     	 <result name="select">/WEB-INF/pages/ck/shouhuo/17702.jsp</result>
+	      </action>  
+	      <action   name="P17703"  class ="daohtzdAction"  method="juanldhys2">
+	     	 <result name="select">/WEB-INF/pages/ck/shouhuo/17703.jsp</result>
+	      </action>  	 
+	     <action   name="P17704"  class ="daohtzdAction"  method="juanldhys3">
+	     	 <result name="select">/WEB-INF/pages/ck/shouhuo/17704.jsp</result>
+	      </action>         
+		 <action name="178" class="jusgzdAction" method="juanljsgzdsh">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/178.jsp</result>
+		 </action>
+		 <action name="17801" class="jusgzdAction" method="juanljsgzdshqr">
+		 </action>
+		  <action name="P17801" class="jusgzdAction" method="juanljsgzdshmx">
+		  		<result name="select">/WEB-INF/pages/ck/shouhuo/17801.jsp</result>
+		 </action>
+		 <action name="179" class="daohtzdAction" method="juanlsxjr">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/179.jsp</result>
+		 </action>
+		 <action name="17901" class="daohtzdAction" method="juanlsxcx"></action>
+		 
+		 <action name="17902" class="daohtzdAction" method="juanlsxlr"></action>
+		 
+		 <action name="180" class="daohtzdAction" method="juanlkcjr">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/180.jsp</result>
+		  </action>	  
+		  <action name="18001" class="daohtzdAction" method="juanlkccx">
+		  </action>
+		   
+		<!-- 测试开始 -->
+		<action name="test" class="testAction" method="test">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/test.jsp</result>
+		</action>
+		<action name="test1" class="testAction" method="test">
+			<result name="select">/WEB-INF/pages/ck/shouhuo/mytest.jsp</result>
+		</action>
+
+		<action name="transTest" class="testAction" method="transTest">
+		</action>
+		<action name="myTest" class="testAction" method="myTest">
+		</action>
+		<!-- 测试结束 -->
+		
+		
+		
+		<!-- xss-卷料20160822 -->
+		 <!--  175  到货申报打印 -->
+		  <action   name="dhsbdy"  class="juanlAction"  method="dhsbdy">
+		    	<result name="select" >/WEB-INF/pages/ck/shouhuo/17503.jsp</result>
+		  </action> 
+		  
+		  <!--  177  到货验收打印 --> 
+		   <action   name="dhysdy"  class="juanlAction"  method="dhysdy">
+		   		<result name="select" >/WEB-INF/pages/ck/shouhuo/17705.jsp</result>
+		   </action> 
+		   
+		  <!--  179  属性录入打印 --> 
+		  <action   name="shuxlrdy"  class="juanlAction"  method="shuxlrdy">
+		  		<result name="select" >/WEB-INF/pages/ck/shouhuo/17903.jsp</result>
+		  </action> 
+	</package>
+</toft>

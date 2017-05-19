@@ -1,0 +1,11 @@
+<components namespace="bo">
+	<component class="com.toft.core3.biz.module.ModuleConfig">
+		<property name="name" value="bo" />
+		<property name="path" value="com/athena/bo" />
+		<property name="actions">
+			<list>
+				<value>config/action-bo.xml</value>
+			</list>
+		</property>
+	</component>
+</components>

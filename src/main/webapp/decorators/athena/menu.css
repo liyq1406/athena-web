@@ -1,0 +1,121 @@
+@CHARSET "UTF-8";
+
+/**菜单相关样式*/
+
+.v-menu-bar{
+	background:url(images/v-bar-icon.png) no-repeat 3px;
+	padding:2px 16px 0px;
+}
+
+.v-menu-bar a,.v-menu-bar a:active{
+	color:white;
+}
+	
+
+.sys-menu{
+	padding-left:6px;
+}
+
+.menu-bar-title{
+	background:url(images/menu-bar-bg.png) no-repeat;
+	line-height:24px;
+	vertical-align: middle;
+	padding-top:1px;
+	clear:both;
+	cursor:pointer;
+}
+
+.menu-bar-title span{
+	padding-left:20px;
+	font-weight:bold;
+}
+/*2012-05-08 muwei*/
+.menu-bar-content-up{
+	background:url(images/menu_bar_content_up.jpg) no-repeat;
+	margin:0;
+	z-index:1000;
+	height:8px;
+}
+/*2012-05-08 muwei*/
+.menu-bar-content{
+	background-color:#ffffff;
+	margin:0;
+	width:156px;
+	z-index:-1;
+	border: 1px solid #FFFFFF;
+}
+/*2012-05-08 muwei*/
+.menu-bar-content-down{
+	background:url(images/menu_bar_content_down.jpg) no-repeat;
+	padding:0;
+	z-index:1000;
+	height:7px;
+}
+.menu-bar-content ul{
+	padding:0px 0px 0px 1px;
+	margin:2px 2px;
+}
+
+li.menu-item{
+	/*background:url(images/tree/treeview-default-line.gif) 0 -2px no-repeat;*/
+	padding: 1px 0 2px 16px;
+	margin: 0;
+	list-style: none;
+	text-align:left;
+}
+
+li.menu-item a.selected,li.menu-item a:active.selected{
+	color:red;
+}
+li.menu-item span.menu-span{
+	cursor: pointer;
+	padding:1px 0px 0px 18px;
+	background:url(images/leaf.gif) 0 0px no-repeat;
+	line-height:16px;
+	height:16px;
+	vertical-align:bottom;
+}
+
+li.menu-item span.menu-span.expandable{
+	background-image:url(images/folder.gif);
+}
+
+li.menu-item span.menu-span.expandable.expanded{
+	background-image:url(images/folder-open.gif);
+}
+
+.menu-item a,.menu-item a:active{text-decoration:none;padding-top:1px;height:16px;color:black;}
+
+
+.menu-bar-content{
+	display:none;
+}
+
+.menu-bar-content.active{
+	display:block;
+}
+/*2012-05-08 muwei*/
+.menu-bar-content-up{
+	display:none;
+}
+/*2012-05-08 muwei*/
+.menu-bar-content-up.active{
+	display:block;
+}
+/*2012-05-08 muwei*/
+.menu-bar-content-down{
+	display:none;
+}
+/*2012-05-08 muwei*/
+.menu-bar-content-down.active{
+	display:block;
+}
+
+.menu-item .collapse{
+	display:none;
+}
+
+
+.v-menu-bar.selected a,.v-menu-bar.selected a:active{
+	color:red;
+}

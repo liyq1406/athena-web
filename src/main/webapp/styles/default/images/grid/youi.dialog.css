@@ -1,0 +1,126 @@
+@CHARSET "UTF-8";
+.youi-dialog-container{
+	display:none;
+	position: absolute; 
+}
+
+.youi-dialog{
+	display:none;
+	position: relative; 
+	padding: 5px; 
+}
+
+.youi-form.youi-dialog{
+	margin:0;
+}
+
+.dragging-dialog-helper{
+	position: absolute;
+	z-index:9999;
+	border:1pt dotted #000;
+	display:none;
+}
+.dragging-dialog-helper.youi-dragging{
+	display:block;
+	cursor:move;
+}
+/**
+* 头
+*/
+.youi-dialog-container .youi-dialog-titlebar{
+	height:25px;
+	padding-left:6px;
+	background: transparent url(images/panel/corners-sprite.gif) no-repeat 0 0;
+	cursor:move;
+}
+
+.youi-dialog-container .youi-dialog-titlebar div{
+	padding-right:6px;
+	height:25px;
+	background: transparent url(images/panel/corners-sprite.gif) no-repeat right 0;
+}
+
+.youi-dialog-container .youi-dialog-titlebar div div{
+	line-height:25px;
+	vertical-align:middle;
+	background: transparent url(images/panel/top-bottom.gif) repeat-x 0 0;
+}
+
+.youi-dialog-container .youi-dialog-titlebar .youi-dialog-titlebar-close{
+	position: absolute;
+	top:5px;
+	right:6px;
+	height:18px;
+	width:18px;
+	background: transparent url(images/dialog/close.gif) no-repeat center;
+	cursor:pointer;
+	
+}
+
+.youi-dialog-container .youi-dialog-titlebar .youi-dialog-titlebar-close.over{
+	background-image:url(images/dialog/close_over.gif);
+	height:16px;
+	width:16px;
+	border:1pt solid silver;
+}
+/**
+* 内容
+*/
+.youi-dialog-container .youi-dialog-content{
+	background: #fff;
+	border:1pt solid silver;
+	zoom: 1;
+	position:relative;
+	overflow-x:hidden;
+}
+
+.youi-dialog-container .youi-dialog-ml {
+	background: #fff url(images/panel/left-right.gif) repeat-y 0 0;
+	padding-left: 6px;
+	zoom: 1;
+}
+
+.youi-dialog-container .youi-dialog-mr {
+	background: transparent url(images/panel/left-right.gif) repeat-y right 0;
+	padding-right: 6px;
+	zoom: 1;
+}
+/**
+* 底部
+*/
+.youi-dialog-container .youi-dialog-buttonpane{
+	height:6px;
+	background:transparent url(images/panel/top-bottom.gif) repeat-x scroll 0 bottom;
+}
+
+.youi-dialog-container .youi-dialog-buttonpane.buttons{
+	height:26px;
+}
+
+.youi-dialog-container .youi-dialog-bl {
+	background: transparent url(images/panel/corners-sprite.gif) no-repeat 0 bottom;
+	padding-left: 6px;
+	zoom: 1;
+	font-size:0;
+}
+
+.youi-dialog-container .youi-dialog-br {
+	background: transparent url(images/panel/corners-sprite.gif) no-repeat right bottom;
+	padding-right: 6px;
+	font-size:0;
+	zoom: 1;
+}
+
+/* Overlays */
+.ui-widget-overlay {
+	position:absolute;
+	top:0;
+	left:0;
+	background: #aaaaaa/*{bgColorOverlay}*/ url(images/ui-bg_flat_0_aaaaaa_40x100.png)/*{bgImgUrlOverlay}*/ 50%/*{bgOverlayXPos}*/ 50%/*{bgOverlayYPos}*/ repeat-x/*{bgOverlayRepeat}*/;
+	opacity: .3;
+	filter:Alpha(Opacity=30)/*{opacityOverlay}*/; 
+}
+
+body.dialog-open{
+	overflow:hidden;
+}

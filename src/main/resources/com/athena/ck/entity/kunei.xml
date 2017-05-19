@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="kunei">
+	<!--查询质检报告单-->
+	<resultMap class="com.athena.ck.entity.kunei.Pandrw" id="Pandrw">
+		<result column="renwbh" property="renwbh" />
+		<result column="celbh" property="celbh" />
+		<result column="usercenter" property="usercenter" />
+		<result column="cangkbh" property="cangkbh" />
+		<result column="zickbh" property="zickbh" />
+		<result column="cangklx" property="cangklx" />
+		<result column="mian" property="mian" />
+		<result column="kaisl" property="kaisl" />
+		<result column="jiesl" property="jiesl" />
+		<result column="kaisc" property="kaisc" />
+		<result column="jiesc" property="jiesc" />
+		<result column="lingjbh" property="lingjbh" />
+		<result column="gongysdm" property="gongysdm" />
+		<result column="xianskkw" property="xianskkw" />
+		<result column="ancpx" property="ancpx" />
+		<result column="shengckcsj" property="shengckcsj" />
+		<result column="pandfs" property="pandfs" />
+		<result column="xiugsj" property="xiugsj" />
+		<result column="pandr" property="pandr" />
+		<result column="zhuangt" property="zhuangt" />
+		<result column="xiugr" property="xiugr" />
+		<result column="quanbpd" property="quanbpd" />
+		<result column="kucscfs" property="kucscfs" />
+		<result column="chuangjbs" property="chuangjbs" />
+	</resultMap>
+	<select id="queryPandrw" resultMap="Pandrw" parameterClass="java.util.Map">
+	select 
+		t1.renwbh,
+		t1.celbh,
+		t1.usercenter,
+		t1.cangkbh,
+		t1.zickbh,
+		t1.cangklx,
+		t1.mian,
+		t1.kaisl,
+		t1.jiesl,
+		t1.kaisc,
+		t1.jiesc,
+		t1.lingjbh,
+		t1.gongysdm,
+		t1.xianskkw,
+		t1.ancpx,
+		t1.shengckcsj,
+		t1.pandfs,
+		t1.xiugsj,
+		t1.pandr,
+		t1.zhuangt,
+		t1.xiugr,
+		t1.quanbpd,
+		t1.kucscfs,
+		t1.chuangjbs
+	from ${dbSchemal0}CK_PANDRW t1 
+	where t1.usercenter=#usercenter# $queryWhere$
+	order by t1.usercenter,t1.cangkbh,t1.renwbh
+	</select>
+	
+	<!-- xss_0011694-->
+    <select id="queryShijckbh" resultClass="java.lang.String"  parameterClass="java.util.Map">				      
+		select distinct a.cangkbh
+			  from ckx_lingjck a
+		where a.usercenter = #usercenter# 
+			  and a.lingjbh = #shijljbh#		      
+	</select>
+</sqlMap>

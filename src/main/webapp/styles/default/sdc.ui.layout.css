@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+/********************borderLayout***********************/
+.youi-layout.borderLayout{
+	background:#eeffdd;
+	position:relative;
+}
+/**	布局 - 北 */
+.layout-panel.panel-north{
+
+}
+/**	布局 - 西 */
+.layout-panel.panel-west{
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+/**	布局 - 中 */
+.layout-panel.panel-center{
+	overflow-y:auto;
+	overflow-x:hidden;
+	position:relative;
+}
+
+/**	布局 - 东 */
+.layout-panel.panel-east{
+	
+}
+
+/**	布局 - 南 */
+.layout-panel.panel-south{
+	
+}
+
+.ui-resizing{
+	position:relative;
+}

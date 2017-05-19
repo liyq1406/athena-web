@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout class="com.toft.ui.tags.layout.BorderLayout">
+	<panel position="north" jsp="header.jsp"/>
+	<panel position="west" width="172" jsp="menu.jsp"/>
+	<panel position="center"/>
+	<panel position="south" jsp="footer.jsp"/>
+</layout>

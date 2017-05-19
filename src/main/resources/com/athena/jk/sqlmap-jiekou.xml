@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- ibatis数据库操作配置文件 -->
+<sqlMap namespace="jiekou">
+<!--接口错误日志查询  hzg 2012-10-25 -->
+	<select id="queryIn_errorfile" resultClass="com.athena.jk.entity.In_errorfile">
+		<![CDATA[
+		select inbh,file_errorinfo,error_date,yunxkssj from ${dbSchemal0}IN_ERRORFILE where 1=1
+		]]>
+		<dynamic>
+			<isNotEmpty prepend=" and " property="inbh"><![CDATA[inbh = #inbh#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="yunxkssj"><![CDATA[yunxkssj>=to_date(#yunxkssj#,'yyyy-MM-dd hh24:mi:ss')]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="yunxkssjTo"><![CDATA[yunxkssj<=to_date(#yunxkssjTo#,'yyyy-MM-dd HH24:mi:ss')]]></isNotEmpty>
+		</dynamic>
+		<![CDATA[
+		   order by yunxkssj desc
+		]]>
+	</select>
+	<!--接口字典表查询  hzg 2013-3-21 -->
+	<select id="queryIn_zidb" resultClass="com.athena.jk.entity.In_zidb">
+		<![CDATA[
+		select inbh,inname,to_char(lastcpltime,'yyyy-mm-dd hh24:mi:ss') as lastcpltime,to_char(lastlctime,'yyyy-mm-dd hh24:mi:ss') as lastlctime,outfiletype,yunxzt,yunxkssj from ${dbSchemal0}IN_ZIDB where 1=1
+		]]>
+		<dynamic>
+			<isNotEmpty prepend=" and " property="inbh"><![CDATA[inbh = #inbh#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="inname"><![CDATA[inname like '%$inname$%']]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="yunxkssj"><![CDATA[yunxkssj>=to_date(#yunxkssj#,'yyyy-MM-dd hh24:mi:ss')]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="yunxkssjTo"><![CDATA[yunxkssj<=to_date(#yunxkssjTo#,'yyyy-MM-dd HH24:mi:ss')]]></isNotEmpty>
+		</dynamic>
+		<![CDATA[
+		   order by yunxkssj desc
+		]]>
+	</select>
+</sqlMap>
+

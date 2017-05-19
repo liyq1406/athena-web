@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="ddbh" extend="toft-default" namespace="/ddbh">
+		
+		<!-- 车辆拆分结果-->
+		<action name="list_Chelcfjg" class="chelcfjgAction" method="list"/>
+		<action name="initi_Chelcfjg" class="chelcfjgAction" method="initi">
+			<result name="initi">/WEB-INF/pages/ckx/ddbh/chelcfjg.jsp</result>
+		</action>
+		<action name="rewrite" class="chelcfjgAction" method="rewrite"/>
+		
+		<!-- MAFRAM替换 -->
+		<action name="savePg" class="rafmodthAction" method="savePg"/>
+		<action name="save_RAFMODth" class="rafmodthAction" method="save"/>
+		<action name="update_RAFMODth" class="rafmodthAction" method="update"/>
+		<action name="delete_RAFMODth" class="rafmodthAction" method="delete"/>
+		<action name="list_RAFMODth" class="rafmodthAction" method="list"/>
+		<action name="initi_RAFMODth" class="rafmodthAction" method="initi">
+			<result name="initi">/WEB-INF/pages/ckx/ddbh/rafmodth.jsp</result>
+		</action>
+		
+		<!-- 0007182: 增加按需毛需求查询界面  按需 毛需求主页面初始化 -->
+		<action name="queryAnx" class="maoXqAction" method="executeAn_x">
+			<result name="success">/WEB-INF/pages/ckx/ddbh/anXMaoxq.jsp</result>
+		</action>
+		<!--0007182 按需毛需求查询 -->
+		<action name="queryMaoxqAnx" class="maoXqAction" method="queryMaoxqAnx" />
+		
+	</package>
+</toft>

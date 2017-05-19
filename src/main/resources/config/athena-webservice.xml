@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webservices>
+<!-- 
+class  ：实现类
+address ：webService地址
+ -->
+<!-- <service 
+class="com.athena.fj.module.service.YaocjhService"
+address="/yaocjhService"
+desc="要货令自动归集"
+/> -->
+
+<service 
+class="com.athena.xqjs.module.kdys.service.Kdys"
+address="/kdysService"
+desc="kyds更新"
+/>
+
+</webservices>
+

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="rafmodth">
+
+
+	<insert id="insertDDBH_RAFMODTH" parameterClass="com.athena.ddbh.entity.RAFMODth">
+		 insert into ${dbSchemal5}DDBH_RAFMODTH
+	     (ID,
+	      USERCENTER,
+	      OFH,
+	      YUANXHD,
+	      YUANLJ,
+	      YUANXS,
+	      XINXHD,
+	      XINLJ,
+	      XINXS,
+	      CREATOR,
+	      CREATE_TIME,
+	      CAOZBS,
+	      EDITOR,
+	      CHANX,
+	      DANW,
+	      ZHIZLX,
+	      FLAG,
+	      EDIT_TIME)
+	   values
+	     (<![CDATA[#id#,
+	      #usercenter#,
+	      #ofh#,
+	      #yuanxhd#,
+	      #yuanlj#,
+	      #yuanxs#,
+	      #xinxhd#,
+	      #xinlj#,
+	      #xinxs#,
+	      #chuangjr#,
+	      to_date(#chuangjsj#,'yyyy-MM-dd HH24:mi:ss'),
+	      #caozbs#,
+	      #caozr#,
+	      #chanx#,
+	      #danw#,
+	      #zhizlx#,
+	      #flag#,
+	      to_date(#caozsj#,'yyyy-MM-dd HH24:mi:ss')]]>)
+	</insert>
+	
+	
+	<update id="updateDDBH_RAFMODTH" parameterClass="com.athena.ddbh.entity.RAFMODth">
+		update ${dbSchemal5}DDBH_RAFMODTH
+			set 
+			<![CDATA[ofh = #ofh#]]> ,
+			<![CDATA[yuanxhd = #yuanxhd# ]]> ,
+			<![CDATA[yuanlj = #yuanlj# ]]> ,
+			<![CDATA[yuanxs = #yuanxs# ]]> ,
+			<![CDATA[xinxhd = #xinxhd# ]]> ,
+			<![CDATA[xinlj = #xinlj# ]]> ,
+			<![CDATA[xinxs = #xinxs# ]]> ,
+			<![CDATA[caozbs = #caozbs# ]]> ,
+			<![CDATA[EDITOR = #caozr# ]]> ,
+			<![CDATA[chanx = #chanx# ]]> ,
+			<![CDATA[danw = #danw# ]]> ,
+			<![CDATA[zhizlx= #zhizlx# ]]> ,
+			<![CDATA[EDIT_TIME = to_date(#caozsj#,'yyyy-MM-dd HH24:mi:ss')]]>  
+			where <![CDATA[id = #id#]]> 
+	</update>
+	
+
+
+	<delete id="deleteDDBH_RAFMODTH" parameterClass="com.athena.ddbh.entity.RAFMODth">
+		delete ${dbSchemal5}DDBH_RAFMODTH 
+		where  <![CDATA[id = #id# ]]> 
+	</delete>
+
+	
+
+	<select id="getDDBH_RAFMODTH" resultClass="com.athena.ddbh.entity.RAFMODth">
+    	select ID,
+	      OFH,
+	      YUANXHD,
+	      YUANLJ,
+	      YUANXS,
+	      XINXHD,
+	      XINLJ,
+	      XINXS,
+	      FLAG,
+	      CAOZBS
+    	from ${dbSchemal5}DDBH_RAFMODTH 
+    	where USERCENTER =  <![CDATA[#usercenter# ]]>
+    	<dynamic>
+			<isNotEmpty prepend=" and " property="ofh"><![CDATA[OFH = #ofh#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="yuanxhd"><![CDATA[YUANXHD = #yuanxhd#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="yuanlj"><![CDATA[YUANLJ = #yuanlj#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="xinxhd"><![CDATA[XINXHD = #xinxhd#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="xinlj"><![CDATA[XINLJ = #xinlj#]]></isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<select id="getScx" resultClass="com.athena.ddbh.entity.RAFMODth">
+		select l.shengcxbh chanx, j.danw danw, j.zhizlx zhizlx
+		  from ${dbSchemal2}ckx_lingjxhd l
+		  join ${dbSchemal2}ckx_lingj j on l.usercenter = j.usercenter
+		                               and l.lingjbh = j.lingjbh
+		 where l.usercenter = <![CDATA[#usercenter#]]>
+		   and l.lingjbh = <![CDATA[#xinlj#]]>
+		   and l.xiaohdbh = <![CDATA[#xinxhd#]]>
+	</select>
+	
+	<select id="getCount" resultClass="com.athena.ddbh.entity.RAFMODth">
+		select count(*) count_th
+  			from ${dbSchemal5}ddbh_rafmodth r
+		 	where r.OFH = <![CDATA[#ofh# ]]>
+   			and r.yuanxhd = <![CDATA[#yuanxhd# ]]>
+   			and r.yuanlj = <![CDATA[#yuanlj# ]]>
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,45 @@
+<?xml version="1.0" standalone="yes"?>
+<AutoUpdater>
+  <xs:schema id="AutoUpdater" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="AutoUpdater" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Updater">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Url" type="xs:string" minOccurs="0" />
+                <xs:element name="LastUpdateTime" type="xs:string" minOccurs="0" />
+                <xs:element name="ApplicationId" type="xs:string" minOccurs="0" />
+                <xs:element name="Version" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="File">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="Ver" type="xs:string" minOccurs="0" />
+                <xs:element name="Code" type="xs:string" minOccurs="0" />
+                <xs:element name="Size" type="xs:string" minOccurs="0" />
+                <xs:element name="Path" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Updater>
+    <Url>http://10.26.218.73/athena/pda-update/</Url>
+    <LastUpdateTime>2015-02-02 13:24:39</LastUpdateTime>
+    <ApplicationId>DPCA</ApplicationId>
+    <Version>2.4.0.0</Version>
+  </Updater>
+  <File>
+    <Name>DPCA.zip</Name>
+    <Ver>2.4.0.0</Ver>
+    <Code>5FC67128CD0F60F0CD77D0DEAA3AE5AE</Code>
+    <Size>751956</Size>
+    <Path>\</Path>
+  </File>
+</AutoUpdater>

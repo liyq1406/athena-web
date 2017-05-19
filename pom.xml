@@ -1,0 +1,1721 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.athena</groupId>
+	<artifactId>athena-web</artifactId>
+	<packaging>war</packaging>
+	<version>4.2.1-SNAPSHOT</version>
+	<name>athena-web</name>
+	<url>http://maven.apache.org</url>
+
+	<repositories>
+		<repository>
+			<id>releases</id>
+			<url>http://10.26.223.54:8081/nexus/content/repositories/releases</url>
+		</repository>
+
+		<repository>
+			<id>snapshots</id>
+			<url>http://10.26.223.54:8081/nexus/content/repositories/snapshots</url>
+			<releases>
+				<updatePolicy>interval:60000</updatePolicy>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+
+		<repository>
+			<id>maven.central</id>
+			<url>http://10.26.223.54:8081/nexus/content/repositories/central</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>local-plugin-repositories</id>
+			<url>http://10.26.223.54:8081/nexus/content/repositories/releases</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+	<scm>
+		<connection>scm:svn:https://10.26.223.54:8443/svn/code/athena-web/trunk</connection>
+		<developerConnection>scm:svn:https://10.26.223.54:8443/svn/code/athena-web/trunk</developerConnection>
+		<url>https://10.26.223.54:8443/svn/code/athena-web/trunk</url>
+	</scm>
+
+	<!-- 閮ㄧ讲閰嶇疆 -->
+	<distributionManagement>
+		<repository>
+			<id>local-releases</id>
+			<url>
+                http://10.26.223.54:8081/nexus/content/repositories/releases
+            </url>
+		</repository>
+
+		<snapshotRepository>
+			<id>local-snapshot</id>
+			<url>
+                http://10.26.223.54:8081/nexus/content/repositories/snapshots
+            </url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<junit.version>4.8.2</junit.version>
+		<aspectj.version>1.6.9</aspectj.version>
+		<antlr.version>2.7.6</antlr.version>
+		<weblogic.targets>AdminServer</weblogic.targets>
+		<weblogic.ip>10.26.223.39:7001</weblogic.ip>
+		<weblogic.provided>provided</weblogic.provided>
+		<commons.logging.version>1.1.1</commons.logging.version>
+		<commons.beanutils.version>1.7.0</commons.beanutils.version>
+		<commons.collections.version>3.2.1</commons.collections.version>
+		<commons.dbcp.version>1.3</commons.dbcp.version>
+		<commons.digester.version>1.8</commons.digester.version>
+		<commons.discovery.version>0.4</commons.discovery.version>
+		<commons.email.version>1.2</commons.email.version>
+		<commons.fileupload.version>1.2.2</commons.fileupload.version>
+		<commons.io.version>1.3.2</commons.io.version>
+		<commons.lang.version>2.4</commons.lang.version>
+		<commons.pool.version>1.5.4</commons.pool.version>
+		<commons.chain.version>1.2</commons.chain.version>
+		<commons.codec.version>1.3</commons.codec.version>
+		<commons.el.version>1.0</commons.el.version>
+
+		<standard.version>1.1.2</standard.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<quartz.version>1.6.5</quartz.version>
+		<log4j.version>1.2.14</log4j.version>
+		<slf4j.version>1.6.0</slf4j.version>
+
+		<chardet.version>1.0</chardet.version>
+		<aopalliance.version>1.0</aopalliance.version>
+		<cpdetector.version>1.0.8</cpdetector.version>
+		<kaptcha.version>2.3</kaptcha.version>
+		<json-lib.version>2.3</json-lib.version>
+		<ehcache.version>2.0.3</ehcache.version>
+		<mysql-connector-java.version>5.0.8</mysql-connector-java.version>
+		<javassist.version>3.14.0-GA</javassist.version>
+		<cglib.version>2.2</cglib.version>
+		<jaxen.version>1.1.1</jaxen.version>
+
+		<tomcat.version>7.0.12</tomcat.version>
+		<toft.version>3.5.2.RELEASE</toft.version>
+		<toft.ui.version>1.0.9</toft.ui.version>
+		<athena.version>4.2.0</athena.version>
+		<menuHtml.builder>defaultMenuHtmlBuilder</menuHtml.builder>
+		
+		<cxf.version>2.5.2</cxf.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons.logging.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons.beanutils.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>${commons.collections.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons.lang.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-chain</groupId>
+			<artifactId>commons-chain</artifactId>
+			<version>${commons.chain.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons.codec.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-el</groupId>
+			<artifactId>commons-el</artifactId>
+			<version>${commons.el.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons.dbcp.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>${commons.digester.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.0.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- sdc -->
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-core</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-biz</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-context</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-container</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-cache</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-ibatis</artifactId>
+			<version>3.5.3.RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-jdbc</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-legacy</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-mvc</artifactId>
+			<version>3.5.4</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-remoting</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-transaction</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-ui</artifactId>
+			<version>${toft.ui.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-web</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-utils</artifactId>
+			<version>3.5</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- 搴忓垪鐩稿叧渚濊禆 -->
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-sequence</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- web鎵撳嵃鐩稿叧渚濊禆 -->
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-print-platform</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.toft</groupId>
+			<artifactId>toft-print-designer</artifactId>
+			<version>${toft.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>flex.messaging</groupId>
+			<artifactId>flex-messaging-common</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>flex.messaging</groupId>
+			<artifactId>flex-messaging-remoting</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>flex.messaging</groupId>
+			<artifactId>flex-messaging-core</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>flex.messaging</groupId>
+			<artifactId>flex-messaging-opt</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>flex.messaging</groupId>
+			<artifactId>flex-messaging-proxy</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>bea.weblogic</groupId>
+			<artifactId>weblogic-jatmi</artifactId>
+			<version>10.3.5</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.11</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>1.5.11</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm-all</artifactId>
+			<version>3.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>backport-util-concurrent</groupId>
+			<artifactId>backport-util-concurrent-java12</artifactId>
+			<version>3.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2.2</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.12</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.18</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>${json-lib.version}</version>
+			<classifier>jdk13</classifier>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+			<version>2.3.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-web</artifactId>
+			<version>${ehcache.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<!--s 椤圭洰鍖� -->
+		<dependency>
+			<groupId>com.athena</groupId>
+			<artifactId>athena-core</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!--s 鏁村悎ck鐨勬坊鍔犵殑渚濊禆 -->
+		<dependency>
+			<groupId>com.athena</groupId>
+			<artifactId>athena-excore</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!--e 鏁村悎ck鐨勬坊鍔犵殑渚濊禆 -->
+
+
+		<dependency>
+			<groupId>com.athena</groupId>
+			<artifactId>athena-authority</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.athena</groupId>
+			<artifactId>athena-fj</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.athena</groupId>
+			<artifactId>athena-pc</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.athena</groupId>
+			<artifactId>athena-ckx</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.athena</groupId>
+			<artifactId>athena-print</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.athena</groupId>
+			<artifactId>athena-xqjs</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+        
+        <dependency>
+			<groupId>com.athena</groupId>
+			<artifactId>athena-truck</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+        
+		<dependency>
+			<groupId>com.oreilly</groupId>
+			<artifactId>cos-servlet</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!--e 椤圭洰鍖� -->
+
+		<!--s 瀹夊叏鐩稿叧 -->
+		<dependency>
+			<groupId>org.ibatis</groupId>
+			<artifactId>ibatis</artifactId>
+			<version>2.3.0.677</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>${dom4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+
+
+		<!--e 瀹夊叏鐩稿叧 -->
+
+
+		<!--s CXF 鐩稿叧鍖� -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-simple</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-api</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-core</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-bindings-soap</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-common-utilities</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.ws.commons.schema</groupId>
+			<artifactId>XmlSchema</artifactId>
+			<version>1.4.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-databinding-jaxb</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-tools-common</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<!--e CXF 鐩稿叧鍖� -->
+
+
+		<!--s web 瀹瑰櫒鐩稿叧鍖� -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<!--e web 瀹瑰櫒鐩稿叧鍖� -->
+
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>weblogic-maven-plugin</artifactId>
+			<version>10.3.4</version>
+			<scope>${weblogic.provided}</scope>
+		</dependency>
+		
+		
+		
+		<!-- bo包  开始-->
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>aspectjrt</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>bcm</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>ceaspect</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>cecore</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>cesession</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+				<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>celib</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>ceplugins</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>corbaidl</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>cryptojFIPS</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>ebus405</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>logging</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>sap.bo</groupId>
+		  <artifactId>TraceLog</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		<!-- bo包  结束-->
+		
+		<dependency>
+            <groupId>org.apache.neethi</groupId>
+            <artifactId>neethi</artifactId>
+            <version>3.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--com.sun.image.codec.jpeg不存在的解决方案 hzg -->
+        <dependency>
+		  <groupId>com.sun.jre</groupId>
+		  <artifactId>rt</artifactId>
+		  <version>1.6</version>
+		  <scope>compile</scope>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<finalName>athena</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<warDirectory>${project.build.directory}/${project.build.finalName}</warDirectory>
+					<uriEncoding>UTF-8</uriEncoding>
+					<port>8085</port>
+					<path>/athena</path>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.oracle.weblogic</groupId>
+				<artifactId>weblogic-maven-plugin</artifactId>
+				<version>10.3.4</version>
+				<configuration>
+					<adminurl>${weblogic.ip}</adminurl>
+					<user>weblogic</user>
+					<password>weblogic1</password>
+					<targets>${weblogic.targets}</targets>
+					<upload>true</upload>
+					<action>deploy</action>
+					<remote>true</remote>
+					<verbose>true</verbose>
+					<source>${project.build.directory}/${project.build.finalName}.${project.packaging}</source>
+					<name>${project.build.finalName}</name>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.0-beta-7</version>
+				<configuration>
+					<tagBase>https://10.26.223.54:8443/svn/code/athena-web/tags/</tagBase>
+				</configuration>
+			</plugin>
+			
+			<plugin>  
+			    <groupId>org.apache.maven.plugins</groupId>  
+			    <artifactId>maven-resources-plugin</artifactId>  
+			    <version>2.4.3</version>  
+			    <executions>  
+			        <execution>  
+			            <phase>compile</phase>  
+			        </execution>  
+			    </executions>  
+			    <configuration>  
+			        <encoding>${project.build.sourceEncoding}</encoding>  
+			        <nonFilteredFileExtensions>
+               			<nonFilteredFileExtension>xls</nonFilteredFileExtension>
+          		 	</nonFilteredFileExtensions>
+			    </configuration>  
+			</plugin>  
+			<!-- add hzg 20170413 -->
+	      <plugin>
+	        <groupId>org.sonarsource.scanner.maven</groupId>
+	        <artifactId>sonar-maven-plugin</artifactId>
+	        <version>3.2</version>
+	      </plugin>
+
+		</plugins>
+
+		<!-- 鐩爣璧勬簮 hzg 2012-8-29 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+
+		</resources>
+	</build>
+
+	<!-- maven配置  hzg 2012-8-29 -->
+	<profiles>
+		<!-- 准备层测试-->
+		<profile>
+			<id>T_ZBC</id>
+			<properties>
+				<dbs.dbSchemal0>ZBC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZBC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZBC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZBC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZBC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+
+				<weblogic.ip>10.26.223.39:7001</weblogic.ip>
+				<weblogic.provided />
+
+				<jndi.name1>jdbc/zbc</jndi.name1>
+				<jndi.name2>jdbc/zbc</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label><![CDATA[<!--]]></kactimerstart.label>
+				<kactimerend.label>--&gt;</kactimerend.label>
+				
+				<print.ip>10.26.171.249:8085</print.ip>
+				<bo.ip>10.26.218.90</bo.ip>
+				<menuHtml.builder>defaultMenuHtmlBuilder</menuHtml.builder>
+
+			</properties>
+		</profile>
+		<profile>
+			<id>T_ZXC</id>
+			<properties>
+				<dbs.dbSchemal0>ZXC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZXC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZXC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZXC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZXC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<weblogic.targets>Cluster</weblogic.targets>
+				<weblogic.ip>10.26.223.40:7001</weblogic.ip>
+				<weblogic.provided />
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<print.ip>10.26.171.249:8085</print.ip>
+				<webservice.urlip>10.26.223.39:7001</webservice.urlip>
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.218.90</bo.ip>
+
+			</properties>
+		</profile>
+
+		<!-- 用户测试 -->
+		<profile>
+			<id>U_ZBC</id>
+			<properties>
+				<dbs.dbSchemal0>ZBC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZBC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZBC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZBC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZBC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<weblogic.ip>10.26.223.52:80</weblogic.ip>
+				<weblogic.provided />
+
+				<jndi.name1>jdbc/zbc</jndi.name1>
+				<jndi.name2>jdbc/zbc</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label><![CDATA[<!--]]></kactimerstart.label>
+				<kactimerend.label>--&gt;</kactimerend.label>
+				
+				<print.ip>10.26.223.51:8080</print.ip>
+				<bo.ip>10.26.218.90</bo.ip>
+				<menuHtml.builder>defaultMenuHtmlBuilder</menuHtml.builder>
+				
+				<urlPathUW>10.26.223.51</urlPathUW>
+				<urlPathUL>10.26.223.51</urlPathUL>
+			</properties>
+		</profile>
+		<profile>
+			<id>U_ZXC</id>
+			<properties>
+				<dbs.dbSchemal0>ZXC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZXC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZXC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZXC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZXC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<weblogic.ip>10.26.223.51:80</weblogic.ip>
+				<weblogic.provided />
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<print.ip>10.26.223.51:8080</print.ip>
+				<webservice.urlip>10.26.223.52</webservice.urlip>
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.218.90</bo.ip>
+			</properties>
+		</profile>
+
+		<!-- 集成测试 -->
+		<profile>
+			<id>J_ZBC</id>
+			<properties>
+				<dbs.dbSchemal0>ZBC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZBC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZBC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZBC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZBC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<weblogic.ip>10.26.202.47:80</weblogic.ip>
+				<weblogic.provided />
+
+				<jndi.name1>jdbc/zbc</jndi.name1>
+				<jndi.name2>jdbc/zbc</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label><![CDATA[<!--]]></kactimerstart.label>
+				<kactimerend.label>--&gt;</kactimerend.label>
+				
+				<print.ip>10.26.202.48:8081</print.ip>
+				<bo.ip>10.26.218.90</bo.ip>
+				<menuHtml.builder>defaultMenuHtmlBuilder</menuHtml.builder>
+
+			</properties>
+		</profile>
+		<profile>
+			<id>J_ZXC</id>
+			<properties>
+				<dbs.dbSchemal0>ZXC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZXC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZXC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZXC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZXC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<weblogic.targets>Cluster</weblogic.targets>
+				<weblogic.ip>10.26.202.43:7001</weblogic.ip>
+				<weblogic.provided />
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<print.ip>10.26.202.48:8081</print.ip>
+				<webservice.urlip>10.26.202.47</webservice.urlip>
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.218.90</bo.ip>
+			</properties>
+		</profile>
+
+
+		<!-- 开发测试-->
+		<profile>
+			<id>D_ZBC</id>
+			<properties>
+				<dbs.dbSchemal0>ZBC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZBC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZBC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZBC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZXC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>ZXC_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<user-name1>ZBC_TEST</user-name1>
+				<password1>ZBC_TEST</password1>
+				<server-name1>10.26.218.52</server-name1>
+				<db-name1>functdb</db-name1>
+				<user-name2>ZBC_TEST</user-name2>
+				<password2>ZBC_TEST</password2>
+				<server-name2>10.26.218.52</server-name2>
+				<db-name2>functdb</db-name2>
+
+				<jndi.name1>jdbc/zbc</jndi.name1>
+				<jndi.name2>jdbc/zbc</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+				<jdbcstart.label />
+				<jdbcend.label />
+				<jndistart.label><![CDATA[<!--]]></jndistart.label>
+				<jndiend.label>--&gt;</jndiend.label>
+			    <kactimerstart.label><![CDATA[<!--]]></kactimerstart.label>
+				<kactimerend.label>--&gt;</kactimerend.label>
+				
+				<print.ip>10.26.171.249:8085</print.ip>
+				<bo.ip>10.26.218.90</bo.ip>
+				<menuHtml.builder>defaultMenuHtmlBuilder</menuHtml.builder>
+				<urlPathUW>localhost:8085</urlPathUW>
+				<urlPathUL>localhost:8085</urlPathUL>
+			</properties>
+		</profile>
+		<profile>
+			<id>D_ZXC</id>
+			<properties>
+				<dbs.dbSchemal0>ZXC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZXC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZXC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZXC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZXC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<user-name1>ZXC_TEST</user-name1>
+				<password1>ZXC_TEST</password1>
+				<server-name1>10.26.218.52</server-name1>
+				<db-name1>functdb</db-name1>
+				<user-name2>DDBH_TEST</user-name2>
+				<password2>DDBH_TEST</password2>
+				<server-name2>10.26.218.52</server-name2>
+				<db-name2>functdb</db-name2>
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				<jdbcstart.label />
+				<jdbcend.label />
+				<jndistart.label><![CDATA[<!--]]></jndistart.label>
+				<jndiend.label>--&gt;</jndiend.label>
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<print.ip>10.26.171.249:8085</print.ip>
+				<webservice.urlip>10.26.223.52</webservice.urlip>
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.218.90</bo.ip>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>D_ZBC_180</id>
+			<properties>
+				<dbs.dbSchemal0>ZBC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZBC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZBC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZBC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZXC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+
+				<user-name1>ZBC_TEST</user-name1>
+				<password1><![CDATA[!2#ATHENA&lt;&gt;?]]></password1>
+				<server-name1>10.26.218.180</server-name1>
+				<db-name1>dev1db</db-name1>
+
+				<user-name2>ZBC_TEST</user-name2>
+				<password2><![CDATA[!2#ATHENA&lt;&gt;?]]></password2>
+				<server-name2>10.26.218.180</server-name2>
+				<db-name2>dev1db</db-name2>
+
+
+				<jdbcstart.label />
+				<jdbcend.label />
+				<jndistart.label><![CDATA[<!--]]></jndistart.label>
+				<jndiend.label>--&gt;</jndiend.label>
+				<kactimerstart.label><![CDATA[<!--]]></kactimerstart.label>
+				<kactimerend.label>--&gt;</kactimerend.label>
+				<urlPathUW>localhost:8085</urlPathUW>
+				<urlPathUL>localhost:8085</urlPathUL>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>D_ZXC_180</id>
+			<properties>
+				<dbs.dbSchemal0>ZXC_TEST.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ZXC_TEST.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ZXC_TEST.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ZBC_TEST.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ZXC_TEST.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ZBC_TEST.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ZBC_TEST.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ZXC_TEST.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>DDBH_TEST.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ZBC_TEST.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>DDBH_TEST.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<user-name1>ZXC_TEST</user-name1>
+				<password1><![CDATA[!2#ATHENA&lt;&gt;?]]></password1>
+				<server-name1>10.26.218.180</server-name1>
+				<db-name1>dev1db</db-name1>
+				
+				<user-name2>DDBH_TEST</user-name2>
+				<password2><![CDATA[!2#ATHENA&lt;&gt;?]]></password2>
+				<server-name2>10.26.218.180</server-name2>
+				<db-name2>dev1db</db-name2>
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				<jdbcstart.label />
+				<jdbcend.label />
+				<jndistart.label><![CDATA[<!--]]></jndistart.label>
+				<jndiend.label>--&gt;</jndiend.label>
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<print.ip>10.26.171.249:8085</print.ip>
+				<webservice.urlip>10.26.223.52</webservice.urlip>
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.218.90</bo.ip>
+			</properties>
+		</profile>
+		
+		
+		
+		<!-- 生产部署 -->
+		<profile>
+			<id>S_ZBC</id>
+			<properties>
+				<dbs.dbSchemal0>athzb.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>athzb.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>athzb.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>athzb.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>athzb.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>DDBH_TEST.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>athzb.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>athzb.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>athzx.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>athddbh.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>athzb.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>athddbh.</ddbh.dbSchemal5>
+
+
+				<jndi.name1>jdbc/zbc</jndi.name1>
+				<jndi.name2>jdbc/zbc</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label><![CDATA[<!--]]></kactimerstart.label>
+				<kactimerend.label>--&gt;</kactimerend.label>
+				
+				<menuHtml.builder>defaultMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.210.224</bo.ip>
+				<print.ip>10.28.200.16:8001</print.ip>
+				<urlPathUL>10.28.200.12</urlPathUL>
+				<urlPathUW>10.26.210.190</urlPathUW>
+				<urlPathVD>10.186.194.27</urlPathVD>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>S_ZXC</id>
+			<properties>
+				<dbs.dbSchemal0>athzx.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>athzx.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>athzx.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>athzx.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>athzx.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>athddbh.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>athzb.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>athzb.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>athzx.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>athddbh.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>athzb.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>athddbh.</ddbh.dbSchemal5>
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+
+				<print.ip>10.28.200.16:8001</print.ip>
+				<webservice.urlip>10.26.219.160:8001</webservice.urlip>
+				<bo.ip>10.26.210.224</bo.ip>
+			</properties>
+		</profile>
+
+	<!-- 一二厂配置  hzg -->
+		<profile>
+			<id>S_ZXC_One</id>
+			<properties>
+				<dbs.dbSchemal0>athzx.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>athzx.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>athzx.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>athzx.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>athzx.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>athddbh.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>athzb.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>athzb.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>athzx.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>athddbh.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>athzb.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>athddbh.</ddbh.dbSchemal5>
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+
+				<print.ip>10.26.210.176:8001</print.ip>
+				<webservice.urlip>10.26.219.160:8001</webservice.urlip>
+				<bo.ip>10.26.210.224</bo.ip>
+			</properties>
+		</profile>
+
+	<!-- 四厂生产配置  hzg 2016.1.19 -->
+		<profile>
+			<id>S_ZXC_F</id>
+			<properties>
+				<dbs.dbSchemal0>athzx.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>athzx.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>athzx.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>athzx.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>athzx.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>athddbh.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>athzb.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>athzb.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>athzx.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>athddbh.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>athzb.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>athddbh.</ddbh.dbSchemal5>
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+
+				<print.ip>10.186.194.24:8001</print.ip>
+				<webservice.urlip>10.26.219.160:8001</webservice.urlip>
+				<bo.ip>10.26.210.224</bo.ip>
+			</properties>
+		</profile>
+
+<!--预生产三厂配置   hzg 2014.4.14 无打印及bo批量-->
+		<profile>
+			<id>Y_S_ZBC</id>
+			<properties>
+				<dbs.dbSchemal0>athzb.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>athzb.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>athzb.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>athzb.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>athzb.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>athzb.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>athzb.</dbs.dbSchemal6>
+
+
+
+				<ddbh.dbSchemal0>athzb.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>athzb.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>athzb.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>athzb.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>athzb.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>athzb.</ddbh.dbSchemal5>
+
+
+				<jndi.name1>jdbc/zbc</jndi.name1>
+				<jndi.name2>jdbc/zbc</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				
+				<!-- jenkins自动打包配置 hzg 2014.8.21 -->
+				<weblogic.targets>wlst1</weblogic.targets>
+				<weblogic.ip>10.26.202.227:7001</weblogic.ip>
+				<weblogic.provided />
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label><![CDATA[<!--]]></kactimerstart.label>
+				<kactimerend.label>--&gt;</kactimerend.label>
+				
+				<menuHtml.builder>defaultMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.218.90</bo.ip>
+				<print.ip>10.26.202.48:7001</print.ip>
+				<urlPathUW>10.26.202.225:8001</urlPathUW>
+				<urlPathUL>10.26.202.226:8002</urlPathUL>
+				<urlPathVD>10.26.221.143:8001</urlPathVD>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>Y_S_ZXC</id>
+			<properties>
+				<dbs.dbSchemal0>athzx.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>athzx.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>athzx.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>athzx.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>athzx.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>athddbh.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>athzb.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>athzb.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>athzx.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>athddbh.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>athzb.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>athddbh.</ddbh.dbSchemal5>
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+	            <kactimerstart.label />
+				<kactimerend.label />
+				
+				<!-- jenkins自动打包配置 hzg 2014.8.21 -->
+				<weblogic.targets>wlst2</weblogic.targets>
+				<weblogic.ip>10.26.202.226:7002</weblogic.ip>
+				<weblogic.provided />
+				
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<print.ip>10.26.202.232:7001</print.ip>
+				<webservice.urlip>10.26.202.227:8001</webservice.urlip>
+			</properties>
+		</profile>
+
+	<!-- 预生产一二厂配置  hzg 2014.4.14 无打印及bo批量-->
+		<profile>
+			<id>Y_ZXC_One</id>
+			<properties>
+				<dbs.dbSchemal0>athzx.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>athzx.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>athzx.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>athzx.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>athzx.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>athddbh.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>athzx.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>athzx.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>athzx.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>athzx.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>ddbh.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>athzx.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>athddbh.</ddbh.dbSchemal5>
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				
+				<!-- jenkins自动打包配置 hzg 2014.8.21 -->
+				<weblogic.targets>Cluster</weblogic.targets>
+				<weblogic.password>wlstest1</weblogic.password>
+				<weblogic.ip>10.26.202.225:7001</weblogic.ip>
+				<weblogic.provided />
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+				<kactimerstart.label />
+				<kactimerend.label />
+				
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<print.ip>10.26.202.231:7001</print.ip>
+				<webservice.urlip>10.26.202.227:8001</webservice.urlip>
+			</properties>
+		</profile>
+		
+		
+		<profile>
+			<id>Y_ZXC_Four</id>
+			<properties>
+				<dbs.dbSchemal0>athzx.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>athzx.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>athzx.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>athzx.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>athzx.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>ddbh.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>athzb.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>athzb.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>athzx.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>ddbh.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>athzb.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>ddbh.</ddbh.dbSchemal5>
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+	            <kactimerstart.label />
+				<kactimerend.label />
+				
+				<!-- jenkins自动打包配置 hzg 2014.8.21 -->
+				<weblogic.targets>zxwls</weblogic.targets>
+				<weblogic.ip>10.26.221.143:7001</weblogic.ip>
+				<weblogic.provided />
+				
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<print.ip>10.26.221.141:7001</print.ip>
+				<webservice.urlip>10.26.202.227:8001</webservice.urlip>
+			</properties>
+		</profile>
+
+ <!-- 用户测试环境 hzg 2014.9.28 -->
+		<profile>
+			<id>YH_ZBC</id>
+			<properties>
+				<dbs.dbSchemal0>yhzbc.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>yhzbc.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>yhzbc.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>yhzbc.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>yhzbc.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>yhzbc.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>yhzbc.</dbs.dbSchemal6>
+
+
+
+				<ddbh.dbSchemal0>yhzbc.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>yhzbc.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>yhzbc.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>yhzbc.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>yhzbc.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>yhzbc.</ddbh.dbSchemal5>
+
+
+				<jndi.name1>jdbc/zbc</jndi.name1>
+				<jndi.name2>jdbc/zbc</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label><![CDATA[<!--]]></kactimerstart.label>
+				<kactimerend.label>--&gt;</kactimerend.label>
+				
+				<menuHtml.builder>defaultMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.218.90</bo.ip>
+				
+				<urlPathUW>10.26.218.30:8001</urlPathUW>
+				<urlPathUL>10.26.218.31:8001</urlPathUL>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>U_UW_ZXC</id>
+			<properties>
+				<dbs.dbSchemal0>uwyhzxc.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>uwyhzxc.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>uwyhzxc.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>uwyhzxc.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>uwyhzxc.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>uwyhddbh.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>uwyhzxc.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>uwyhzxc.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>uwyhzxc.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>uwyhddbh.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>uwyhddbh.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>uwyhddbh.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<weblogic.ip>10.26.218.30:8001</weblogic.ip>
+				<weblogic.provided />
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<print.ip>10.26.202.108:7001</print.ip>
+				<webservice.urlip>10.26.202.109:8001</webservice.urlip>
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.218.90</bo.ip>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>U_UL_ZXC</id>
+			<properties>
+				<dbs.dbSchemal0>ulyhzxc.</dbs.dbSchemal0>
+				<dbs.dbSchemal1>ulyhzxc.</dbs.dbSchemal1>
+				<dbs.dbSchemal2>ulyhzxc.</dbs.dbSchemal2>
+				<dbs.dbSchemal3>ulyhzxc.</dbs.dbSchemal3>
+				<dbs.dbSchemal4>ulyhzxc.</dbs.dbSchemal4>
+				<dbs.dbSchemal5>ulyhddbh.</dbs.dbSchemal5>
+				<dbs.dbSchemal6>BO.</dbs.dbSchemal6>
+
+				<ddbh.dbSchemal0>ulyhzxc.</ddbh.dbSchemal0>
+				<ddbh.dbSchemal1>ulyhzxc.</ddbh.dbSchemal1>
+				<ddbh.dbSchemal2>ulyhzxc.</ddbh.dbSchemal2>
+				<ddbh.dbSchemal3>ulyhddbh.</ddbh.dbSchemal3>
+				<ddbh.dbSchemal4>ulyhddbh.</ddbh.dbSchemal4>
+				<ddbh.dbSchemal5>ulyhddbh.</ddbh.dbSchemal5>
+				<ddbh.dbSchemal6>BO.</ddbh.dbSchemal6>
+
+				<weblogic.targets>wlst1</weblogic.targets>	
+				<weblogic.ip>10.26.218.31:7001</weblogic.ip>
+				<weblogic.provided />
+
+				<jndi.name1>jdbc/zxc</jndi.name1>
+				<jndi.name2>jdbc/ddbh</jndi.name2>
+				<jndi.name3>jdbc/bo</jndi.name3>
+				<jdbcstart.label><![CDATA[<!--]]></jdbcstart.label>
+				<jdbcend.label>--&gt;</jdbcend.label>
+				<jndistart.label />
+				<jndiend.label />
+                <kactimerstart.label />
+				<kactimerend.label />
+				
+				<print.ip>10.26.202.170:7001</print.ip>
+				<webservice.urlip>10.26.202.109:8001</webservice.urlip>
+				<menuHtml.builder>ckMenuHtmlBuilder</menuHtml.builder>
+				<bo.ip>10.26.218.90</bo.ip>
+			</properties>
+		</profile>
+		
+	</profiles>
+
+
+</project>

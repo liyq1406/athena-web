@@ -1,0 +1,15 @@
+.footqh{
+		float:left;
+		z-index: 9999;
+		padding-top:6px;
+		padding-left:24px;
+	}
+	.footbutton{
+		background:url(images/footerbutton.jpg) no-repeat;
+		float:center;
+		width:57px;
+		margin-top:3px;
+		line-height:19px;
+		z-index: 9999;
+		border: 0;
+	}

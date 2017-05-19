@@ -1,0 +1,214 @@
+@CHARSET "UTF-8";
+body{
+	font:normal 10pt tahoma, arial, helvetica, sans-serif,宋体;
+	-font:normal 12px  tahoma, arial, helvetica, sans-serif,宋体;
+	margin:0;
+}
+
+table{
+	font:normal 10pt tahoma, arial, helvetica, sans-serif,宋体;
+	-font:normal 12px tahoma, arial, helvetica, sans-serif,宋体;
+}
+
+.STYLE1 {
+	font-size: 18px;
+	padding-left: 20px;
+}
+
+.ui-grid{
+	border:1pt solid silver;
+}
+
+.ui-grid .grid-buttons{
+	text-align:right;
+}
+
+.ui-grid .grid-footer{
+	text-align:left;
+}
+
+.ui-grid .grid-buttons,.ui-grid .grid-footer{
+	height:22px;
+	padding-top:6px;
+}
+
+/**表体样式*/
+.ui-grid  table.grid-table{
+	zoom:1;
+	background:white;
+	display:table;
+	margin-top:-1px;
+	overflow:hidden;
+	padding:0px;
+	empty-cells:show;
+    table-layout:fixed;  
+	border-bottom:1pt solid silver;
+	border-top:1pt solid silver;
+/* 	word-wrap:break-word; */
+	word-break:break-all;
+/* 	word-wrap:normal; */
+}
+
+.grid-header .grid-table td.hcell{
+	background:#F5F8FE;
+	text-align:center;
+/* 	word-wrap:break-word; */
+	word-break:break-all;
+/* 	word-wrap:normal; */
+/* 	word-wrap:break-word; */
+/* 	height:25px; */
+}
+
+.grid-content .grid-table td.cell{
+	word-break: break-all;word-wrap:break-word;
+/* 	white-space:normal; */
+/* 	word-wrap:normal; */
+/* 	height:25px; */
+/* 	word-wrap:break-word; */
+}
+
+.grid-content .grid-table td.cell.num{
+	text-align:center;
+}
+
+.grid-content .grid-table td.cell.checkbox span{
+	text-align:center;
+}
+
+.grid-content .grid-table tr.grid-row.old td.cell{
+	background:white;
+}
+
+.grid-content .grid-table tr.grid-row.even td.cell{
+	background:#FFFFEE;
+}
+
+.grid-content .grid-table tr.grid-row.field-tab.field-tabed td.cell{
+	background:#BCDBFC;
+}
+
+.grid-content .grid-table tr.grid-row.selected td.cell{
+	background:#BCDBFC;
+}
+
+.grid-content .grid-table tr.grid-row.checked td.cell{
+	background:#cecece;
+}
+
+.pagestat{
+	text-align:right;
+	height:22px;
+	padding:2px;
+}
+
+tr.grid-row td.checkbox .ui-icon{
+	background:url('images/grid/row-check-sprite.gif') no-repeat;
+}
+
+tr.grid-row.field-tabed td.checkbox .ui-icon,
+tr.grid-row.selected td.checkbox .ui-icon{
+	background-position:-25px top;
+}
+
+/**按钮*/
+.ui-button{
+	cursor:pointer;
+	padding:1px 5px;
+	border:1pt solid silver;
+	width:50px;
+	margin:1px 2px;
+}
+
+.ui-icon{
+	padding:8px;
+	font-size:0pt;
+	height:0px;
+}
+
+/**标签*/
+.ui-tab-item{
+	border:1pt solid silver;
+}
+
+.ui-tab-item.active{
+	background:#EECCDD;
+}
+
+.tab-panel-item{
+	display:none;
+	border:1pt solid silver;
+	padding:2px;
+	background:white;
+	height:500px;
+	overflow:auto;
+}
+
+.tab-panel-item.active{
+	display:block;
+}
+
+/*************************field validate*****************************/
+/* 验证错误 */
+.validate-error{
+	/* background-image:url(images/field/exclamation.gif); */
+	background:#FDBDBD;
+}
+/* 验证成功 */
+.validate-success{
+	/* background-image:url(images/field/validate-success.gif); */
+	background:white;
+}
+/* 验证中 */
+.validating{
+	/* background-image:url(images/field/validating.gif); */
+	/* background:#00FF00; */
+}
+
+/*************************fieldSelect*****************************/
+.pop-fieldSelect{
+	height:200px;
+	overflow:auto;
+	border:1pt solid silver;
+	background:white;
+	position:absolute;
+	display:none;
+}
+
+.pop-fieldSelect.expanded{
+	display:block;
+	z-index:1099;
+}
+
+/**********************************ul li*************************/
+ul li{
+	list-style: none;
+}
+
+/**输入框*/
+.ui-fieldLayout .field-tabed{
+	background-color:#eeffde;
+}
+
+.ui-fieldLayout .field-label{
+	text-align:right;
+}
+	
+.ui-fieldLayout .field-container{
+	text-align:left;
+}
+
+.div-top{
+	/*position:absolute;top:0;width:100%;background-color:#cecece;*/
+	/*position:fixed;top:0;width:100%;background-color:#cecece;*/
+	position:static;top:0;width:100%;background-color:#cecece;
+}
+.div-content{
+	top:200;width:100%;
+}
+.div-bottom{
+	/*position:absolute;bottom:0;width:100%;background-color:#cecece;*/
+	position:fixed;bottom:0;width:100%;background-color:#cecece;
+	/*position:static;bottom:0;width:100%;background-color:#cecece;*/
+}
+
+

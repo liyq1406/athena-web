@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="clrc" extend="toft-default" namespace="/ck">
+	
+		<!-- 按运单号申报页面 -->
+		<action name="171" class="yundansbAction" method="yundansbym">
+			<result name="select">/WEB-INF/pages/ck/clrc/171.jsp</result>
+		</action>
+		
+		<!-- 按运单号申报查询 -->
+		<action name="17101" class="yundansbAction" method="daohsbCx">
+		</action>
+		
+		<!-- 按卡车号验收 -->
+		<action name="17102" class="yundansbAction" method="daohsbDy">
+		</action>
+				
+		<!-- 按运单号验收查询页面 -->
+		<action name="173" class="yundansbAction" method="yundancxym">
+			<result name="select">/WEB-INF/pages/ck/clrc/173.jsp</result>
+		</action>
+		
+		<!-- 按运单号验收查询 -->
+		<action name="17301" class="yundansbAction" method="daohysCx">
+		</action>
+		
+		<!-- 按卡车号验收 -->
+		<action name="17302" class="yundansbAction" method="daohys">
+		</action>
+		
+		<!-- 按运单号验收修改 -->
+		<action name="17303" class="yundansbAction" method="daohysxg">
+		</action>
+		
+		<!-- 0011365 操作到货通知单 -->
+		<action name="17304" class="yundansbAction" method="daohtzdys">
+		</action>
+		
+		<!-- 按运单号验收修改页面 -->
+		<action name="P17303" class="yundansbAction" method="daohtzdysxgym">
+			<result name="select">/WEB-INF/pages/ck/clrc/17303.jsp</result>
+		</action>
+		
+		<!--  按运单号验收页面 -->
+		<action name="P17302" class="yundansbAction" method="daohtzdysym">
+			<result name="select">/WEB-INF/pages/ck/clrc/17302.jsp</result>
+		</action>
+		
+		<!--  按运单号验收修改页面 -->
+		<action name="P17303" class="yundansbAction" method="daohtzdysxgym">
+			<result name="select">/WEB-INF/pages/ck/clrc/17303.jsp</result>
+		</action>
+		
+		<!-- 按运单号拒收页面 -->
+		<action name="P17304" class="yundansbAction" method="daohtzdjsym">
+			<result name="select">/WEB-INF/pages/ck/clrc/17304.jsp</result>
+		</action>
+		
+		
+		
+				
+		<!-- 空车出厂页面 -->
+		<action name="172" class="yundansbAction" method="kongcheccym">
+			<result name="select">/WEB-INF/pages/ck/clrc/172.jsp</result>
+		</action>
+		
+		<!-- 查询该卡车号空车出厂单是否已经打印过，并且未出厂 -->
+		<action name="17203" class="yundansbAction" method="kongccsfdy">
+		</action>
+		
+		<!-- 查询该卡车号是否已经做过621容器退供应商 -->
+		<action name="17204" class="yundansbAction" method="rongqtgyssfdy">
+		</action>
+		
+		
+		
+		<!-- 空车出厂确认 -->
+		<action name="17201" class="yundansbAction" method="kongccqr">
+		</action>
+         		
+		<!-- 空车出厂打印 -->
+		<action name="17202" class="yundansbAction" method="kongccdy">
+		</action>
+		
+		<action name="P17201" class="yundansbAction" method="print_172">
+       		 <result name="select" >/WEB-INF/pages/ck/clrc/17201.jsp</result>
+        </action>	
+                
+        <!-- 空车出厂查询撤销页面 -->
+		<action name="174" class="yundansbAction" method="kongccccxym">
+			<result name="select">/WEB-INF/pages/ck/clrc/174.jsp</result>
+		</action>
+		
+		<!-- 空车出厂查询 -->
+		<action name="17401" class="yundansbAction" method="kongcccchax">
+		</action>
+		
+		<!-- 空车出厂撤销 -->
+		<action name="17402" class="yundansbAction" method="kongcccchex">
+		</action>
+				
+		<!-- 空车出厂补打 -->
+		<action name="P17401" class="yundansbAction" method="print_174">
+       		 <result name="select" >/WEB-INF/pages/ck/clrc/17401.jsp</result>
+        </action>	
+        
+        <!-- 空车出厂补打计数 0011242-->
+		<action name="17403" class="yundansbAction" method="kongcccjs">
+        </action>	
+        
+		
+	</package>
+</toft>

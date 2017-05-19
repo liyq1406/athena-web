@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="yichang" extend="toft-default" namespace="/ck">
+		<!--401 异常消耗申报页面 -->
+		<action name="401" class="yichangAction" method="yichangYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/401.jsp</result>
+		</action>
+		<!-- 40101 异常消耗申报通过UC号查询-->
+		<action name="40101" class="yichangAction" method="yichangUCx"></action>
+			<!-- 40103 异常消耗申报点-->
+		<action name="40108" class="yichangAction" method="yichangshendb"></action>
+		<!-- 40104 异常消耗申报新增异常消耗单数据-->
+		<action name="40103" class="yichangAction" method="yichangINSERTx"></action>
+		<!-- 40111  查询零件仓库供应商编号是否有效  hzg 2014.9.19-->
+		<action name="40111" class="yichangAction" method="yichangBiaosOfGys"></action>
+		
+		<!--433 异常消耗申报页面-POA hzg 2014.9.18 -->
+		<action name="433" class="yichangAction" method="yichangMainPage">
+		<result name="select">/WEB-INF/pages/ck/yichang/433.jsp</result>
+		</action>
+		<!-- 43303 异常消耗申报点-POA hzg 2014.9.19 -->
+		<action name="43303" class="yichangAction" method="yichangINSERTxhd"></action>
+		
+		<!--402 异常消耗申报取消页面 -->
+		<action name="402" class="yichangAction" method="yichangquxiaoYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/402.jsp</result>
+		</action>
+		<!-- 40201 异常消耗申报取消查询-->
+		<action name="40201" class="yichangAction" method="yichangselectx"></action>
+		<!-- 40202 异常消耗申报取消-->
+		<action name="40202" class="yichangAction" method="yichangquxx"></action>
+		
+		
+		<!--403 异常消耗申报查询页面 -->
+		<action name="403" class="yichangAction" method="yichangsreachYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/403.jsp</result>
+		</action>
+		<!-- 40301 异常消耗申报查询-->
+		<action name="40301" class="yichangAction" method="yichangsrechx"></action>
+		<!-- 40302 异常消耗申报查询-->
+		<action name="40302" class="yichangAction" method="yichangmingxi">
+		</action>
+		<!-- 40302 异常消耗申报查询-->
+		<action name="P40302" class="yichangAction" method="tiaozycxh">
+		<result name="select">/WEB-INF/pages/ck/yichang/40301.jsp</result>
+		</action>
+		
+		
+		<!--404 异常消耗质检维护页面 -->
+		<action name="404" class="yichangAction" method="yichangzhijwhYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/404.jsp</result>
+		</action>
+		<!-- 40401异常消耗质检维护查询-->
+		<action name="40401" class="yichangAction" method="yichangzhijwhsrechx"></action>
+		<!-- 40402异常消耗质检维护新增-->
+		<action name="40402" class="yichangAction" method="yichangzhijwhinsertx"></action>
+		
+		<!-- 40403异常消耗质检维护随废新增-->
+		<action name="40403" class="yichangAction" method="yichangsuifinsertx"></action>
+		<!--40404异常消耗质检维护回车回显-->
+		<action name="40404" class="yichangAction" method="yichanghuichxx"></action>
+		<!--40405异常消耗质检维护删除-->
+		<action name="40405" class="yichangAction" method="yichanghuichdelete"></action>
+		
+		
+		<!--405 异常消耗质检结果取消页面 -->
+		<action name="405" class="yichangAction" method="yichangquxYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/405.jsp</result>
+		</action>
+		<!-- 40501异常消耗质检结果取消查询-->
+		<action name="40501" class="yichangAction" method="yichangquxsrechx"></action>
+		<!-- 40502异常消耗质检结果取消-->
+		<action name="40502" class="yichangAction" method="yichangquxinsertx"></action>
+		
+		
+		
+		<!--406 异常消耗质检结果修改页面 -->
+		<action name="406" class="yichangAction" method="yichangupdateYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/406.jsp</result>
+		</action>
+		<!-- 40601异常消耗质检结果修改查询-->
+		<action name="40601" class="yichangAction" method="yichangupdatesrechx"></action>
+		<!--  40602异常消耗质检结果修改列表-->
+		<action name="40602" class="yichangAction" method="yichangupdateliebx"></action>
+		<!--  40603异常消耗质检结果修改文本框-->
+		<action name="40603" class="yichangAction" method="yichangupdatewenbkx"></action>
+		<!--  40604异常消耗质检结果修改文本框-->
+		<action name="40604" class="yichangAction" method="yichangupdateuch"></action>
+		<!--  40605异常消耗质检结果删除-->
+		<action name="40605" class="yichangAction" method="yichangupdatedelete"></action>
+		
+		
+		<!--407 不合格品返修查询页面 -->
+		<action name="407" class="yichangAction" method="buhgpfxcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/407.jsp</result>
+		</action>
+		
+		<!--40701不合格品返修查询查询-->
+		<action name="40701" class="yichangAction" method="buhgpfxcxsearch"></action>
+		<action name="40702" class="yichangAction" method="buhgpfxcxinfo"></action>
+		<action name="4070101" class="yichangAction" method="buhgpdxrkchakan">
+		<result name="select">/WEB-INF/pages/ck/yichang/40701.jsp</result>
+		</action>
+		
+		
+		
+		<!--408 质检库内质检打印清单页面 -->
+		<action name="408" class="yichangAction" method="yichangzhijYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/408.jsp</result>
+		</action>
+		<!-- 40801质检库内质检打印清单查询-->
+		<action name="40801" class="yichangAction" method="yichangzhijsrechx"></action>
+		<!--40802质检库内质检打印清单打印-->
+		<action name="40802" class="yichangAction" method="yichangzhijdayinx"></action>
+		
+		<!--40805质检清单打印-->
+		<action name="40805" class="yichangAction" method="zhijqdPrint"></action>
+		<!--40806质检清单导出-->
+		<action name="40806" class="yichangAction" method="zhijqdExport"></action>
+		
+		<!--409 质检挑检返修打印清单页面 -->
+		<action name="409" class="yichangAction" method="yichangtiaojYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/409.jsp</result>
+		</action>
+		<!--40901质检挑检返修打印清单查询-->
+		<action name="40901" class="yichangAction" method="yichangtiaojsrechx"></action>
+		<!--40902质检挑检返修打印清单确认-->
+		<action name="40902" class="yichangAction" method="yichangtiaojdayinx"></action>
+		<!--40903质检挑检返修打印清单打印-->
+		<action name="40903" class="yichangAction" method="yichangtiaojquerx"></action>
+		
+		
+		<!--410 质检正常零件进行库内质检页面 -->
+		<action name="410" class="yichangAction" method="yichanglingjYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/410.jsp</result>
+		</action>
+		<!--41001质检正常零件进行库内质检查询-->
+		<action name="41001" class="yichangAction" method="yichanglingjsrechx"></action>
+		<!--41002质检正常零件进行库内质检打印-->
+		<action name="41002" class="yichangAction" method="yichanglingjdayinx"></action>
+		<!--41003质检正常零件进行库内质检确认-->
+		<action name="41003" class="yichangAction" method="yichanglingjquerx"></action>
+		
+		
+		<!--411 质检数据查询页面 -->
+		<action name="411" class="yichangAction" method="zhijsjcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/411.jsp</result>
+		</action>
+		<!--41101 质检数据查询详细页面 -->
+		<action name="4110101" class="yichangAction" method="zhijxiangxi">
+		<result name="select">/WEB-INF/pages/ck/yichang/41101.jsp</result>
+		</action>
+		<!--41102 质检技术报告清单详细页面 -->
+		<action name="4110202" class="yichangAction" method="zhijjsbgqd">
+		<result name="select">/WEB-INF/pages/ck/yichang/41102.jsp</result>
+		</action>
+		<!--41101质检数据查询-->
+		<action name="41101" class="yichangAction" method="zhijsjcxsearch"></action>
+		<!--41102质检数据查询修改-->
+		<action name="41102" class="yichangAction" method="zhijsjcxupate"></action>
+		<!--41103质检数据查询确定-->
+		<action name="41103" class="yichangAction" method="zhijsjcxok"></action>
+		<!--41104质检数据查询打印-->
+		<action name="41104" class="yichangAction" method="zhijsjcxprint"></action>
+		<!--41105质检数据查询删除-->
+		<action name="41105" class="yichangAction" method="zhijsjcxdelete"></action>
+		<!--41106质检数据查询删除-->
+		<action name="41106" class="yichangAction" method="zhijsjcxdeleteym"></action>
+		<!--41107质检数据查询结束-->
+		<action name="41107" class="yichangAction" method="zhijsjcxover"></action>
+		<!--41108质检报告单打印-->
+		<action name="41108" class="yichangAction" method="zhijbgdPrint"></action>
+		
+		
+		<!--412 质检技术报告查询页面 -->
+		<action name="412" class="yichangAction" method="zhijjsbg">
+		<result name="select">/WEB-INF/pages/ck/yichang/412.jsp</result>
+		</action>
+		<!--41201质检技术报告查询查询-->
+		<action name="41201" class="yichangAction" method="zhijjsbgsrech"></action>
+		<!--41202质检技术报告查询查看-->
+		<action name="41202" class="yichangAction" method="zhijjsbglook"></action>
+		<!-- 4120202质检技术报告查询详细页面-->
+        <action name="4120202" class="yichangAction" method="zhijjsbgxx">
+			<result name="select">/WEB-INF/pages/ck/yichang/41201.jsp</result>
+		</action>
+		
+		
+		<!--413 质检技术报告单修改页面 -->
+		<action name="413" class="yichangAction" method="zhijjsbgdupdate">
+		<result name="select">/WEB-INF/pages/ck/yichang/413.jsp</result>
+		</action>
+		<!--41301质检技术报告单修改查询-->
+		<action name="41301" class="yichangAction" method="zhijjsbgdupdatesrech"></action>
+		<!--41302质检技术报告单修改-->
+		<action name="41302" class="yichangAction" method="zhijjsbgdu"></action>
+		<!--41303质检技术报告单确定-->
+		<action name="41303" class="yichangAction" method="zhijjsbgdupdateok"></action>
+		
+		
+		
+		<!--414 不合格品入库页面 -->
+		<action name="414" class="yichangAction" method="buhgprk">
+		<result name="select">/WEB-INF/pages/ck/yichang/414.jsp</result>
+		</action>
+		<!--41401不合格品入库查询-->
+		<action name="41401" class="yichangAction" method="buhgprksrech"></action>
+		<!--41402不合格品入库确认-->
+		<action name="41402" class="yichangAction" method="buhgprkok"></action>
+		<!--41403不合格品入库打印-->
+		<action name="41403" class="yichangAction" method="buhgprkprint"></action>
+		
+		
+		
+		<!--415 不合格品入库撤销页面 -->
+		<action name="415" class="yichangAction" method="buhgprkcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/415.jsp</result>
+		</action>
+		<!--41501不合格品入库撤销查询-->
+		<action name="41501" class="yichangAction" method="buhgprkcxsrech"></action>
+		<!--41502不合格品入库撤销-->
+		<action name="41502" class="yichangAction" method="buhgprkcxok"></action>
+		
+		
+		<!--416 不合格品返修页面 -->
+		<action name="416" class="yichangAction" method="buhgpfx">
+		<result name="select">/WEB-INF/pages/ck/yichang/416.jsp</result>
+		</action>
+		<!--41601不合格品入库撤销-->
+		<action name="41601" class="yichangAction" method="buhgpfxsreach"></action>
+		<!--41602不合格品入库撤销-->
+		<action name="41602" class="yichangAction" method="buhgpfxok"></action>
+		<!--41603不合格品入库撤销-->
+		<action name="41603" class="yichangAction" method="buhgpfxprint"></action>
+		<!--41604不合格品入库撤销-->
+		<action name="41604" class="yichangAction" method="buhgpfxinclue"></action>
+		
+		<!--417 不合格品退供应商页面 -->
+		<action name="417" class="yichangAction" method="buhgptgys">
+		<result name="select">/WEB-INF/pages/ck/yichang/417.jsp</result>
+		</action>
+		<!--41701不合格品退供应商查询-->
+		<action name="41701" class="yichangAction" method="buhgptgyssreach"></action>
+		<!--41702不合格品退供应商修改-->
+		<action name="41702" class="yichangAction" method="buhgptgysupdate"></action>
+		<!--41703不合格品退供应商修改-->
+		<action name="41703" class="yichangAction" method="buhgptgysprint"></action>
+		<!--41604不合格品入库撤销-->
+		<action name="41704" class="yichangAction" method="buhgptgysinclue"></action>
+		
+		<!--418 不合格品退供应商撤销页面 -->
+		<action name="418" class="yichangAction" method="buhgptgyscx">
+		<result name="select">/WEB-INF/pages/ck/yichang/418.jsp</result>
+		</action>
+		<!--41801不合格品退供应商撤销查询-->
+		<action name="41801" class="yichangAction" method="buhgptgyscxsreach"></action>
+		<!-- 41802不合格品退供应商撤销-->
+		<action name="41802" class="yichangAction" method="buhgptgyscxcx"></action>	
+		<!-- 41803  查询明细 -->
+		<action name="41803" class="yichangAction" method="buhgspmx"></action>
+		<!-- 跳转41803页面 -->
+		<action name="P41803" class="yichangAction" method="tiaozmx">
+		<result name="select">/WEB-INF/pages/ck/yichang/41801.jsp</result>
+		</action>	
+		
+		
+		<!--419 不合格品返修入库页面 -->
+		<action name="419" class="yichangAction" method="buhgpdxrk">
+		<result name="select">/WEB-INF/pages/ck/yichang/419.jsp</result>
+		</action>
+		<!--41901不合格品返修入库查询-->
+		<action name="41901" class="yichangAction" method="buhgpdxrksreach"></action>
+		<!--41902不合格品返修入库 修改-->
+		<action name="41902" class="yichangAction" method="buhgpdxrktz"></action>
+		<action name="4190101" class="yichangAction" method="buhgpdxrkupdate">
+		<result name="select">/WEB-INF/pages/ck/yichang/41901.jsp</result>
+		</action>
+		<!-- 41903不合格品返修入库打印-->
+		<action name="41903" class="yichangAction" method="buhgpdxrkprint"></action>
+		<!-- 41904不合格品返修入库打印-->
+		<action name="41904" class="yichangAction" method="buhgpdxrkprintt"></action>
+			<!-- 41903不合格品返修入库打印-->
+		<action name="41905" class="yichangAction" method="buhgpdxrktzz"></action>
+		<action name="4190202" class="yichangAction" method="buhgpdxrkytz">
+		<result name="select">/WEB-INF/pages/ck/yichang/419.jsp</result>
+		</action>
+		
+		<!--420 不合格品销毁清单页面 -->
+		<action name="420" class="yichangAction" method="buhgpxhqd">
+		<result name="select">/WEB-INF/pages/ck/yichang/420.jsp</result>
+		</action>
+		<!--42001不合格品返修入库查询-->
+		<action name="42001" class="yichangAction" method="buhgpxhqdsreach"></action>
+		<!--42002不合格品返修入库 修改-->
+		<action name="42002" class="yichangAction" method="buhgpxhqdupdate"></action>
+		<!--42003不合格品返修入库打印-->
+		<action name="42003" class="yichangAction" method="buhgpxhqdprint"></action>
+			<!--42004不合格品返修入库回车-->
+		<action name="42004" class="yichangAction" method="buhgpxhqdhc"></action>
+		
+		
+		<!--421 不合格品销毁清单查询修改页面 -->
+		<action name="421" class="yichangAction" method="buhgpxhqdcxxg">
+		<result name="select">/WEB-INF/pages/ck/yichang/421.jsp</result>
+		</action>
+		<!--42101不合格品销毁清单查询修改查询-->
+		<action name="42101" class="yichangAction" method="buhgpxhqdcxxgsreach"></action>
+		<!--42102不合格品销毁清单查询修改删除-->
+		<action name="42102" class="yichangAction" method="buhgpxhqdcxxgdelete"></action>
+		<!--42103不合格品销毁清单查询修改-->
+		<action name="42103" class="yichangAction" method="buhgpxhqdcxxgupdate"></action>
+		
+		
+		
+		<!--422 不合格品销毁清单撤销页面 -->
+		<action name="422" class="yichangAction" method="buhgpxhqdcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/422.jsp</result>
+		</action>
+		<!--42201不合格品销毁清单撤销查询-->
+		<action name="42201" class="yichangAction" method="buhgpxhqdcxsreach"></action>
+		<!--42202不合格品销毁清单撤销 撤销-->
+		<action name="42202" class="yichangAction" method="buhgpxhqdcxdelete"></action>
+		
+		
+		
+		<!--423 不合格品销毁确认页面 -->
+		<action name="423" class="yichangAction" method="buhgpxhqr">
+		<result name="select">/WEB-INF/pages/ck/yichang/423.jsp</result>
+		</action>
+		<!--42301不合格品销毁确认查询-->
+		<action name="42301" class="yichangAction" method="buhgpxhqrsreach"></action>
+		<!--42302不合格品销毁确认确认-->
+		<action name="42302" class="yichangAction" method="buhgpxhqrok"></action>
+		<!--42303不合格品销毁确认修改-->
+		<action name="42303" class="yichangAction" method="buhgpxhqrupdate"></action>
+		<!--42304不合格品销毁确认修改-->
+		<action name="42304" class="yichangAction" method="buhgpxhqrprint"></action>
+		
+		<!--424 不合格品销毁确认撤消页面 -->
+		<action name="424" class="yichangAction" method="buhgpxhqrcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/424.jsp</result>
+		</action>
+		<!--42401不合格品销毁确认撤消查询-->
+		<action name="42401" class="yichangAction" method="buhgpxhqrcxsreach"></action>
+		<!--42402不合格品销毁确认撤消撤销-->
+		<action name="42402" class="yichangAction" method="buhgpxhqrcxdelete"></action>
+		
+		
+		<!--425 正常质检零件解冻页面 -->
+		<action name="425" class="yichangAction" method="chengptcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/425.jsp</result>
+		</action>
+		<!--42501正常质检零件解冻查询-->
+		<action name="42501" class="yichangAction" method="chengptcxsrechx"></action>
+		<!--42502正常质检零件解冻-->
+		<action name="42502" class="yichangAction" method="chengptcxxx"></action>
+		
+		
+		
+		<!--426 正常质检零件解冻页面 -->
+		<action name="426" class="yichangAction" method="yichangjiedYm">
+		<result name="select">/WEB-INF/pages/ck/yichang/426.jsp</result>
+		</action>
+		<!--42601正常质检零件解冻查询-->
+		<action name="42601" class="yichangAction" method="yichangjiedsrechx"></action>
+		<!--42602正常质检零件解冻-->
+		<action name="42602" class="yichangAction" method="yichangjieddayinx"></action>
+		
+		
+		
+		<!--427 不合格品属性管理撤销 页面 -->
+		<action name="427" class="yichangAction" method="buhgpsxglcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/427.jsp</result>
+		</action>
+		<!--42701 不合格品属性管理撤销查询 -->
+		<action name="42701" class="yichangAction" method="buhgpsxglcxsearch"></action>
+		<!--42702 不合格品属性管理撤销查询 -->
+		<action name="42702" class="yichangAction" method="buhgpsxglcxchex"></action>
+		
+		
+		
+		<!--428 不合格成品质检判断撤销页面 -->
+		<action name="428" class="yichangAction" method="buhgcpzjpdcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/428.jsp</result>
+		</action>
+		
+		
+		<!--429 不合格品未入不合品库查询页面 -->
+		<action name="429" class="yichangAction" method="buhgpwrbhpk">
+		<result name="select">/WEB-INF/pages/ck/yichang/429.jsp</result>
+		</action>
+		<!--42901不合格品未入不合品库查询-->
+		<action name="42901" class="yichangAction" method="buhgpwrbhpksrech"></action>
+		
+		
+		
+		<!--430 不合格品属性管理页面 -->
+		<action name="430" class="yichangAction" method="buhgpsxgl">
+		<result name="select">/WEB-INF/pages/ck/yichang/430.jsp</result>
+		</action>
+		<!--43001不合格品属性管理查询-->
+		<action name="43001" class="yichangAction" method="buhgpsxglsearch"></action>
+		<!--43002不合格品属性管理修改-->
+		<action name="43002" class="yichangAction" method="buhgpsxglupdate"></action>
+		<!--43003不合格品属性管理修改-->
+		<action name="43003" class="yichangAction" method="buhgpsxgltj"></action>
+		
+		
+		<!--431 不合格成品质检判断页面 -->
+		<action name="431" class="yichangAction" method="buhgpzjpd">
+		<result name="select">/WEB-INF/pages/ck/yichang/431.jsp</result>
+		</action>
+		<!--43101不合格成品质检判断查询-->
+		<action name="43101" class="yichangAction" method="buhgpzjpdsearch"></action>
+		<!--43102不合格成品质检判断修改-->
+		<action name="43102" class="yichangAction" method="buhgpzjpdupdate"></action>
+		<!--43103不合格成品质检判断修改-->
+		<action name="43103" class="yichangAction" method="buhgpzjpdtj"></action>
+		
+		
+		<!--432 质检清单的查询页面 -->
+		<action name="432" class="yichangAction" method="zhijqdcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/432.jsp</result>
+		</action>
+		<!--43201不合格成品质检判断查询-->
+		<action name="43201" class="yichangAction" method="zhijqdcxsearch"></action>
+		<!--43202质检清单的查询详细页面  -->
+		<action name="43202" class="yichangAction" method="zhijqdcxxx"></action>
+		<action name="4320201" class="yichangAction" method="zhijqdcxxiangxi">
+		<result name="select">/WEB-INF/pages/ck/yichang/43201.jsp</result>
+		</action>
+		
+		<!-- 404责任主体代码 -->
+		<action name="zerztdm" class="yichangAction" method="queryZrzt"></action>
+		<!-- 责任主体名称 -->
+		<action name="zerztmc" class="yichangAction" method="queryZerztmc"></action>
+		
+		<!--huxy_11462 434 库内正常零件按序列号质检-->
+		<action name="434" class="yichangAction" method="kunljzczj">
+		<result name="select">/WEB-INF/pages/ck/yichang/434.jsp</result>
+		</action>
+		<!--43401不合格成品质检判断查询-->
+		<action name="43401" class="yichangAction" method="zhijljxhsel"></action>
+		<!--43402 库内正常零件按序列号生成清单确认-->
+		<action name="43402" class="yichangAction" method="zhijljxhqr"></action>
+		<!--43203库内正常零件按序列号生成清单打印  -->
+		<action name="43403" class="yichangAction" method="zhijljxhprint"></action>
+		
+		<!--huxy_11467 435不合格品返修入库撤销-->
+		<action name="435" class="yichangAction" method="buhgpfxrkcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/435.jsp</result>
+		</action>
+		<!--43501 不合格品返修入库查询-->
+		<action name="43501" class="yichangAction" method="buhgpfxrkcxSel"></action>
+		<!--43502 435不合格品返修入库插销确认-->
+		<action name="43502" class="yichangAction" method="buhgpfxrkcxQr"></action>
+		
+		<!--436 不合格品返修入库撤销查询页面 -->
+		<action name="436" class="yichangAction" method="buhgpfxrkcxcx">
+		<result name="select">/WEB-INF/pages/ck/yichang/436.jsp</result>
+		</action>
+		<action name="43601" class="yichangAction" method="buhgpfxrkcxsearch"></action>
+		<action name="43602" class="yichangAction" method="buhgpfxrkcxinfo"></action>
+		
+	</package>
+</toft>

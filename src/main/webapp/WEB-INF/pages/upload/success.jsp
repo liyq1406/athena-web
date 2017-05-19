@@ -1,0 +1,1 @@
+<%="{\"result\":{\"message\":\""+request.getAttribute("message")+"\"}}"%>

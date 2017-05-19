@@ -1,0 +1,405 @@
+@CHARSET "UTF-8";
+.youi-grid{
+	background:white;
+	overflow:hidden;
+	position:relative;
+}
+
+a:focus{
+	outline:0;
+}
+
+.youi-grid .grid-width-helper{
+	font-size:0;
+	height:1px;
+	line-height:1px;
+}
+/***************标题栏*****************/
+.youi-grid .grid-toolbar{
+	overflow:hidden;
+	background:white;
+	height:26px;
+	vertical-align:middle;
+	background: transparent url(images/grid/footer-bg.gif) scroll 0 0;
+}
+
+.youi-grid  .youi-buttons{
+	float:right;
+}
+
+
+.youi-grid .grid-toolbar .grid-buttons{
+	height:25px;
+	float:right;
+}
+
+.youi-grid .grid-buttons .youi-button .icon.addRecord{
+	background-image:url(images/grid/add-record.gif);
+}
+
+.youi-grid .grid-buttons .youi-button .icon.editRecord{
+	background-image:url(images/grid/edit-record.gif);
+}
+
+.youi-grid .grid-buttons .youi-button .icon.removeRecord{
+	background-image:url(images/grid/remove-record.gif);
+}
+
+.youi-grid .grid-header{
+	overflow:hidden;
+	background:white;
+	*margin-bottom:-2px;
+}
+/*2012-5-4 muwei*/
+.youi-grid .grid-content{
+	margin-top:-2px;
+	overflow:hidden;
+	/*margin-bottom:35px;*/
+}
+
+.youi-grid .grid-content .grid-scroll{
+	overflow:auto;
+	overflow-x:hidden;
+	height:240px;
+	position:relative;
+}
+.youi-grid .grid-content .grid-fixed{
+	overflow:hidden;
+	height:240px;
+	
+}
+
+.youi-grid .grid-header .grid-scroll{
+	overflow:hidden;
+}
+
+.youi-grid .grid-footer{
+	height:25px;
+	maring-top:1px;
+	border-left:1pt solid #EDEDED;
+	position:relative;
+	/**border-right:1pt solid #EDEDED;*/
+	background: transparent url(images/grid/main_content002.gif) scroll 0 0;
+}
+/*表头样式*/
+.youi-grid .grid-header table{
+	margin-top:-1px;
+	*margin-top:-2px;
+	background: white;
+	border-collapse: separate;
+}
+
+.youi-grid .grid-header table.grid-table tr{
+	background: transparent url(images/grid/grid-header-bg.jpg) scroll 0 -1px;
+}
+
+.youi-grid .grid-header table.grid-table th{
+	line-height:26px;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+}
+
+.youi-grid .grid-header table.grid-table th.sort{
+	background:url(images/grid/sort.gif) no-repeat right center;
+	cursor:pointer;
+}
+
+.youi-grid .grid-header table.grid-table th.sorting.asc{
+	background:url(images/grid/sort_asc.gif) no-repeat right center;
+	cursor:pointer;
+}
+
+.youi-grid .grid-header table.grid-table th.sorting.desc{
+	background-image:url(images/grid/sort_desc.gif);
+}
+
+.youi-grid .grid-header table.grid-table th.num{
+	height:26px;
+}
+/**表体样式*/
+.youi-grid .grid-content table.grid-table{
+	zoom:1;
+	background:none repeat scroll 0 0 white;
+	display:table;
+	margin-top:-1px;
+	overflow:hidden;
+	padding:0px;
+	border-collapse: separate;
+}
+
+.youi-grid .grid-content table td.num{
+	text-align:center;
+}
+
+.youi-grid table.grid-table{
+	empty-cells:show;
+	/**background:silver;border-collapse:collapse;*/
+	table-layout:fixed;
+	margin-left:-1px;
+}
+
+
+.youi-grid table.grid-table th.col div{
+	position:relative;
+	background:url(images/grid/tableth.png);
+	height:21px;
+}
+
+.youi-grid table th.col div .col-helper{
+	position:absolute;
+	float:right;
+	display:none;
+	width:15px;
+	height:21px;
+	right:0;
+	top:0;
+	background:url(images/grid/grid3-hd-btn.gif) no-repeat left center;
+}
+
+.youi-grid table th.col div .col-helper.show{
+	display:block;
+}
+
+.youi-grid table th.col div .col-helper .col-resize{
+	position:absolute;
+	width:5px;
+	right:0px;
+	top:0px;
+	cursor:e-resize;
+	background:no-repeat;
+}
+/*存在列分组时无分组的表头样式*/
+.youi-grid table.grid-table th.cross{
+	background:url(images/grid/tableth-cross.png);
+}
+
+.youi-grid table.grid-table th.cross div{
+	height:43px;
+	line-height:43px;
+}
+
+.youi-grid table.grid-table td{
+	background:#FFFFEE;
+	height:21px;
+	line-height:20px;
+	padding:0 1px;
+	position:relative;
+	
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+	
+	cursor:pointer;
+}
+
+.youi-grid table.grid-table td a{
+	text-decoration:none;
+}
+
+.youi-grid table.grid-table tr.row td a{
+	text-decoration:underline;
+}
+
+.youi-grid table td img.cell-button{
+	height:20px;
+	border:0;
+}
+
+.youi-grid table td.td-width{
+	height:0;
+}
+
+.youi-grid table tr.row td.highlight{
+	color:red;
+}
+
+.youi-grid table tr.row.even td{
+	background-color:#F5F5FE;
+}
+
+.youi-grid table tr.row:hover{
+	background:url(images/grid/row-over.gif);
+}
+
+.youi-grid table tr.row:hover td{
+	background:transparent;
+}
+
+.youi-grid table.grid-table tr.row-new td{
+	border-bottom:1pt solid #EEDDCC;
+}
+.youi-grid table.grid-table tr td.edited{
+	background: none no-repeat scroll 0 0 transparent;
+	background-image: url("images/grid/dirty.gif");
+}
+.youi-grid table tr.row.selected td{
+	background-color:#4DBDEF !important;
+}
+
+.youi-grid table tr.row td.checkbox div,
+.youi-grid table.grid-table th.checkbox div,
+.youi-grid table tr td.radio div{
+	background:url(images/grid/row-check-sprite.gif) no-repeat 4px center;
+	cursor:pointer;
+	width:20px;
+	height:20px;
+	text-align:center;
+}
+
+.youi-grid table.grid-table th.checkbox div{
+	height:26px;
+}
+
+.youi-grid table tr.row.selected td.checkbox div,
+.youi-grid table th.checkbox div.checked,
+.youi-grid table tr td.radio.radio-checked div{
+	background-position: -21px center;
+}
+
+.youi-grid .grid-col-resize{
+	display:none;
+	position:absolute;
+	cursor:e-resize;
+}
+
+.youi-grid .grid-col-resize.resizing{
+	display:block;
+	background:white;
+	filter:alpha(opacity=50);
+	opacity:0.5;
+	border:1pt dotted #000;
+	z-index:2;
+	position:absolute;
+}
+
+.youi-grid .grid-x-scroll{
+	overflow-y:hidden;
+	overflow-x:scroll;
+	height:17px;
+	border-left:1pt solid #EDEDED;
+	display:none;
+}
+
+.youi-grid .grid-x-scroll.show{
+	display:block;
+}
+
+.youi-grid .grid-x-scroll.show{
+	display:block;
+}
+
+.youi-grid .grid-x-scroll div{
+	height:1px;
+	border:0;
+	padding:0;
+	marging:0;
+	position:relative;
+	font-size:1pt;
+}
+
+div.pGroup{float: left;background: none;height: 22px;margin: 1px 5px;}
+div.pButton{
+	float: left;
+	width: 22px;
+	height: 22px;
+	border: 0px;
+	cursor: pointer;
+	overflow: hidden;
+	margin:0 1px;
+	padding:1px;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+div.pButton:hover,div.pButton.pBtnOver{
+	width: 20px;
+	height: 20px;
+	border: 1px solid #ccc;
+	padding:0;
+	margin:1px 2px;
+}
+div.pButton.disabled{
+	cursor:auto;
+	filter:alpha(opacity=50);
+	opacity:0.5;
+	zoom:1;
+}
+div.pButton span{
+	width: 20px;
+	height: 20px;
+	display: block;
+	float: left;
+}
+
+div.pDiv  div.pButton:hover span,div.pButton.pBtnOver span{
+	width: 18px;
+	height: 18px;
+}
+
+.youi-grid .grid-footer .pGroup div{
+	float:left;
+}
+
+.youi-grid  .grid-footer input{vertical-align: text-top;position: relative;top: -4px;width:30px;height:16px;font-size:9pt;}
+.youi-grid  .grid-footer select{vertical-align: text-top;position: relative;top: -4px;width:30px;  }
+.pPageStat,.pcontrol{position: relative;top: 5px;overflow: visible;}
+div.btnseparator{float: left;height: 22px;border-left: 1px solid #ccc;border-right: 1px solid #fff;margin: 1px;}
+
+.youi-grid .grid-footer .pFirst{background: url(images/grid/page-first.gif) no-repeat center;}
+.youi-grid .grid-footer .first .pFirst.disabled{background-image: url(images/grid/page-first-disabled.gif);}
+
+.youi-grid .grid-footer .pPrev{background: url(images/grid/page-prev.gif) no-repeat center;}
+.youi-grid .grid-footer .prev .pPrev.disabled{background-image: url(images/grid/page-prev-disabled.gif);}
+
+.youi-grid .grid-footer .pNext{background: url(images/grid/page-next.gif) no-repeat center;}
+.youi-grid .grid-footer .next .pNext.disabled{background-image: url(images/grid/page-next-disabled.gif);}
+
+.youi-grid .grid-footer .pLast{background: url(images/grid/page-last.gif) no-repeat center;}
+.youi-grid .grid-footer .last .pLast.disabled{background-image: url(images/grid/page-last-disabled.gif);}
+
+.youi-grid .grid-footer .pReload{background: url(images/grid/reload.png) no-repeat center;}
+.youi-grid .grid-footer .pReload.loading{background: url(images/tree/loading.gif) no-repeat center;}
+.youi-grid .grid-footer.not-navigator >div{display:none;}
+.youi-grid .grid-footer .pgo {background: url(images/grid/go.png) no-repeat center;}
+
+.youi-grid .grid-footer .pAddRow{
+	background-image:url(images/grid/add-record.gif);
+}
+
+.youi-grid .grid-footer .pRemoveRow{
+	background-image:url(images/grid/remove-record.gif);
+}
+
+.grid-formButtons td{
+	padding:1px 5px;
+}
+
+.col-resize-helper{
+	border:1pt dotted black;
+	display:none;
+}
+
+.col-resize-helper.resizing{
+	display:block;
+	position:absolute;
+}
+/*grid editor*/
+.youi-grid  .grid-content.youi-editor table td.validate-error{
+	color:red;
+	background:url(images/field/exclamation.gif) no-repeat left center;
+	padding-left:16px;
+}
+
+.editorPanel{
+	position:absolute;
+	border:1pt dotted #eeddcc;
+}
+
+.editorPanel .youi-field input.textInput{
+	border:0;
+	background:white;
+}
+
+.editorPanel{
+	z-index:9999;
+}

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+
+	<display-name>Archetype Created Web Application</display-name>
+
+	
+	<filter>
+		<filter-name>ShiroFilter</filter-name>
+		<filter-class>com.athena.authority.AthenaIniShiroFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>ShiroFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>ShiroFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>ShiroFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	 
+	<filter-mapping>
+		<filter-name>ShiroFilter</filter-name>
+		<url-pattern>*.ajax</url-pattern>
+	</filter-mapping>
+	 
+	<context-param>
+		<param-name>sdc-configLocation</param-name>
+		<param-value>classpath:config/sdc-config.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.toft.core3.web.context.RequestContextListener</listener-class>
+	</listener>
+
+	<!-- log4j 自定义日志监听 hzg 2013-10-31 -->
+	 <servlet>
+        <servlet-name>log4jLoader</servlet-name>
+        <servlet-class>com.athena.component.utils.Log4jInit</servlet-class>
+        <init-param>
+            <param-name>log4j</param-name>
+            <param-value>log4j.properties</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+	
+	<!-- filter-->
+	<!-- 核心的mvc接收器，其中mvc适用于filter而不是servlet -->
+	<filter>
+		<description>
+		</description>
+		<display-name>CharacterEncodingFilter</display-name>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>com.toft.mvc.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>skipFilter</filter-name>
+		<filter-class>com.athena.authority.SkipFilter</filter-class>
+	</filter>
+	
+	<!-- 整合ck的 页面跳转的filter -->
+	<filter-mapping>
+		<filter-name>skipFilter</filter-name>
+		<url-pattern>/qiehuan.do</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>toft</filter-name>
+		<filter-class>com.toft.mvc.ToftFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>toft</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>toft</filter-name>
+		<url-pattern>*.ajax</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>toft</filter-name>
+		<url-pattern>*.app</url-pattern>
+	</filter-mapping>
+	
+	<!-- 整合ck 添加的配置     开始  -->
+	
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>com.athena.component.ws.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 整合ck 添加的配置     结束  -->
+	
+	<servlet>
+		<servlet-name>i18n</servlet-name>
+		<servlet-class>com.toft.ui.JsI18nServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>i18n</servlet-name>
+		<url-pattern>/i18n.js</url-pattern>
+	</servlet-mapping>
+	 <!-- barcode(条形码) -->
+	 <servlet>
+		<servlet-name>CreateBarCode</servlet-name>
+		<servlet-class>com.athena.ck.common.barcode.BarCodeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateBarCode</servlet-name>
+		<url-pattern>/CreateBarCode</url-pattern>
+	</servlet-mapping>
+	<!-- flex 启动 blazeDS -->
+	<servlet>
+		<servlet-name>MessageBrokerServlet</servlet-name>
+		<servlet-class>flex.messaging.MessageBrokerServlet</servlet-class>
+		<init-param>
+			<param-name>services.configuration.file</param-name>
+			<param-value>/WEB-INF/flex/services-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MessageBrokerServlet</servlet-name>
+		<url-pattern>/messagebroker/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- CXF相关配载  hzg 2012-3-2  update 2012-6-6 -->
+	<!-- <servlet>
+	<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>com.athena.ws.servlet.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping> -->
+	<!-- 打印平台设计器，背景图上传servlet -->
+	<servlet>
+		<servlet-name>BgPicUploadServlet</servlet-name>
+		<servlet-class>com.toft.widgets.printark.servlet.BgPicUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BgPicUploadServlet</servlet-name>
+		<url-pattern>/BgPicUploadServlet</url-pattern>
+	</servlet-mapping>
+	<!-- 打印平台设计器，图片组件图片上传servlet -->
+	<servlet>
+		<servlet-name>PrintImageUploadServlet</servlet-name>
+		<servlet-class>com.toft.widgets.printark.servlet.PrintImageUploadServlet</servlet-class>
+	</servlet> 
+	<servlet-mapping>
+		<servlet-name>PrintImageUploadServlet</servlet-name>
+		<url-pattern>/PrintImageUploadServlet</url-pattern>
+	</servlet-mapping>
+	<!-- 文件上传 -->
+	<servlet>
+		<servlet-name>FileUpload</servlet-name>
+		<servlet-class>com.athena.xqjs.module.common.FileUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FileUpload</servlet-name>
+		<url-pattern>/FileUpload.do</url-pattern>
+	</servlet-mapping>
+	<!-- 打印模块swf调用获取json数据的servlet -->
+	<servlet>
+		<servlet-name>Jsondataprovider</servlet-name>
+		<servlet-class>com.toft.widgets.printark.servlet.Jsondataprovider</servlet-class>
+	</servlet>
+		<servlet-mapping>
+		<servlet-name>Jsondataprovider</servlet-name>
+		<url-pattern>/Jsondataprovider</url-pattern>
+	</servlet-mapping>
+	
+	<!-- mobile app 调用获取json数据的servlet -->
+	<servlet>
+		<servlet-name>KacsjServlet</servlet-name>
+		<servlet-class>com.athena.truck.servlet.KacsjServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>KacsjServlet</servlet-name>
+		<url-pattern>/KacsjServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ChacServlet</servlet-name>
+		<servlet-class>com.athena.truck.servlet.ChacServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChacServlet</servlet-name>
+		<url-pattern>/ChacServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- session的生命周期 -->
+	<session-config>
+		<session-timeout>45</session-timeout>
+	</session-config>
+	
+	<mime-mapping> 
+		<extension>xls</extension> 
+		<mime-type>application/msexcel</mime-type> 
+	</mime-mapping> 
+	
+</web-app>

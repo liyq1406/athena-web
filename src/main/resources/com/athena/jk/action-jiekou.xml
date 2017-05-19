@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="jk" extend="toft-default" namespace="/jk">
+		
+		<!-- 接口错误日志 hzg 2012-10-25-->
+		<action name="accessJieKouErrorfile" class="in_errorfileAction" method="accessInerrorfilePages">
+			<result name="select">/WEB-INF/pages/jk/in_errorfile.jsp</result>
+		</action>
+		<action name="queryJieKouErrorfile" class="in_errorfileAction" method="queryInerrorfile" />
+		
+		<!-- 接口字典查询 hzg 2013-3-21-->
+		<action name="accessInzidb" class="in_zidbAction" method="accessInzidb">
+			<result name="select">/WEB-INF/pages/jk/in_zidb.jsp</result>
+		</action>
+		<action name="queryJieKouZidb" class="in_zidbAction" method="queryInzidb" />
+
+	</package>
+</toft>

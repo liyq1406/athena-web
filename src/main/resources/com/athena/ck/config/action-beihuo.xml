@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="beihuo" extend="toft-default" namespace="/ck">
+		
+		<!-- 301 备货单 -->
+		<action name="301" class="beihckAction" method="beihdYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/301.jsp</result>
+		</action>
+		<!-- 302 按需备货单-->
+		<action name="302" class="beihckAction" method="anxbhdYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/302.jsp</result>
+		</action>
+		<!-- 303 成品库备货单-->
+		<action name="303" class="beihckAction" method="chengpkbhdYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/303.jsp</result>
+		</action>
+		<!-- 304 异常申报备货单-->
+		<action name="304" class="beihckAction" method="yicsbbhdYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/304.jsp</result>
+		</action>
+		
+		<!-- 305 同步上线备货-->
+		<action name="305" class="beihckAction" method="tongbsxbhYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/305.jsp</result>
+		</action>
+		<!-- 30501 同步上线备货查询-->
+		<action name="30501" class="beihckAction" method="tongbsxbhCx"></action>
+		<!-- 30502 同步上线备货备货-->
+		<action name="30502" class="beihckAction" method="tongbsxbhBh"></action>
+		
+		<!-- 306 同步备货单-->
+		<action name="306" class="beihckAction" method="tongbbhdYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/306.jsp</result>
+		</action>
+		<!-- 307 同步归集备货单-->
+		<action name="307" class="beihckAction" method="tongbgjbhdYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/307.jsp</result>
+		</action>
+
+        <!-- 308同步包装单元卡打印 -->		
+		<action name="308" class="beihckAction" method="tongbbzdykDy"></action>
+		
+		<!-- 311 按零件号查询备货单-->
+		<action name="311" class="beihckAction" method="anljhcxbhdYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/311.jsp</result>
+		</action>
+		<!-- 31101 按零件号查询备货单页面查询-->
+		<action name="31101" class="beihckAction" method="anljhcxbhdCx"></action>
+		<!-- 31102 按零件号查询备货单页面查看-->
+		<action name="31102" class="beihckAction" method="anljhcxbhdCk"></action>
+		
+		<!-- 312 备货单查询-->
+		<action name="312" class="beihckAction" method="beihdcxYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/312.jsp</result>
+		</action>
+		<!-- 31201 备货单查询页面查询-->
+		<action name="31201" class="beihckAction" method="beihdcxCx"></action>
+		<!-- 31202 备货单查询页面查看-->
+		<action name="31202" class="beihckAction" method="beihdcxCk"></action>
+		<!-- 31203 备货单查询页面打印-->
+		<action name="31203" class="beihckAction" method="beihdcxdy"></action>
+		<!-- 313 调拨备货单查询-->
+		<action name="313" class="beihckAction" method="diaobbhdcxYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/313.jsp</result>
+		</action>
+		<!-- 31301 调拨备货单查询页面查询-->
+		<action name="31301" class="beihckAction" method="diaobbhdcxCx"></action>
+		<!-- 31302 调拨备货单查询页面查看-->
+		<action name="31302" class="beihckAction" method="diaobbhdcxCk"></action>
+		
+		<!-- 314 修改备货单查询页面-->
+		<action name="314" class="beihckAction" method="xiugbhdcxYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/314.jsp</result>
+		</action>
+		
+		<!-- 31400 修改备货单新增页面-->
+		<action name="31400" class="beihckAction" method="xiugbhdxzYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/31400.jsp</result>
+		</action>
+		
+		<!-- 31401 修改备货单查询页面查询-->
+		<action name="31401" class="beihckAction" method="xiugbhdcxCx"></action>
+		<!-- 31407修改备货单查询页面查询-->
+		<action name="31407" class="beihckAction" method="xiugbhdprint"></action>
+		<!-- P31401 备货单明细页面跳转-->
+		<action name="P31401" class="beihckAction" method="beihdmxymTz">
+			<!--修改备货单-->
+			<result name="selectBeihd">/WEB-INF/pages/ck/beihuo/31401.jsp?falg="314"</result>
+			<!--修改按需备货单-->
+			<result name="selectAnxbhd">/WEB-INF/pages/ck/beihuo/31402.jsp?falg="314"</result>
+			<!--修改成品库备货单-->
+			<result name="selectChengpkbhd">/WEB-INF/pages/ck/beihuo/31403.jsp?falg="314"</result>
+			<!--修改异常申报备货单-->
+            <result name="selectYicsbbhd">/WEB-INF/pages/ck/beihuo/31404.jsp?falg="314"</result>
+			<!--修改同步备货单-->
+			<result name="selectTongbbhd">/WEB-INF/pages/ck/beihuo/31405.jsp?falg="314"</result>
+			<!--修改同步归集备货单-->
+			<result name="selectTongbgjbhd">/WEB-INF/pages/ck/beihuo/31406.jsp?falg="314"</result>
+
+		</action>
+		
+		<!-- 31402 修改备货单新增-->
+		<action name="31402" class="beihckAction" method="xiugbhdXz"></action>
+		<!-- 31403 修改备货单新增确认-->
+		<action name="31403" class="beihckAction" method="xiugbhdXzqr"></action>
+		<!-- 31404 修改备货单新增查询-->
+		<action name="31404" class="beihckAction" method="xiugbhdXzcx"></action>
+		<!-- 31405 修改备货单删除-->
+		<action name="31405" class="beihckAction" method="xiugbhdSc"></action>
+		<!-- 31406 修改备货单删除备货单-->
+		<action name="31406" class="beihckAction" method="xiugbhdScbhd"></action>
+
+		<!-- 316 出库确认B模式-->
+		<action name="316" class="beihckAction" method="chukqrbmsYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/316.jsp</result>
+		</action>
+		<!-- 31601 出库确认B模式查询-->
+		<action name="31601" class="beihckAction" method="chukqrbmsCx"></action>
+		<!-- 31602 出库确认B模式修改-->
+		<action name="31602" class="beihckAction" method="chukqrbmsXg"></action>
+		<!-- 31603 出库确认B模式确认出库-->
+		<action name="31603" class="beihckAction" method="chukqrbmsQrck"></action>
+		
+		<!-- 317 出库确认C模式-->
+		<action name="317" class="beihckAction" method="chukqrcmsYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/317.jsp</result>
+		</action>
+		<!-- 31701 出库确认C模式查询客户-->
+		<action name="31701" class="beihckAction" method="chukqrcmsCxkh"></action>
+		<!-- 31702 出库确认C模式查询备货明细-->
+		<action name="31702" class="beihckAction" method="chukqrcmsCxbhmx"></action>
+		<!-- 31703 出库确认C模式确认-->
+		<action name="31703" class="beihckAction" method="chukqrcmsQr"></action>	
+		<!-- 31704 出库确认C模式打印发货通知-->
+		<action name="31704" class="beihckAction" method="chukqrcmsDyfhtz"></action>
+		<!-- 317044  查询标志-->
+		<action name="317044" class="beihckAction" method="chukqrcmsDyfhtz44"></action>
+		
+		<!-- 318 出库确认F模式-->
+		<action name="318" class="beihckAction" method="chukqrfmsYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/318.jsp</result>
+		</action>
+		<!-- 31801 出库确认F模式查询-->
+		<action name="31801" class="beihckAction" method="chukqrfmsCx"></action>
+		<!-- 31802 出库确认F模式修改-->
+		<action name="31802" class="beihckAction" method="chukqrfmsXg"></action>
+		<!-- 31803 出库确认F模式确认出库-->
+		<action name="31803" class="beihckAction" method="chukqrfmsQrck"></action>
+		
+		
+		<!-- 319 出库确认D模式-->
+		<action name="319" class="beihckAction" method="chukqrdmsYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/319.jsp</result>
+		</action>
+		<!-- 31901 出库确认D模式查询客户-->
+		<action name="31901" class="beihckAction" method="chukqrdmsCxkh"></action>
+		<!-- 31902 出库确认D模式查询US明细-->
+		<action name="31902" class="beihckAction" method="chukqrdmsCxusmx"></action>
+		<!-- 31903 出库确认D模式确认-->
+		<action name="31903" class="beihckAction" method="chukqrdmsQr"></action>
+		<!-- 31904 出库确认D模式打印发货通知-->
+		<action name="31904" class="beihckAction" method="chukqrdmsDyfhtz"></action>
+		<!-- 31905 出库确认D模式查询UA明细-->
+		<action name="31905" class="beihckAction" method="chukqrdmsCxuamx"></action>
+		<!-- 31906出库确认D模式修改UA明细-->
+		<action name="31906" class="beihckAction" method="chukqrdmsXguamx"></action>
+		
+		<!-- 320 出库确认E模式-->
+		<action name="320" class="beihckAction" method="chukqremsYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/320.jsp</result>
+		</action>
+		<!-- 32001出库确认E模式查询客户-->
+		<action name="32001" class="beihckAction" method="chukqremsCxkh"></action>
+		<!-- 32002出库确认E模式查询US-->
+		<action name="32002" class="beihckAction" method="chukqremsCxus"></action>
+		<!-- 32003出库确认E模式确认出库-->
+		<action name="32003" class="beihckAction" method="chukqremsQrck"></action>
+		
+		<!-- 321 出库确认G模式-->
+		<action name="321" class="beihckAction" method="chukqrgmsYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/321.jsp</result>
+		</action>
+		<!-- 32101 出库确认G模式查询-->
+		<action name="32101" class="beihckAction" method="chukqrgmsCx"></action>
+		<!-- 32102 出库确认G模式修改-->
+		<action name="32102" class="beihckAction" method="chukqrgmsXg"></action>
+		<!-- 32103 出库确认G模式确认出库-->
+		<action name="32103" class="beihckAction" method="chukqrgmsQrck"></action>
+		
+		<!-- 322 按备货单出库-->
+		<action name="322" class="beihckAction" method="anbhdckYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/322.jsp</result>
+		</action>
+		<!-- 32201 按备货单出库查询-->
+		<action name="32201" class="beihckAction" method="anbhdckCx"></action>
+		<!-- 32202 按备货单出库修改-->
+		<action name="32202" class="beihckAction" method="anbhdckXg"></action>
+		<!-- 32203  按备货单出库确认出库-->
+		<action name="32203" class="beihckAction" method="anbhdckQrck"></action>
+ 	
+	    <!-- 323 CD/MD出库  -->
+        <action name="323" class="beihckAction" method="cdmdCK">
+			<result name="select">/WEB-INF/pages/ck/beihuo/323.jsp</result>
+		</action>
+		<!-- 326 调拨备货-->
+		<action name="326" class="beihckAction" method="diaobbhYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/326.jsp</result>
+		</action>
+		<!-- 32601 调拨备货明细查询-->
+		<action name="32601" class="beihckAction" method="diaobbhmxCx"></action>
+		<!-- 32602 调拨备货备货-->
+		<action name="32602" class="beihckAction" method="diaobbhBh"></action>
+		
+		<!-- 329仓库间移库-->
+		<action name="329" class="beihckAction" method="cangkjykYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/329.jsp</result>
+		</action>
+		<!-- 32901 仓库间移库查询-->
+		<action name="32901" class="beihckAction" method="cangkjykCx"></action>
+		<!-- 32902 仓库间移库添加-->
+		<action name="32902" class="beihckAction" method="cangkjykTj"></action>
+		<!-- 32903 仓库间移库查看-->
+		<action name="32903" class="beihckAction" method="cangkjykCk"></action>
+		<!-- 32905 仓库间移库打印移库备货单-->
+		<action name="32905" class="beihckAction" method="cangkjykDyykbhd"></action>
+		
+		<!-- P32901 仓库间移库备货单维护-->
+		<action name="P32901" class="beihckAction" method="cangkjykbhdwhYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/32901.jsp</result>
+		</action>
+		<!-- 32904仓库间移库备货单维护删除-->
+		<action name="32904" class="beihckAction" method="cangkjykbhdwhSc"></action>
+		
+		<!-- 330仓库间移库备货确认-->
+		<action name="330" class="beihckAction" method="cangkjykbhqrYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/330.jsp</result>
+		</action>
+		<!-- 33001仓库间移库备货确认明细确认-->
+		<action name="33001" class="beihckAction" method="cangkjykbhqrMxqr"></action>
+		<!-- 33002仓库间移库备货确认备货单确认-->
+		<action name="33002" class="beihckAction" method="cangkjykbhqrBhdqr"></action>
+		<!-- 33003仓库间移库备货确认备货单权限查询-->
+        <action name="33003" class="beihckAction" method="cangkjykbhqrBhdqxcx"></action>
+		
+		<!-- 331仓库间移库接收确认-->
+		<action name="331" class="beihckAction" method="cangkjykjsqrYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/331.jsp</result>
+		</action>
+		<!-- 33101仓库间移库接收确认明细确认-->
+		<action name="33101" class="beihckAction" method="cangkjykjsqrMxqr"></action>
+		<!-- 33102仓库间移库接收确认备货单确认-->
+		<action name="33102" class="beihckAction" method="cangkjykjsqrBhdqr"></action>
+		<!-- 33103仓库间移库接收确认备货单权限查询-->
+        <action name="33103" class="beihckAction" method="cangkjykjsqrBhdqxcx"></action>
+        <!-- 33103仓库间移库接收确认备货单权限查询-->
+        <action name="33104" class="beihckAction" method="chukqrgmsQrckkk"></action>
+		
+		<!-- 332 仓库间移库单查询-->
+		<action name="332" class="beihckAction" method="cangkjykdcxYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/332.jsp</result>
+		</action>
+		<!-- 33201 仓库间移库单查询页面查询-->
+		<action name="33201" class="beihckAction" method="cangkjykdcxCx"></action>
+		
+		<!-- 333 仓库间移库备货单查询-->
+		<action name="333" class="beihckAction" method="cangkjykbhdYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/333.jsp</result>
+		</action>
+		<!-- 33301 仓库间移库备货单查询页面查询-->
+        <action name="33301" class="beihckAction" method="cangkjykbhdCx"></action>
+		<!-- 33302 仓库间移库备货单查询页面删除-->
+		<action name="33302" class="beihckAction" method="cangkjykbhdSc"></action>
+		
+		<!-- 338 出库流水查询-->
+		<action name="338" class="beihckAction" method="chuklscxYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/338.jsp</result>
+		</action>
+		<!-- 33801 出库流水查询页面查询-->
+		<action name="33801" class="beihckAction" method="chuklscxCx"></action>
+		<!-- 33802 出库流水查询页面导出-->
+		<action name="33802" class="beihckAction" method="chuklscxDc"></action>
+		
+		<!-- 339 零件状态查询-->
+		<action name="339" class="beihckAction" method="lingjztcxYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/339.jsp</result>
+		</action>
+		<!-- 33901 零件状态查询页面查询-->
+		<action name="33901" class="beihckAction" method="lingjztcxCx"></action>
+		
+		<!-- 33902 发货通知查询 打印  0011460/0011522-->
+		<action name="33902" class="beihckAction" method="lingjztcxdy">
+		</action>
+
+		<!-- 340 零件EL清单查询-->
+		<action name="340" class="beihckAction" method="lingjelqdYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/340.jsp</result>
+		</action>
+		<!-- 34001 零件EL清单查询页面查询-->
+		<action name="34001" class="beihckAction" method="lingjelqdCx"></action>
+		
+		<!-- 342 库存查询-->
+        <action name="342" class="beihckAction" method="kuccxYm">
+            <result name="select">/WEB-INF/pages/ck/beihuo/342.jsp</result>
+        </action>
+        <!-- 34201 库存查询页面查询-->
+        <action name="34201" class="beihckAction" method="kuccxCx"></action>
+		<!-- 34202 库存查询页面导出-->
+        <action name="34202" class="beihckAction" method="kuccxDc"></action>
+		<!-- huxy_11459 库存查询页面打印-->
+		<action name="34203" class="beihckAction" method="kuccxPrint"></action>
+		<!-- 343 看板扫卡-->
+		<action name="343" class="beihckAction" method="kanbskYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/343.jsp</result>
+		</action>
+		<!-- 34301 看板扫卡确定-->
+		<action name="34301" class="beihckAction" method="kanbskQd"></action>
+		
+		<!-- 344 扫卡查询-->
+		<action name="344" class="beihckAction" method="saokcxYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/344.jsp</result>
+		</action>
+		<!-- 34401 扫卡查询页面查询-->
+		<action name="34401" class="beihckAction" method="saokcxCx"></action>
+		<!-- 34402 扫卡查询页面导出-->
+		<action name="34402" class="beihckAction" method="saokcxDc"></action>
+		
+		<!-- 345 创建内部异常申报要货令-->
+		<action name="345" class="beihckAction" method="chuangjnbycsbyhlYm">
+			<result name="select">/WEB-INF/pages/ck/beihuo/345.jsp</result>
+		</action>
+		<!-- 34501 创建内部异常申报要货令查询-->
+		<action name="34501" class="beihckAction" method="chuangjnbycsbyhlCx"></action>
+		<!-- 34502 创建内部异常申报要货令创建-->
+		<action name="34502" class="beihckAction" method="chuangjnbycsbyhlCj"></action>
+		
+		<!-- 346 要货令查询-->
+        <action name="346" class="beihckAction" method="yaohlcxYm">
+            <result name="select">/WEB-INF/pages/ck/beihuo/346.jsp</result>
+        </action>
+        <!-- 34601 要货令查询页面查询-->
+        <action name="34601" class="beihckAction" method="yaohlcxCx"></action>
+        <!-- 34602 要货令查询页面查看-->
+        <action name="34602" class="beihckAction" method="yaohlcxCk"></action>
+		<!-- 34603  要货令查询页面打印-->
+        <action name="34603" class="beihckAction" method="yaohlcxDy"></action>
+		<!-- P34601要货令查询-同步/集配清单页面跳转-->
+        <action name="P34601" class="beihckAction" method="yaohlcxtbjpqdYm">
+            <result name="select">/WEB-INF/pages/ck/beihuo/34601.jsp</result>
+        </action>
+		
+		<!-- 347根据出库单收货-->
+        <action name="347" class="beihckAction" method="genjckdshYm">
+            <result name="select">/WEB-INF/pages/ck/beihuo/347.jsp</result>
+        </action>
+        <!-- 34701根据出库单收货明细确认-->
+        <action name="34701" class="beihckAction" method="genjckdshMxqr"></action>
+        <!-- 34702根据出库单收货备货单确认-->
+        <action name="34702" class="beihckAction" method="genjckdshBhdqr"></action>
+		<!-- 34703根据出库单收货备货单确认备货单权限查询-->
+        <action name="34703" class="beihckAction" method="genjckdshBhdqxcx"></action>
+		<!-- 34704根据出库单收货备货单修改信息-->
+        <action name="34704" class="beihckAction" method="genjckdshBhdqxxg"></action>
+		<!-- 348 创建外部异常申报要货令-->
+        <action name="348" class="beihckAction" method="chuangjwbycsbyhlYm">
+            <result name="select">/WEB-INF/pages/ck/beihuo/348.jsp</result>
+        </action>
+        <!-- 34801 创建外部异常申报要货令查询-->
+        <action name="34801" class="beihckAction" method="chuangjwbycsbyhlCx"></action>
+        <!-- 34802 创建外部异常申报要货令创建-->
+        <action name="34802" class="beihckAction" method="chuangjwbycsbyhlCj"></action>
+		
+		<!-- 备货出库模块结束 -->
+		
+		<!-- 349 C0初始化布线页面-->
+        <action name="349" class="beihckAction" method="chushbx">
+            <result name="select">/WEB-INF/pages/ck/beihuo/349.jsp</result>
+        </action>
+        <!-- 349 C0初始化布线开始页面-->
+        <action name="34901" class="beihckAction" method="chushbxks"></action>
+        <!-- 350 仓库移库备货确认撤销页面-->
+        <action name="350" class="beihckAction" method="ckykbhym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/350.jsp</result>
+        </action>
+        <!-- 350 仓库移库备货确认撤销-->
+        <action name="35001" class="beihckAction" method="ckykbh"></action>
+        
+        
+        
+        <!-- 351 创建临时要货令页面-->
+        <action name="351" class="beihckAction" method="chuangjlsyhl">
+            <result name="select">/WEB-INF/pages/ck/beihuo/351.jsp</result>
+        </action>
+        <!-- 35101 创建临时要货令新增-->
+        <action name="35101" class="beihckAction" method="chuangjlsyhlinsert"></action>
+        <!-- 35101 创建临时要货令删除-->
+        <action name="35102" class="beihckAction" method="chuangjlsyhldelete"></action>
+        <!-- 要货令类型-->
+        <action name="yaohllx" class="beihckAction" method="yaohllx"></action>
+        <!-- 外部供货模式-->
+        <action name="waibugonghms" class="beihckAction" method="waibugonghms"></action>
+        <!-- 内部供货模式-->
+        <action name="neibugonghms" class="beihckAction" method="neibugonghms"></action>
+         <!-- 是否-->
+        <action name="shiffsgys" class="beihckAction" method="shiffsgys"></action>
+        <!--352 零件状态汇总查询页面-->
+        <action name="352" class="beihckAction" method="lingjzthzcxym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/352.jsp</result>
+        </action>
+        <!-- 352零件状态汇总查询  -->
+        <action name="35201" class="beihckAction" method="lingjzthzcx"></action>
+          <!--P35201 零件状态查询页面-->
+        <action name="P35201" class="beihckAction" method="tzljztcxym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/35201.jsp</result>
+        </action>
+         <!--353 库位内容查询页面-->
+        <action name="353" class="beihckAction" method="kuwnrcxym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/353.jsp</result>
+        </action>
+        <!-- 353库位内容查询  -->
+        <action name="35301" class="beihckAction" method="kuwnrcx"></action>
+         <!--354 取消要货令页面-->
+        <action name="354" class="beihckAction" method="quxyhlym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/354.jsp</result>
+        </action>
+       <!-- 354取消要货令查询  -->
+        <action name="35401" class="beihckAction" method="quxyhlymcx"></action>
+        <!-- 354取消要货令查询  -->
+        <action name="35402" class="beihckAction" method="quxyhlymqx"></action>
+         <!-- 32603 调拨备货查询 -->
+        <action name="32603" class="beihckAction" method="diaobbhCx"></action>
+         <!--32601  调拨备货明细页面-->
+        <action name="P32601" class="beihckAction" method="tiaozdbbh">
+            <result name="select">/WEB-INF/pages/ck/beihuo/32601.jsp</result>
+        </action>
+        <!-- 355出库明细状态查询页面 -->
+        <action name="355" class="beihckAction" method="ckmxym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/355.jsp</result>
+        </action>
+         <!-- 355出库明细状态查询 -->
+        <action name="35501" class="beihckAction" method="ckmxztcx"></action>
+        
+         <!-- 356H模式出库页面 -->
+        <action name="356" class="beihckAction" method="hmsckym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/356.jsp</result>
+        </action>
+         <!-- 35601H模式出库备货单号回车事件 -->
+        <action name="35601" class="beihckAction" method="beihdhccx"></action>
+         <!-- 35602H模式出库US号回车事件 -->
+        <action name="35602" class="beihckAction" method="ushhccx"></action>
+         <!-- 35603H模式出库扫包装确认事件 -->
+        <action name="35603" class="beihckAction" method="saobzqrcx"></action>
+            <!-- 35604H模式出库确认事件 -->
+        <action name="35604" class="beihckAction" method="hmsqr"></action>    
+        <!-- 35605H模式出库修改事件 -->
+        <action name="35605" class="beihckAction" method="hmsxg"></action>
+        <!-- 35606H模式出库取消 -->
+        <action name="35606" class="beihckAction" method="hmsqx"></action>
+        <!-- 357 内同步手动备货页面 -->
+        <action name="357" class="beihckAction" method="ntbsdbhym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/357.jsp</result>
+        </action>
+         <!-- 35701内同步手动备货查询 -->
+        <action name="35701" class="beihckAction" method="ntbbhcx"></action>    
+        <!-- 35703内同步手动备货确认 -->
+        <action name="35703" class="beihckAction" method="ntbbhqr"></action>
+         <!-- 35702内同步手动备货强制备货 -->
+        <action name="35702" class="beihckAction" method="ntbbhqz"></action>
+        <!-- GH模式显示承运商 -->
+        <action name="chengysdm" class="beihckAction" method="chengysdm"></action>
+        <!-- 358内同步要货令提前备货页面 -->
+         <action name="358" class="beihckAction" method="ntbtqbhym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/358.jsp</result>
+        </action>
+         <!-- 35801内同要货令提前备货查询 -->
+        <action name="35801" class="beihckAction" method="ntbtqbhcx"></action>    
+        <!-- 35803内同要货令提前备货确认 -->
+        <action name="35802" class="beihckAction" method="ntbtqbhqr"></action>
+        
+        <!-- 361按需延误要货令查询页面 -->
+         <action name="361" class="beihckAction" method="axywyhlcxym">
+            <result name="select">/WEB-INF/pages/ck/beihuo/361.jsp</result>
+        </action>
+         <!-- 36101按需延误要货令查询 -->
+        <action name="36101" class="beihckAction" method="axywyhlcx"></action>
+        <!--  362成品库零件状态汇总  huxy_11470-->
+         <action name="362" class="beihckAction" method="cpkljzthz">
+            <result name="select">/WEB-INF/pages/ck/beihuo/362.jsp</result>
+        </action>
+        <!-- 362成品库零件状态汇总-->
+        <action name="36201" class="beihckAction" method="cpkljzthzsel"></action>     
+        <action name="36202" class="beihckAction" method="cpkljzthzprint"></action>   
+        
+        
+        
+         <!--  363 发运单查询  huxy_11468-->
+         <action name="363" class="beihckAction" method="fayd">
+            <result name="select">/WEB-INF/pages/ck/beihuo/363.jsp</result>
+        </action>
+        <!-- 363 发运单查询明细-->
+        <action name="36301" class="beihckAction" method="faydcx"></action>        
+        <action name="36302" class="beihckAction" method="faydcxmx"></action>
+        <action name="P36301" class="beihckAction"  method="tiaozyem">
+        <result name="select" >/WEB-INF/pages/ck/beihuo/36301.jsp</result></action> 
+        <action name="36303" class="beihckAction" method="faydcxprint"></action>   
+        
+        <!--  364 混流到货通知单对账   huxy_11937-->
+         <action name="364" class="beihckAction" method="huldhtzd">
+            <result name="select">/WEB-INF/pages/ck/beihuo/364.jsp</result>
+        </action>
+        <!-- 364 混流仓库-仓库发货通知单查询-->
+        <action name="36401" class="beihckAction" method="hldhtzdcx"></action>        
+        <action name="36402" class="beihckAction" method="hlckdz"></action> 
+         <action name="P36401" class="beihckAction"  method="tiaozyem">
+        <result name="select" >/WEB-INF/pages/ck/beihuo/36401.jsp</result></action> 
+        
+        
+         <!--  365 混流DFPV库存对账   huxy_11947-->
+         <action name="365" class="beihckAction" method="hulckdz">
+            <result name="select">/WEB-INF/pages/ck/beihuo/365.jsp</result>
+        </action>
+         <!-- 365 混流仓库对账查询-->
+        <action name="36501" class="beihckAction" method="hlckdzcx"></action>   
+	</package>
+</toft>

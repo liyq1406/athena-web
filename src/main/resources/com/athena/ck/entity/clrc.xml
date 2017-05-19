@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="clrc">
+	
+	<!--空车出厂单确认并打印-->
+	<insert id="insertRongqdj" parameterClass="java.util.Map">
+	insert into ${dbSchemal0}ck_rongqfh (usercenter,fanhdh,danjlx,danjzt,creator,create_time,editor,edit_time,tch,yuanyin)
+		values(
+		#usercenter#,
+		substr(#usercenter#,2,1)||lpad(RONGQDJ_SEQNO.nextval,8,0),
+		'1',
+		'2',
+		#creator#,
+		sysdate,
+		#creator#,
+		sysdate, 
+		#kach#,
+		#ccsy# 
+		)    
+	</insert>
+	
+	<!--空车出厂单打印-->
+	<select id="print_172" resultClass="com.athena.ck.entity.rongqi.Rongqfh"  parameterClass="java.util.Map">	
+	select * from (	
+		select
+		t.fanhdh as fanhdh,
+		t.tch as tch,
+		t.yuanyin as yuanyin,
+		to_char(t.create_time,'yyyy-mm-dd') as riq,
+		to_char(t.create_time,'hh24:mi:ss') as shij
+		from ${dbSchemal0}ck_rongqfh t 
+		where 
+		t.usercenter =#usercenter#
+		and t.tch=#huoch#
+		and ( t.danjzt ='2' or t.danjzt = '3')
+		and t.creator=#creator#
+		and t.danjlx='1'
+ 		order by t.create_time desc 
+ 		) where rownum=1
+	</select>
+	
+	<!--0011241 查询该卡车号空车出厂单是否已经打印，并且未出厂-->
+	<select id="kongccsfdy" resultClass="java.lang.Integer"  parameterClass="java.util.Map">	
+	select count(*) from 
+		${dbSchemal0}ck_rongqfh t 
+		where 
+		t.usercenter =#usercenter#
+		and t.tch=#huoch#
+		and t.danjzt ='2' 
+		and t.danjlx='1' 		
+	</select>
+	
+	<!--作废 0011240 查询是否已经打印过621容器退供应商单据-->
+	<select id="rongqtgyssfdy" resultClass="java.lang.Integer"  parameterClass="java.util.Map">	
+	select count(*) from 	
+		${dbSchemal0}ck_rongqfh t 
+		where 
+		t.usercenter =#usercenter#
+		and t.tch=#huoch#
+		and t.t.danjzt ='2'
+		and t.danjlx='1' 		
+	</select>
+	
+	
+	<!-- 17401空车出厂查询
+	 <select id="kongcccchax" resultClass="com.athena.ck.entity.rongqi.Rongqfh"  parameterClass="java.util.Map">
+	    select 
+	      t.fanhdh ,
+	      t.tch,
+	      t.danjzt,
+	      t.creator,
+	      t.create_time
+	    from
+	      ${dbSchemal0}ck_rongqfh t
+	    where
+	      t.usercenter =#usercenter#
+	      and t.tch=#huoch#
+	      and t.danjlx = '1'
+	      and t.danjzt = #danjzt#
+    </select>
+    -->
+    
+    
+    <!-- 17402 空车出厂撤销 0011242--> 
+	<update id="kongcccchex" parameterClass="java.util.Map" >
+		update  ${dbSchemal0}ck_rongqfh t set  
+				danjzt= '3', 
+				edit_time=sysdate 
+		where  usercenter = #usercenter#
+		and fanhdh=#fanhdh# 
+		and danjlx='1'
+	</update>
+        
+	<!--17403 空车出厂单补打-->
+	<select id="print_174" resultClass="com.athena.ck.entity.rongqi.Rongqfh"  parameterClass="java.util.Map">	
+		select
+		t.fanhdh as rongqfhdh,
+		t.tch ,
+		t.danjzt as zhuangt,
+		to_char(t.create_time,'yyyy-mm-dd') as riq,
+		to_char(t.create_time,'hh24:mi:ss') as shij,
+		t.yuanyin as yuanyin,		
+		t.cishu
+		from ${dbSchemal0}ck_rongqfh t 
+		where 
+		t.usercenter =#usercenter#
+		and t.fanhdh=#rongqfhdh#
+		and t.danjlx='1'
+		and t.danjzt ='2' 		
+	</select>
+	
+	<!--作废 查询621已经添加单没有打印 
+	<select id="rongqtjmydy" resultClass="java.lang.Integer"  parameterClass="java.util.Map">	
+	select count(*) from 	
+		${dbSchemal0}ck_rongqjs t 
+		where 
+		t.usercenter =#usercenter#
+		and t.tch=#huoch#
+		and t.DANJSX='4'
+		and t.zhuangt ='0'
+		and t.danjlx='2' 		
+	</select>
+	-->
+	
+	<!--ck_rongqfh表中该用户中心的卡车下是否有状态0的单子    wangliang  20150324	-->
+	<select id="rongfhpd" resultClass="java.lang.Integer"  parameterClass="java.util.Map">	 
+  	 select count(*) from ${dbSchemal0}ck_rongqfh t 
+    		where t.usercenter =#usercenter#
+        	 and t.tch=#huoch# 
+             and (t.DANJZT='0' or t.DANJZT='2')    		 
+             and t.danjlx='0'
+	</select>
+
+	
+	  <!-- 17403 空车出厂补打计数--> 
+	<update id="kongcccjs" parameterClass="java.util.Map" >
+		update ${dbSchemal0}ck_rongqfh set cishu=#cishu#
+		where  usercenter = #usercenter#
+		and    fanhdh=#rongqfhdh# 
+	</update>	
+
+</sqlMap>

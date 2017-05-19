@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+
+.login-bg-h{
+	background:url("images/login/login-bg-h.gif");
+}
+
+.login-bg-c{
+	background:url("images/login/login-bg-c.gif");
+}
+
+.login-form-bg{
+	background:url("images/login/login-form.gif") no-repeat;
+}
+
+
+.login-main{
+	width:650px;
+	height:416px;
+}
+
+.login-button{
+	border:none;
+	width:70px;
+	height:25px;
+	cursor:pointer;
+	padding:0px;
+	margin:0px;
+	
+}
+
+.login-submit{
+	background-position: -380px -221px;
+}
+
+.login-reset{
+	background-position:  -450px -221px;
+}
+
+.login-form td{
+	height:26px;
+	padding:1px;
+}
+
+.login-name,.login-password{
+	border: medium none;
+    margin: 0 2px;
+    width: 169px;
+    padding-left:2px;
+}
+
+.login-vCode{
+	width:61px;
+}

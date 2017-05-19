@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<print-config>
+	<param>
+		<key>1</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>4.0</printSr> 
+		<printSc>1</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+
+	<param>
+		<key>2</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>4.0</printSr> 
+		<printSc>5</printSc> 
+		<printVe>3</printVe>
+		<printHe>1</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>3</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>4.0</printSr> 
+		<printSc>14</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>4</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>4.0</printSr> 
+		<printSc>18</printSc> 
+		<printVe>3</printVe>
+		<printHe>1</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>5</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>9.0</printSr> 
+		<printSc>1</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>	
+	
+	<param>
+		<key>6</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>9.0</printSr> 
+		<printSc>5</printSc> 
+		<printVe>3</printVe>
+		<printHe>1</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>7</key>
+		<printBegin>TWOBYTE</printBegin> 
+		<printSr></printSr> 
+		<printSc></printSc> 
+		<printVe></printVe>
+		<printHe></printHe>
+		<printValue>F24;P12;9.0;18;3;1;#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+
+	<param>
+		<key>8</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>11.0</printSr> 
+		<printSc>1</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>9</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>11.0</printSr> 
+		<printSc>6</printSc> 
+		<printVe>3</printVe>
+		<printHe>1</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>10</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>15.0</printSr> 
+		<printSc>1</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>11</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>15.0</printSr> 
+		<printSc>10</printSc> 
+		<printVe>3</printVe>
+		<printHe>1</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+
+	<param>
+		<key>12</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>18.0</printSr> 
+		<printSc>1</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>13</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>18.0</printSr> 
+		<printSc>6</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>14</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>18.0</printSr> 
+		<printSc>20</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+	    <key>15</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>18.0</printSr> 
+		<printSc>24</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>16</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>21.0</printSr> 
+		<printSc>1</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>17</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>21.0</printSr> 
+		<printSc>10</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>18</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>21.0</printSr> 
+		<printSc>21</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>19</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>21.0</printSr> 
+		<printSc>24</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>20</key>
+		<printBegin>BARCODE</printBegin> 
+		<printSr></printSr> 
+		<printSc></printSc> 
+		<printVe></printVe>
+		<printHe></printHe>
+		<printValue>C3/9;X1A;H8;DARK;1;45;/n#replace#/nPDF;B</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+			
+	<param>
+		<key>21</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>9.0</printSr> 
+		<printSc>45</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>22</key>
+		<printBegin>TWOBYTE</printBegin> 
+		<printSr></printSr> 
+		<printSc></printSc> 
+		<printVe></printVe>
+		<printHe></printHe>
+		<printValue>F24;P12;11.0;45;3;1;#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>23</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>15.0</printSr> 
+		<printSc>45</printSc> 
+		<printVe>3</printVe>
+		<printHe>1</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>24</key>
+		<printBegin>TWOBYTE</printBegin> 
+		<printSr></printSr> 
+		<printSc></printSc> 
+		<printVe></printVe>
+		<printHe></printHe>
+		<printValue>F24;P12;15.0;60;3;1;#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>25</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>18.0</printSr> 
+		<printSc>45</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>26</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>18.0</printSr> 
+		<printSc>50</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>27</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>18.0</printSr> 
+		<printSc>65</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+
+	<param>
+		<key>28</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>18.0</printSr> 
+		<printSc>75</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>29</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>21.0</printSr> 
+		<printSc>45</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>30</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>21.0</printSr> 
+		<printSc>50</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>31</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>21.0</printSr> 
+		<printSc>65</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+	<param>
+		<key>32</key>
+		<printBegin>ALPHA</printBegin> 
+		<printSr>21.0</printSr> 
+		<printSc>75</printSc> 
+		<printVe>0</printVe>
+		<printHe>0</printHe>
+		<printValue>#replace#</printValue> 
+		<printEnd>STOP</printEnd>
+	</param>
+	
+</print-config>

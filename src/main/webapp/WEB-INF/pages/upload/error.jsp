@@ -1,0 +1,1 @@
+<%="{\"hasError\":true,\"errorMsg\":\""+request.getAttribute("message")+"\"}"%>

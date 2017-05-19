@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="shenbao">
+	<!--查询质检报告单-->
+	<resultMap class="com.athena.ck.entity.shenbao.Jizxgl" id="Jizxgl">
+		<result column="usercenter" property="usercenter" />
+		<result column="jizxh" property="jizxh" />
+		<result column="jiesr" property="jiesr" />
+		<result column="wuld" property="wuld" />
+		<result column="daoxsj" property="daoxsj" />
+		<result column="kach" property="kach" />
+		<result column="yundh" property="yundh" />
+		<result column="sij" property="sij" />
+		<result column="zhongxsbr" property="zhongxsbr" />
+		<result column="kongxq" property="kongxq" />
+		<result column="fanxdh" property="fanxdh" />
+		<result column="kongxsbr" property="kongxsbr" />
+		<result column="fanxkch" property="fanxkch" />
+		<result column="fanxydh" property="fanxydh" />
+		<result column="fanxr" property="fanxr" />
+		<result column="fanzsbr" property="fanzsbr" />
+		<result column="zhuangt" property="zhuangt" />
+	</resultMap>
+	<select id="queryJizxgl" resultMap="Jizxgl" parameterClass="java.util.Map">
+	select 
+		t1.usercenter,
+		t1.jizxh,
+		t1.jiesr,
+		t1.wuld,
+		t1.daoxsj,
+		t1.kach,
+		t1.yundh,
+		t1.sij,
+		t1.zhongxsbr,
+		t1.kongxq,
+		t1.fanxdh,
+		t1.kongxsbr,
+		t1.fanxkch,
+		t1.fanxydh,
+		t1.fanxr,
+		t1.fanzsbr,
+		t1.zhuangt
+	from ${dbSchemal0}CK_JIZXGL t1 
+	where t1.usercenter=#usercenter# and t1.jizxh=#jizxh#
+	order by t1.usercenter,t1.jizxh
+	</select>
+	<!-- 511打印 -->
+	<resultMap class="com.athena.ck.entity.shenbao.Jizxgl" id="Jizxgl">
+		<result column="usercenter" property="usercenter" />
+		<result column="jizxh" property="jizxh" />
+		<result column="wuld" property="wuld" />
+		<result column="daoxsj" property="daoxsj" />
+		<result column="kach" property="kach" />
+		<result column="yundh" property="yundh" />
+		<result column="sij" property="sij" />
+		<result column="zhuangt" property="zhuangt" />
+	</resultMap>
+	<select id="queryJizxlsb" resultMap="Jizxgl" parameterClass="java.util.Map">
+	select 
+		t1.usercenter,
+		t1.jizxh,
+		t1.zhuangt ,
+	    t1.shenbr,
+	    t1.shenbd wuld,
+	    t1.shenbsj  daoxsj,
+	    t1.yundh ,
+	    t1.kach,
+	    t1.sij
+	from ${dbSchemal0}CK_JIZXLSB t1 
+	where t1.usercenter=#usercenter# $queryWhere$
+	</select>
+	
+	<!-- 511打印 -->
+	<resultMap class="com.athena.ck.entity.shenbao.Jizxgl" id="Jizxgl">
+		<result column="usercenter" property="usercenter" />
+		<result column="jizxh" property="jizxh" />
+		<result column="wuld" property="wuld" />
+		<result column="daoxsj" property="daoxsj" />
+		<result column="kach" property="kach" />
+		<result column="yundh" property="yundh" />
+		<result column="sij" property="sij" />
+		<result column="zhuangt" property="zhuangt" />
+	</resultMap>
+	<select id="queryJizxgl2" resultMap="Jizxgl" parameterClass="java.util.Map">
+	select 
+	    t1.usercenter,
+		nvl(t1.jiufjzxh,t1.jizxh) jizxh,
+		t1.zhuangt,
+		t1.wuld,
+		t1.daoxsj,
+		t1.yundh,
+		t1.kach,
+		t1.sij
+	from ${dbSchemal0}CK_JIZXGL t1 
+	where t1.usercenter=#usercenter#  $queryWhere$
+	</select>
+</sqlMap>

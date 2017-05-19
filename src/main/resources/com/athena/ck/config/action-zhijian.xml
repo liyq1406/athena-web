@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="zhijian" extend="toft-default" namespace="/ck">
+		<!--215 成品退线边 -->
+		<action name="215" class="zhijAction" method="chengptxbYm">
+			<result name="select">/WEB-INF/pages/ck/zhijian/215.jsp</result>
+		</action>
+		<!-- 21501 成品退线边  查询US信息-->
+		<action name="21501" class="zhijAction" method="chengptxbQueryUS"></action>
+		<!-- 21502 成品退线边  保存确认-->
+		<action name="21502" class="zhijAction" method="chengptxbSave"></action>
+		<!-- 21503 成品退线边  删除行-->
+		<action name="21503" class="zhijAction" method="chengptxbDelete"></action>
+		<!-- 21504 成品退线边分页 查询-->
+		<action name="21504" class="zhijAction" method="chengptxbQueryFy"></action>
+		<!-- 21505 成品退线边  提交-->
+		<action name="21505" class="zhijAction" method="chengptxbSubmit"></action>
+		<!--216 成品退线边查询 -->
+		<action name="216" class="zhijAction" method="chengptxbCxYm">
+			<result name="select">/WEB-INF/pages/ck/zhijian/216.jsp</result>
+		</action>
+		
+		<!--218 手持收货查询 -->
+		<action name="218" class="zhijAction" method="shoucshYm">
+			<result name="select">/WEB-INF/pages/ck/zhijian/218.jsp</result>
+		</action>
+		<!-- 21801 手持收货  提交-->
+		<action name="21801" class="zhijAction" method="shoucshSubmit"></action>
+	</package>
+</toft>

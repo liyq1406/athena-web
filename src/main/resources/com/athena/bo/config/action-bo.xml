@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="bo" extend="toft-default" namespace="/bo">
+		<action name="bo" class="boAction" method="execute">
+			<result name="select">/WEB-INF/pages/ckx/baob/bo.jsp</result>
+		</action>
+	</package>
+</toft>

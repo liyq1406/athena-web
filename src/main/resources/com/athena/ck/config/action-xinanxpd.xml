@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="xinanxpd" extend="toft-default" namespace="/ck">
+		<!--执行新按需库存盘点 -->
+		<action name="executeXinAnxpd" class="xinAnxpdAction" method="executeXinAnxpd">
+			<result name="select">/WEB-INF/pages/ck/anxorder/xinanxpd.jsp</result>
+		</action>
+		
+		<!-- 查询新按需库存数据-->
+		<action name="queryXinAnxpd" class="xinAnxpdAction" method="queryXinAnxpd"></action>
+		
+		<!-- 验证流水号-->
+		<action name="checkLsh" class="xinAnxpdAction" method="checkLsh"></action>
+		
+		<!-- 盘点编辑保存 -->
+		<action name="savePdkcjg" class="xinAnxpdAction" method="savePdkcjg"></action>
+		<!-- 20705  盘点任务查询导出-->
+		<action name="downLoadFilePd" class="xinAnxpdAction" method="downLoadFilePd"></action>
+	</package>
+</toft>

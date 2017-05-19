@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="xianbkc">
+	<resultMap class="com.athena.ck.entity.anxorder.Xianbkc" id="xianbkc">
+		<result column="USERCENTER" property="usercenter" />
+		<result column="CHANX" property="chanx" />
+		<result column="XIAOHD" property="xiaohd" />
+		<result column="LINGJBH" property="lingjbh" />
+		<result column="LINGJSL" property="lingjsl" />
+		<result column="ZHENGCLSH" property="zhengclsh" />
+		<result column="EDIT_TIME" property="edit_time" />
+	</resultMap>
+	<select id="queryXianbkc" resultMap="xianbkc">
+	    SELECT
+	      X.USERCENTER,
+	      X.CHANX,
+	      X.XIAOHD,
+	      X.LINGJBH,
+	      X.LINGJSL,
+	      X.ZHENGCLSH,
+	      to_char(X.EDIT_TIME,'YYYY-MM-DD HH24:MI:SS') as EDIT_TIME
+	    FROM 
+	      ${dbSchemal0}CK_XIANBKC X,
+	      ${dbSchemal0}CKX_LINGJXHD G
+	    WHERE X.XIAOHD=G.XIAOHDBH
+	      and X.USERCENTER=G.USERCENTER
+	      and X.LINGJBH=G.LINGJBH
+	      and G.BIAOS = '1'
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">X.USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">X.LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="chanx">X.CHANX = #chanx#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">X.XIAOHD = #xiaohd#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<resultMap class="com.athena.ck.entity.anxorder.Caifjginfo" id="caifjginfo">
+		<result column="USERCENTER" property="usercenter" />
+		<result column="OFH" property="ofh" />
+		<result column="ZHONGZLXH" property="zhongzlxh" />
+		<result column="HANZBS" property="hanzbs" />
+		<result column="EMON" property="emon" />
+		<result column="SHUNXH" property="shunxh" />
+		<result column="LINGJBH" property="lingjbh" />
+		<result column="DANW" property="danw" />
+		<result column="XIAOHD" property="xiaohd" />
+		<result column="XIAOHSJ" property="xiaohsj" />
+		<result column="LINGJSL" property="lingjsl" />
+		<result column="XUQLY" property="xuqly" />
+		<result column="CHEJH" property="chejh" />
+		<result column="CHANX" property="chanx" />
+		<result column="ZHIZLX" property="zhizlx" />
+		<result column="CAIFSJ" property="caifsj" />
+		<result column="DANGQMS" property="dangqms" />
+		<result column="FLAG" property="flag" />
+	</resultMap>
+	<select id="queryCaifjginfo" resultMap="caifjginfo">
+	    SELECT
+	      USERCENTER,
+	      OFH,
+	      ZHONGZLXH,
+	      HANZBS,
+	      to_char(EMON,'YYYY-MM-DD HH24:MI:SS') as EMON,
+	      SHUNXH,
+	      LINGJBH,
+	      DANW,
+	      XIAOHD,
+	      to_char(XIAOHSJ,'YYYY-MM-DD HH24:MI:SS') as XIAOHSJ,
+	      LINGJSL,
+	      XUQLY,
+	      CHEJH,
+	      CHANX,
+	      ZHIZLX,
+	      to_char(CAIFSJ,'YYYY-MM-DD HH24:MI:SS') as CAIFSJ,
+	      DANGQMS,
+	      FLAG
+	    FROM 
+	      ${dbSchemal0}DDBH_CAIFJGINFO
+	    WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="zhongzlxh">ZHONGZLXH >= #zhongzlxh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+		</dynamic>
+		Order by ZHONGZLXH ASC
+	</select>
+	
+	<select id="getDaixhsl" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT SUM(nvl(LINGJSL,0)) as LINGJSL
+		FROM ${dbSchemal0}DDBH_CAIFJGINFO 
+		WHERE XIAOHSJ between to_date(#begin_time#,'YYYY-MM-DD HH24:MI:SS') and to_date(#end_time#,'YYYY-MM-DD HH24:MI:SS')
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="chanx">CHANX = #chanx#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 修改看板库存的lingjsl --> 
+	<update id="updatexianbkc" parameterClass="com.athena.ck.entity.anxorder.Xianbkc" >
+		<![CDATA[ update  ${dbSchemal0}ck_xianbkc set  
+				lingjsl= lingjsl-#chay#, 
+				edit_time=sysdate 
+		where 1=1 ]]>
+		<dynamic>
+		       <isNotEmpty property="usercenter" prepend=" and "><![CDATA[ usercenter = #usercenter# ]]></isNotEmpty>
+		       <isNotEmpty property="chanx"      prepend=" and "><![CDATA[ chanx=#chanx#  ]]></isNotEmpty>
+		       <isNotEmpty property="xiaohd"   prepend=" and "><![CDATA[ xiaohd=#xiaohd#]]></isNotEmpty>
+		       <isNotEmpty property="lingjbh" prepend=" and "><![CDATA[ lingjbh=#lingjbh#  ]]></isNotEmpty>
+		</dynamic>
+	</update>
+	
+	<!-- 线边库存流水表插入数据-->
+	<insert id="insertxianbkcls" parameterClass="com.athena.ck.entity.anxorder.Xianbkc">
+	<![CDATA[	insert into ${dbSchemal1}CK_XIANBLLKCLS (
+		usercenter,
+		lingjbh,
+		chanx,
+		xiaohd ,
+		lingjsl,
+		kucsldxh,
+		pandljsl,
+		chay,
+		zhengclsh,
+		creator,
+		create_time,
+		editor,
+		edit_time
+		)
+		values(
+		#usercenter# ,
+		#lingjbh#,
+		#chanx#,
+		#xiaohd# ,
+		#yuanljsl#,
+		#kucsldxh#,
+		#pandljsl#,
+		#chay#,
+		#zhengclsh#,
+		#creator#,
+		sysdate,
+		#editor#,
+		sysdate
+		)
+	]]>
+	</insert>
+	
+	<!-- 查询C0模式的盘点流水 -->
+	<select id="queryPandlsByC0" resultClass="com.athena.ck.entity.anxorder.Xianbllkcls">
+			select 
+		     USERCENTER as usercenter,
+		     CHANX as chanx,
+		     XIAOHD as xiaohd,
+		     LINGJBH as lingjbh,
+		     LINGJSL as lingjsl,
+		     PANDLJSL as pandljsl,
+		     CHAY as chay,
+		     ZHENGCLSH as zhengclsh,
+		     CREATOR as creator,
+		     to_char(CREATE_TIME,'yyyy-mm-dd HH24:mi:ss') as create_time,
+		     EDITOR as editor,
+		     to_char(EDIT_TIME,'yyyy-mm-dd HH24:mi:ss') as edit_time,
+		     KUCSLDXH as kucsldxh,
+		     XIANBLLKC as xianbllkc,
+		     PANDCHUKL as pandchukl,
+		     PANDYCDXH as pandycdxh,
+		     0 as daijf,
+		     0 as xiaohl,
+		     0 as yingyl,
+		     FLAG as flag,
+		     to_char(PANDTIME,'yyyy-mm-dd HH24:mi:ss') as pandtime ,
+		     to_char(ANXSCJSSJ,'yyyy-mm-dd HH24:mi:ss') as anxscjssj
+		     
+		from 
+		     ${dbSchemal1}ck_xianbllkcls 
+		where 
+			 1 = 1 
+		<dynamic>
+			<isNotNull prepend=" and " property="usercenter">usercenter = #usercenter#</isNotNull>
+			<isNotNull prepend=" and " property="lingjbh">lingjbh = #lingjbh#</isNotNull>
+			<isNotNull prepend=" and " property="xiaohd">xiaohd = #xiaohd#</isNotNull>
+			<isNotNull prepend=" and " property="chanx">chanx = #chanx#</isNotNull>
+			<isNotNull prepend=" and " property="creator">creator = #creator#</isNotNull>
+			<isNotEmpty prepend=" and " property="createtimeFrom">
+			            create_time &gt;= to_date(#createtimeFrom#,'yyyy-mm-dd HH24:mi:ss')
+			</isNotEmpty>
+			<isNotEmpty prepend=" and " property="createtimeTo">
+			             create_time &lt;= to_date(#createtimeTo#,'yyyy-mm-dd HH24:mi:ss')
+			</isNotEmpty>
+		</dynamic>
+		 order by create_time desc , usercenter ,chanx, lingjbh , xiaohd ,creator
+	</select>
+	
+	
+	<!-- 查询CS模式的盘点流水 -->
+	<select id="queryPandlsByCS" resultClass="com.athena.ck.entity.anxorder.Xianbllkcls">
+			select 
+		     USERCENTER as usercenter,
+		     CHANX as chanx,
+		     XIAOHD as xiaohd,
+		     LINGJBH as lingjbh,
+		     LINGJSL as lingjsl,
+		     PANDLJSL as pandljsl,
+		     CHAY as chay,
+		     ZHENGCLSH as zhengclsh,
+		     CREATOR as creator,
+		     to_char(CREATE_TIME,'yyyy-mm-dd HH24:mi:ss') as create_time,
+		     EDITOR as editor,
+		     to_char(EDIT_TIME,'yyyy-mm-dd HH24:mi:ss') as edit_time,
+		     0 as kucsldxh,
+		     XIANBLLKC as xianbllkc,
+		     0 as pandchukl,
+		     kucsldxh as pandycdxh,
+		     DAIJF as daijf,
+		     XIAOHL as xiaohl,
+		     YINGYL as yingyl,
+		     FLAG as flag,
+		     to_char(PANDTIME,'yyyy-mm-dd HH24:mi:ss') as pandtime 
+		     
+		from 
+		     ${dbSchemal1}ck_xianbllkcls_cs 
+		where 
+			 1 = 1 
+		<dynamic>
+			<isNotNull prepend=" and " property="usercenter">usercenter = #usercenter#</isNotNull>
+			<isNotNull prepend=" and " property="lingjbh">lingjbh = #lingjbh#</isNotNull>
+			<isNotNull prepend=" and " property="xiaohd">xiaohd = #xiaohd#</isNotNull>
+			<isNotNull prepend=" and " property="chanx">chanx = #chanx#</isNotNull>
+			<isNotNull prepend=" and " property="creator">creator = #creator#</isNotNull>
+			<isNotEmpty prepend=" and " property="createtimeFrom">
+			            create_time &gt;= to_date(#createtimeFrom#,'yyyy-mm-dd HH24:mi:ss')
+			</isNotEmpty>
+			<isNotEmpty prepend=" and " property="createtimeTo">
+			             create_time &lt;= to_date(#createtimeTo#,'yyyy-mm-dd HH24:mi:ss')
+			</isNotEmpty>
+		</dynamic>
+		 order by create_time desc , usercenter ,chanx, lingjbh , xiaohd ,creator
+	</select>
+	
+	
+	<!-- 查询上次C0计算时间 -->
+	
+	<select id="queryC0scjssj" resultClass="java.lang.String">
+		select 
+			nvl(to_char(btime,'yyyy-mm-dd HH24:mi:ss'),'') as c0scjssj
+		from 
+		    ${dbSchemal1}ck_batctrl 
+		where batcode = '000123'
+	</select>
+	
+	
+	<!-- 判断C0的流水号是否正确 -->
+	<select id="checkC0Lsh" resultClass="java.lang.Integer">
+           select 
+                 count(*) as sl
+           from 
+                  ${dbSchemal0}ddbh_caifjginfo 
+           where 
+                 usercenter = #usercenter#
+           and   
+				 zhongzlxh = #zhengclsh#
+		 
+	</select>
+	
+	
+	
+	<!-- 判断CS的流水号是否正确 -->
+	<select id="checkCSLsh" resultClass="java.lang.Integer">
+	    SELECT
+	      count(*) as sl
+	    FROM 
+	      ${dbSchemal0}ddbh_caifjg_cs
+	    WHERE
+	    	 mos = 'CS' 
+	    and
+			USERCENTER = #usercenter#
+		and 
+		 	CHANX = #shengcxbh#
+		and 
+			ZHONGZLXH = #zhengclsh#
+	</select>
+	
+	
+	
+	<!-- 查找C0的消耗时间 -->
+	<select id="queryC0Xhsj" resultClass="java.lang.String">
+	     select XIAOHSJ from(
+			select XIAOHSJ,rownum as row_ from (
+			    SELECT
+			      nvl(to_char(XIAOHSJ,'YYYY-MM-DD HH24:MI:SS'),'') as XIAOHSJ
+			    FROM 
+			      ${dbSchemal0}DDBH_CAIFJGINFO
+			    WHERE 1=1
+				<dynamic>
+					<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+					<isNotEmpty prepend=" and " property="zhengclsh">ZHONGZLXH &lt;= #zhengclsh#</isNotEmpty>
+					<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+					<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+				</dynamic>
+				Order by ZHONGZLXH desc
+			)
+		 )
+		 where row_ = 1
+	</select>
+	
+	<!-- 查找正符号C0的待消耗 -->
+	<select id="queryC0DxhslByPlus" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(sum(nvl(LINGJSL,0)),0) as dxh
+	    FROM 
+	      ${dbSchemal0}DDBH_CAIFJGINFO
+	    WHERE 
+	    1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="zhengclsh">ZHONGZLXH &gt;= #zhengclsh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="anxscjssj">XIAOHSJ &lt; to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS')</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查找负符号C0的待消耗 -->
+	<select id="queryC0DxhslByMinus" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(sum(nvl(LINGJSL,0)),0) as dxh
+	    FROM 
+	      ${dbSchemal0}DDBH_CAIFJGINFO
+	    WHERE 
+	    1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="zhengclsh">ZHONGZLXH &lt; #zhengclsh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="anxscjssj">XIAOHSJ &gt;= to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS')</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 查询上次C0计算时间 -->
+	
+	<select id="queryCDscjssj" resultClass="java.lang.String">
+		select 
+			nvl(to_char(dingdjssj,'yyyy-mm-dd HH24:mi:ss'),'') as cdscjssj
+		from 
+		    ${dbSchemal1}xqjs_dingd 
+		where 
+		    dingdh = #dingdh#
+		and 
+		    usercenter = #usercenter#
+	</select>
+	
+	
+	<!-- 判断CD的流水号是否正确 -->
+	<select id="checkCDLsh" resultClass="java.lang.Integer">
+           select 
+                 count(*) as sl
+           from 
+                  ${dbSchemal0}ddbh_chaifjgxx 
+           where 
+                 USERCENTER = #usercenter#
+           and   
+				 ZONGZLSH = #zhengclsh#
+		 
+	</select>
+	
+	
+	<!-- 查找CD的消耗时间 -->
+	<select id="queryCDXhsj" resultClass="java.lang.String">
+		 select XIAOHSJ from(
+			select XIAOHSJ,rownum as row_ from (
+			    SELECT
+			      nvl(to_char(XIAOHSJ,'YYYY-MM-DD HH24:MI:SS'),'') as XIAOHSJ
+			    FROM 
+			      ${dbSchemal0}ddbh_chaifjgxx
+			    WHERE 1=1
+				<dynamic>
+					<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+					<isNotEmpty prepend=" and " property="zhengclsh">ZONGZLSH &lt;= #zhengclsh#</isNotEmpty>
+					<isNotEmpty prepend=" and " property="lingjbh">LINGJ = #lingjbh#</isNotEmpty>
+					<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+				</dynamic>
+				Order by ZONGZLSH desc
+			)
+		 )
+		 where row_ = 1
+	</select>
+	
+	<!-- 查找正符号CD的待消耗 -->
+	<select id="queryCDDxhslByPlus" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(sum(nvl(XIAOHXS,0)),0) as dxh
+	    FROM 
+	      ${dbSchemal0}ddbh_chaifjgxx
+	    WHERE 
+	    1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="zhengclsh">ZONGZLSH &gt;= #zhengclsh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJ = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="anxscjssj">XIAOHSJ &lt; to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS')</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查找负符号CD的待消耗 -->
+	<select id="queryCDDxhslByMinus" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(sum(nvl(XIAOHXS,0)),0) as dxh
+	    FROM 
+	      ${dbSchemal0}ddbh_chaifjgxx
+	    WHERE 
+	    1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="zhengclsh">ZONGZLSH &lt; #zhengclsh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJ = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="anxscjssj">XIAOHSJ &gt;= to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS')</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 查找出库量 -->
+	<select id="queryDefaultChukl" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(sum(nvl(DAOHL,0)),0) as chukl
+	    FROM 
+	      ${dbSchemal0}ck_lingjxhb
+	    WHERE 
+	    1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">substr(XIAOHD,0,9) = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="anxscjssj">JILRQ &gt;= to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS')</isNotEmpty>
+			<isNotEmpty prepend=" and " property="systime">JILRQ &lt; to_date(#systime#,'YYYY-MM-DD HH24:MI:SS')</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 查找异常待消耗 -->
+	<select id="queryDefaultYicdxh" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(sum(nvl(CAOZSL,0)),0) as yicdxh
+	    FROM 
+	      ${dbSchemal0}ck_yicsbcz
+	    WHERE 
+	    1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">substr(SHENGBD,0,9) = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="anxscjssj">CAOZSJ &gt;= to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS')</isNotEmpty>
+			<isNotEmpty prepend=" and " property="systime">CAOZSJ &lt; to_date(#systime#,'YYYY-MM-DD HH24:MI:SS')</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查找CS异常待消耗 0011309_CS盘点修正与异常消耗 gswang 2015-04-13 -->
+	<select id="queryDefaultYicdxhCS" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(sum(nvl(CAOZSL,0)),0) as yicdxh
+	    FROM 
+	      ${dbSchemal0}ck_yicsbcz
+	    WHERE 
+	    flag = '0' 
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">substr(SHENGBD,0,9) = #xiaohd#</isNotEmpty>
+		</dynamic>
+	</select>
+		
+	<!-- 查找带交付 -->
+	<select id="queryDefaultDaijf" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(yifyhlzl,0) - nvl(jiaofzl,0) - nvl(ZHONGZZL,0) + nvl(XITTZZ,0) as daijf
+	    FROM 
+	      ${dbSchemal0}ckx_lingjxhd
+	    WHERE 
+	    biaos = '1'
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHDBH = #xiaohd#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 查找带交付  wuyichao 2014-06-26  带交付取值时需要向加 -->
+	<select id="queryDefaultDaijf2" resultClass="java.math.BigDecimal">
+	    SELECT
+	      SUM(nvl(yifyhlzl,0) - nvl(jiaofzl,0) - nvl(ZHONGZZL,0)) as daijf
+	    FROM 
+	      ${dbSchemal0}ck_yaohlbdjf_l
+	    WHERE 
+	    biaos is null
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">WULDBH = #xiaohd#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 查找盈余量 -->
+	<select id="queryDefaultYingyl" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(YINGY,0) as yingyl
+	    FROM 
+	      ${dbSchemal0}ck_xianbkc_cs
+	    WHERE 
+	    1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="shengcxbh">CHANX = #shengcxbh#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	
+	<!-- 查找小火车编号 -->
+	<select id="queryXiaohcbh" resultClass="java.lang.String">
+	    SELECT
+	      nvl(xiaohcbh,'') as xiaohcbh
+	    FROM 
+	      ${dbSchemal0}ckx_lingjxhd
+	    WHERE 
+	    1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHDBH = #xiaohd#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 查找Target流水号 -->
+	<select id="queryTargetlsh" resultClass="java.lang.String">
+	    SELECT
+	    	 distinct 
+	      	 nvl(ZHENGCXH,'') as target
+	    FROM 
+	         ${dbSchemal0}ddbh_caifjg_cs
+	    WHERE 
+		    zhongzlxh = #zhengclsh#
+		    and  mos = 'CS'
+	</select>
+	
+	
+	<!-- 查找Max流水号 
+	<select id="queryMaxlsh" resultClass="java.lang.String">
+	    SELECT
+	      nvl(DANGQZCXH,'') as maxlsh
+	    FROM 
+	      ${dbSchemal0}ck_xiaohcmb
+	    WHERE 
+	    flag = '1'
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="shengcxbh">CHANX = #shengcxbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohcbh">XIAOHCBH = #xiaohcbh#</isNotEmpty>
+		</dynamic>
+		order by LIUSH desc
+	</select>
+	-->
+	<select id="queryMaxlsh" resultClass="java.lang.String">
+	    SELECT
+	      nvl(max(ZHENGCXH),'') as maxlsh
+	    FROM 
+	      ${dbSchemal0}ddbh_caifjg_cs
+	    WHERE 
+	    flag = '2'
+	    and  mos = 'CS'
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="shengcxbh">CHANX = #shengcxbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	<!-- 查找Max流水号 -->
+	<select id="queryMaxlshChay" resultClass="java.lang.String">
+	    SELECT
+	      nvl(XIAOHDPYL,'') as pyl
+	    FROM 
+	      ${dbSchemal0}ddbh_caifjg_cs
+	    WHERE 
+	     mos = 'CS'
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="shengcxbh">CHANX = #shengcxbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohcbh">XIAOHCBH = #xiaohcbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="zhengcxh">ZHENGCXH = #zhengcxh#</isNotEmpty>
+		</dynamic>
+		order by OFH desc
+	</select>
+	
+	
+	<!-- 查找消耗量 -->
+	<select id="queryDefaultXiaohl" resultClass="java.math.BigDecimal">
+	   select 
+	     nvl(SUM(nvl(LINGJSL,0)), 0) as xiaohl
+		 from ${dbSchemal0}ddbh_caifjg_cs
+		 where  
+		  mos = 'CS'
+		   and     ZHENGCXH between #targetLsh# AND #maxLsh#
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="shengcxbh">CHANX = #shengcxbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	<select id="queryPandinfo" resultClass="com.athena.ck.entity.anxorder.PandModel">
+		SELECT 
+		    DISTINCT 
+		    L.USERCENTER as usercenter,
+		    L.LINGJBH as lingjbh,
+		    L.SHENGCXBH as shengcxbh,
+		    L.MOS as mos,
+		    D.XIAOHDBH as xiaohd
+		    FROM 
+		(select
+		      DISTINCT 
+		       W.USERCENTER,
+		       W.FENPQH,
+		       W.LINGJBH,
+		       W.SHENGCXBH,
+		       case when  W.mos = 'MD' OR W.WAIBMS = 'CD' THEN
+	              'CD'
+	           else
+	              W.mos
+	           end as mos
+		  from ${dbSchemal1}ckx_wullj w
+		 where 
+		 w.mos = 'MD' OR W.WAIBMS = 'CD' OR W.MOS = 'C0' OR W.MOS = 'CS'
+		   ) L,${dbSchemal1}CKX_LINGJXHD D
+		 WHERE 
+		 	  d.biaos = '1' and
+		      L.USERCENTER=D.USERCENTER 
+		      AND 
+		      L.LINGJBH=D.LINGJBH 
+		      AND 
+		      L.SHENGCXBH=D.SHENGCXBH
+		      AND 
+		      L.FENPQH=D.FENPQBH
+	      <dynamic>
+	           <isNotEmpty prepend=" and " property="usercenter">L.usercenter=#usercenter#</isNotEmpty>
+	           <isNotEmpty prepend=" and " property="lingjbh">L.lingjbh=#lingjbh#</isNotEmpty>
+	           <isNotEmpty prepend=" and " property="shengcxbh">L.shengcxbh=#shengcxbh#</isNotEmpty>
+	           <isNotEmpty prepend=" and " property="xiaohd">D.xiaohdbh=#xiaohd#</isNotEmpty>
+	      </dynamic>
+	      order by L.USERCENTER,L.LINGJBH,L.SHENGCXBH,D.XIAOHDBH 
+	</select>
+	
+	
+	<select id="queryCDXianbck" resultClass="com.athena.ck.entity.anxorder.PandModel">
+		SELECT 
+		 DISTINCT 
+		 L.USERCENTER as usercenter,
+		 L.LINGJBH as lingjbh,
+		 L.SHENGCXBH as shengcxbh,
+		 D.XIAOHDBH as xiaohd,
+		 nvl(D.XIANBLLKC,0) as xianbllkc
+		 FROM 
+		(select DISTINCT W.USERCENTER, W.FENPQH, W.LINGJBH, W.SHENGCXBH
+		  from ${dbSchemal3}ckx_wullj w
+		 where 1 = 1
+		   AND (w.mos = 'MD' OR W.WAIBMS = 'CD')
+		   ) L,${dbSchemal3}CKX_LINGJXHD D
+		 WHERE 
+		      L.USERCENTER=D.USERCENTER 
+		      AND 
+		      L.LINGJBH=D.LINGJBH 
+		      AND 
+		      L.SHENGCXBH=D.SHENGCXBH
+		      AND 
+		      L.FENPQH=D.FENPQBH
+	 
+	</select>
+	
+	
+	<!-- C0盘点数据保存-->
+	<statement id="saveC0pandModel" parameterClass="com.athena.ck.entity.anxorder.PandModel">
+	<![CDATA[	insert into ${dbSchemal1}CK_XIANBLLKCLS (
+		USERCENTER,
+		CHANX,
+		XIAOHD,
+		LINGJBH ,
+		LINGJSL,
+		PANDLJSL,
+		CHAY,
+		ZHENGCLSH,
+		CREATOR,
+		CREATE_TIME,
+		EDITOR,
+		EDIT_TIME,
+		KUCSLDXH,
+		XIANBLLKC,
+		PANDCHUKL,
+		PANDYCDXH,
+		FLAG,
+		ANXSCJSSJ,
+		PANDTIME
+		)
+		values(
+		#usercenter# ,
+		#shengcxbh#,
+		#xiaohd#,
+		#lingjbh#,
+		#xianbllkc#,
+		#pandljsl#,
+		#chay#,
+		#zhengclsh#,
+		#creator#,
+		to_date(#create_time#,'YYYY-MM-DD HH24:MI:SS'),
+		#creator#,
+		to_date(#create_time#,'YYYY-MM-DD HH24:MI:SS'),
+		#daixh#,
+		#xianbllkc#,
+		#chukl#,
+		#yicdxh#,
+		'0',
+		to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS'),
+		to_date(#pandtime#,'YYYY-MM-DD HH24:MI:SS')
+		)
+	]]>
+	</statement>
+	
+	
+	<!-- CS盘点数据保存-->
+	<statement id="saveCSpandModel" parameterClass="com.athena.ck.entity.anxorder.PandModel">
+	<![CDATA[	insert into ${dbSchemal1}CK_XIANBLLKCLS_CS (
+		USERCENTER,
+		CHANX,
+		XIAOHD,
+		LINGJBH ,
+		LINGJSL,
+		PANDLJSL,
+		CHAY,
+		ZHENGCLSH,
+		CREATOR,
+		CREATE_TIME,
+		EDITOR,
+		EDIT_TIME,
+		KUCSLDXH,
+		XIANBLLKC,
+		DAIJF,
+		XIAOHL,
+		YINGYL,
+		FLAG,
+		PANDTIME
+		)
+		values(
+		#usercenter# ,
+		#shengcxbh#,
+		#xiaohd#,
+		#lingjbh#,
+		#xianbllkc#,
+		#pandljsl#,
+		#chay#,
+		#zhengclsh#,
+		#creator#,
+		to_date(#create_time#,'YYYY-MM-DD HH24:MI:SS'),
+		#creator#,
+		to_date(#create_time#,'YYYY-MM-DD HH24:MI:SS'),
+		#yicdxh#,
+		#xianbllkc#,
+		#daijf#,
+		#xiaohl#,
+		#yingyl#,
+		'0',
+		to_date(#pandtime#,'YYYY-MM-DD HH24:MI:SS')
+		)
+	]]>
+	</statement>
+	
+	
+	<!-- CD盘点数据保存-->
+	<statement id="saveCDpandModel" parameterClass="com.athena.ck.entity.anxorder.PandModel">
+	<![CDATA[	
+	
+	 merge into ${dbSchemal1}xqjs_kucjscsb a
+	 using (select count(*) co
+	         from ${dbSchemal1}xqjs_kucjscsb a
+	        where a.lingjbh = #lingjbh#
+	          and a.usercenter = #usercenter#
+	          and a.xiaohd = #xiaohd#
+	          and a.flag = '2'
+	          and a.jilrq > to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS')) b
+	 on (b.co <> 0)
+	 when matched then
+	 update
+	     set a.yicxhl      = #chay#,
+	         a.jilrq       = to_date(#pandtime#, 'yyyy-mm-dd HH24:mi:ss'),
+	         a.creator     = #creator#,
+	         a.zhongzlxh   = #zhengclsh#,
+	         a.kucsldxh    = #daixh#,
+	         a.xianbllkc   = #xianbllkc#,
+	         a.pdsjkc      = #pandljsl#,
+	         a.panddxh     = #daixh#,
+	         a.pandckl     = #chukl#,
+	         a.pandycxh    = #yicdxh#,
+	         a.anxscjssj   = to_date(#anxscjssj#, 'yyyy-mm-dd HH24:mi:ss')
+	   where a.lingjbh = #lingjbh#
+	     and a.usercenter = #usercenter#
+	     and a.jilrq > to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS')
+	     and a.xiaohd = #xiaohd#
+	     and a.flag = '2'
+	 when not matched then
+		insert
+		(
+		USERCENTER,
+		LINGJBH ,
+		YICXHL,		
+		XIAOHD,
+		FLAG,
+		JILRQ,
+		CREATOR,
+		CREATE_TIME,
+		ZHONGZLXH,
+		KUCSLDXH,
+		XIANBLLKC,
+		PDSJKC,
+		PANDDXH,
+		PANDCKL,
+		PANDYCXH,
+		ANXSCJSSJ
+		)
+		values
+		(
+		#usercenter# ,
+		#lingjbh#,
+		#chay#,
+		#xiaohd#,
+		'2',
+		to_date(#pandtime#,'YYYY-MM-DD HH24:MI:SS'),
+		#creator#,
+		to_date(#create_time#,'YYYY-MM-DD HH24:MI:SS'),
+		#zhengclsh#,
+		#daixh#,
+		#xianbllkc#,
+		#pandljsl#,
+		#daixh#,
+		#chukl#,
+		#yicdxh#,
+		to_date(#anxscjssj#,'YYYY-MM-DD HH24:MI:SS')
+		)
+	]]>
+	</statement>
+	
+	
+	
+	<!-- 查询零件信息 -->
+	<select id="queryLingjxx" resultClass="com.athena.xqjs.entity.emergency.EmergencyModel">
+		select 
+	       usercenter as usercenter ,
+	       lingjbh as lingjbh,
+	       zhongwmc as lingjmc,
+	       jihy as jihy
+		from 
+ 			${dbSchemal1}ckx_lingj 
+ 		where
+  			biaos = '1' 
+	</select>
+	
+	
+	<!-- 查询物流路径信息 -->
+	<select id="queryWulljxx" resultClass="com.athena.xqjs.entity.emergency.EmergencyModel">
+		select 
+			 distinct
+			 usercenter as usercenter ,
+			 lingjbh as lingjbh,
+			 gongysbh as gongysbh,
+			 gcbh as chengysbh,
+			 gongyfe as gongysfe
+		from 
+			${dbSchemal1}ckx_wullj   
+		where 
+			waibms = 'CD' OR MOS = 'MD'
+	</select>
+	
+	
+	<!-- 查询物供应商承运商信息 -->
+	<select id="queryGongysChengysxx" resultClass="com.athena.xqjs.entity.emergency.EmergencyModel">
+		select 
+			usercenter as usercenter,
+			gcbh as gongysbh,
+			gcbh as chengysbh,
+			gongsmc as gongysmc,
+			gongsmc as chengysmc
+		from 
+			${dbSchemal1}ckx_gongys
+		where 
+			 biaos = '1'
+	</select>
+	
+	<!-- 查询消耗点信息 -->
+	<select id="queryXiaohdxx" resultClass="com.athena.xqjs.entity.emergency.EmergencyModel">
+		select 
+			 usercenter as usercenter ,
+			 lingjbh as lingjbh,
+			 xiaohdbh as xiaohd,
+			 anqkcs as anqkc
+		from 
+			${dbSchemal1}ckx_lingjxhd 
+		where  
+			anqkcs is not null
+		and 
+		 	biaos = '1'  
+	</select>
+	
+		<!-- 查询零件供应商信息 -->
+	<select id="queryLingjgysxx" resultClass="com.athena.xqjs.entity.emergency.EmergencyModel">
+		select 
+			 usercenter as usercenter ,
+			 lingjbh as lingjbh,
+			 gongysbh as gongysbh,
+			 ucrl * uaucgs as uarl
+		 from 
+			 ${dbSchemal1}ckx_lingjgys 
+		 where 
+		     biaos = '1'
+		  and 
+		      ucrl > 0 
+		  and
+		      uaucgs > 0
+	</select>
+	
+	<insert id="saveEmergencyModel">
+		<![CDATA[	insert into ${dbSchemal1}XQJS_EMERGENCY (
+		  ID         ,
+		  USERCENTER  ,
+		  LINGJBH     ,
+		  LINGJMC    ,
+		  GONGYSBH  ,
+		  GONGYSMC  ,
+		  CHENGYSBH  ,
+		  CHENGYSMC  ,
+		  GONGYSFE    ,
+		  XIAOHD    ,
+		  CHAY    ,
+		  XIANBLLKC   ,
+		  PANDSJSL  ,
+		  PANDZT   ,
+		  JIHY     ,
+		  UARL   ,
+		  BAOZGS   ,
+		  YAOHSL    ,
+		  ANQKC   ,
+		  ZHUANGT   ,
+		  DINGDH    ,
+		  XIAOH_TIME ,
+		  CREATOR   ,
+		  CREATE_TIME ,
+		  EDITOR    ,
+		  EDIT_TIME   ,
+		  BEIZ     
+		)
+		values(
+		${dbSchemal1}xqjs_emergency_seq.nextval,
+		#usercenter#,
+		#lingjbh#,
+		#lingjmc#,
+		#gongysbh#,
+		#gongysmc#,
+		#chengysbh#,
+		#chengysmc#,
+		#gongysfe#,
+		#xiaohd#,
+		#chay#,
+		#xianbllkc#,
+		#pandsjsl#,
+		#pandzt#,
+		#jihy#,
+		#uarl#,
+		#baozgs#,
+		#yaohsl#,
+		#anqkc#,
+		#zhuangt#,
+		#dingdh#,
+		null,
+		#creator#,
+		to_date(#create_time#,'YYYY-MM-DD HH24:MI:SS'),
+		#editor#,
+		to_date(#edit_time#,'YYYY-MM-DD HH24:MI:SS'),
+		#beiz#
+		)
+	]]>
+	</insert>
+	
+</sqlMap>

@@ -1,0 +1,1 @@
+{"result":{"response":"0000","trans_bran_code":"abc","parameter":{"tch":"","blh":"BL00394","list":[{"name":"物流故障","value":"1"},{"name":"包装破损","value":"2"},{"name":"无要货令","value":"3"},{"name":"包装不符","value":"4"}]},"trscode":"10101","wtcCallTime":32,"oper_no":"00012","host_seqno":7206583}}

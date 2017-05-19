@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="yichang">
+	<!--查询质检报告单-->
+	<resultMap class="com.athena.ck.entity.yichang.Zhijbgd" id="Zhijbgd">
+		<result column="usercenter" property="usercenter" />
+		<result column="zhijjjbgdh" property="zhijjjbgdh" />
+		<result column="cangkbh" property="cangkbh" />
+		<result column="zickbh" property="zickbh" />
+		<result column="zhijqdh" property="zhijqdh" />
+		<result column="elh" property="elh" />
+		<result column="lingjbh" property="lingjbh" />
+		<result column="lingjmc" property="lingjmc" />
+		<result column="lingjsl" property="lingjsl" />
+		<result column="zhijsl" property="zhijsl" />
+		<result column="gongysdm" property="gongysdm" />
+		<result column="gongysmc" property="gongysmc" />
+		<result column="pich" property="pich" />
+		<result column="shixq" property="shixq" />
+		<result column="hegsl" property="hegsl" />
+		<result column="buhgsl" property="buhgsl" />
+		<result column="zherzt" property="zherzt" />
+		<result column="zerztdm" property="zerztdm" />
+		<result column="yuany" property="yuany" />
+		<result column="zhijy" property="zhijy" />
+		<result column="zhijz" property="zhijz" />
+		<result column="zhidh" property="zhidh" />
+		<result column="pandsj" property="pandsj" />
+	</resultMap>
+	<select id="queryZhijbgd" resultMap="Zhijbgd" parameterClass="java.util.Map">
+	select 
+		t1.usercenter,
+		t1.zhijjjbgdh,
+		t1.cangkbh,
+		t1.zickbh,
+		t1.zhijqdh,
+		t1.elh,
+		t1.lingjbh,
+		t1.lingjmc,
+		nvl(t1.lingjsl,0) lingjsl,
+		nvl(t1.zhijsl,0) zhijsl,
+		t1.gongysdm,
+		t1.gongysmc,
+		t1.pich,
+		t1.shixq,
+		nvl(t1.hegsl,0) hegsl,
+		nvl(t1.buhgsl,0) buhgsl,
+		t1.zherzt,
+		t1.zerztdm,
+		t1.yuany,
+		t1.zhijy,
+		t1.zhijz,
+		t1.zhidh,
+		to_char(sysdate,'yyyy-mm-dd') as pandsj 
+	from ${dbSchemal0}CK_ZHIJBGD t1 
+	where t1.usercenter=#usercenter# and t1.zhijjjbgdh in ($zhijjjbgdh$)
+	order by t1.usercenter,t1.zhijjjbgdh
+	</select>
+
+	<!--查询质检清单数据-->
+ 	<resultMap class="com.athena.ck.entity.yichang.Zhijqd" id="Zhijqd">
+ 		<result column="zhijy" property="zhijy" />
+ 		<result column="zhijz" property="zhijz" />
+ 		<result column="zhijlx" property="zhijlx" />
+		<result column="usercenter" property="usercenter" />
+		<result column="zhijqdh" property="zhijqdh" />
+		<result column="cangkbh" property="cangkbh" />
+		<result column="zickbh" property="zickbh" />
+		<result column="elh" property="elh" />
+		<result column="pich" property="pich" />
+		<result column="blh" property="blh" />
+		<result column="ush" property="ush" />
+		<result column="lingjbh" property="lingjbh" />
+		<result column="lingjmc" property="lingjmc" />
+		<result column="lingjsl" property="lingjsl" />
+		<result column="gongysdm" property="gongysdm" />
+		<result column="gongysmc" property="gongysmc" />
+		<result column="kuwbh" property="kuwbh" />
+		<result column="hegsl" property="hegsl" />
+		<result column="buhgsl" property="buhgsl" />
+		<result column="dayrq" property="dayrq" />
+		<result column="daysj" property="daysj" />
+	</resultMap>
+	<select id="queryZhijqd" resultMap="Zhijqd" parameterClass="java.util.Map">
+	select 
+		t2.zhijy,
+		t2.zhijz,
+		t2.zhijlx,
+		t1.usercenter,
+		t1.zhijqdh,
+		t1.cangkbh,
+		t1.zickbh,
+		t1.elh,
+		t1.pich,
+		t2.jiaohdh as blh,
+		t1.ush,
+		t1.lingjbh,
+		t1.lingjmc,
+		nvl(t1.lingjsl,0) lingjsl,
+		t1.gongysdm,
+		t1.gongysmc,
+		t1.kuwbh,
+		nvl(t1.hegsl,0) hegsl,
+		nvl(t1.buhgsl,0) buhgsl,
+		to_char(sysdate,'yyyy-mm-dd') as dayrq,
+		to_char(sysdate,'hh24:mi:ss') as daysj 
+	from ${dbSchemal0}CK_ZHIJQD t1 inner join ${dbSchemal0}CK_ZHIJBGD t2 on t1.usercenter=t2.usercenter and t1.elh=t2.elh and t1.zhijqdh=t2.zhijqdh 
+	where t1.usercenter=#usercenter# and t1.zhijqdh in ($zhijqdh$) 
+	<dynamic>
+		<isNotEmpty property="elh">
+			and t1.elh = #elh#
+		</isNotEmpty>
+	</dynamic>
+	order by t1.zhijqdh,t1.zickbh,t1.kuwbh
+	</select> 
+	
+				<!--查询申报点-->
+	<select id="queryshenbd" resultClass="com.athena.ck.entity.yichang.Yic"  parameterClass="java.util.Map">
+      select a.xiaohdbh as shengbd
+  from ${dbSchemal0}ckx_lingjxhd a
+ where usercenter =#usercenter# and lingjbh = #lingjbh# 
+   and Exists (SELECT 1
+          FROM ${dbSchemal0}SYS_USER t1, ${dbSchemal0}SYS_R_USER_POST t2, ${dbSchemal0}SYS_POST t3, ${dbSchemal0}SYS_KH_GROUP t4
+         WHERE t1.id = t2.user_id
+           AND t2.post_code = t3.post_code
+           AND t3.post_code = t4.post_id
+           AND t4.usercenter = #usercenter#
+           AND t1.loginname = #loginname#
+           AND t3.dic_code = 'CK_002' 
+           AND t4.keh = a.fenpqbh)
+    
+	</select> 
+	<!--查询责任主体 -->
+	<select id="zerzt" resultClass="com.athena.ck.entity.yichang.Zerzt"  parameterClass="java.util.Map">
+     select zrztdm,zrztmc
+       from ${dbSchemal0}ckx_zrzt
+        where zrztlx = #zerzt#
+	    and usercenter=#usercenter# 
+	    <dynamic>
+			<isNotEmpty property="zerztdm">
+				and zrztdm = #zerztdm# 
+			</isNotEmpty>
+       </dynamic>
+    </select>
+    
+    
+    <!--查询零件仓库供应商名称和标识 　hzg 2014.9.19 -->
+	<select id="queryBiaosOfLjck" resultClass="java.util.HashMap"  parameterClass="java.util.Map">   
+       select a.gongsmc,b.biaos from ${dbSchemal0}ckx_gongys a,${dbSchemal0}ckx_lingjgys b 
+        	where a.gcbh=b.gongysbh and a.gcbh=#gongysdm# and b.lingjbh=#lingjbh#   
+        		and a.usercenter=#usercenter#  and leix in ('1','2')            
+                    
+	</select> 
+   <!--查询责任主体名称 -->
+   <select id="queryZrztmc" resultClass="com.athena.ck.entity.yichang.Zhijbgd"  parameterClass="java.util.Map">   
+       select g.zrztdm,g.zrztmc from ${dbSchemal0}CK_ZHIJBGD z 
+		left join ${dbSchemal0}CKX_ZRZT g on z.usercenter = g.usercenter and z.zerztdm = g.zrztdm
+		where z.elh = #elh# and z.zhijqdh = #zhijqdh#           
+	</select> 
+    <select id="queryZrztmc2" resultClass="com.athena.ck.entity.yichang.Zhijbgd"  parameterClass="java.util.Map">   
+       select z.zerztdm,g.gongsmc as zrztmc from ${dbSchemal0}CK_ZHIJBGD z 
+		left join ${dbSchemal0}ckx_gongys g on z.usercenter = g.usercenter and z.zerztdm = g.gcbh
+		where z.elh = #elh# and z.zhijqdh = #zhijqdh#       
+	</select> 
+    
+    
+</sqlMap>

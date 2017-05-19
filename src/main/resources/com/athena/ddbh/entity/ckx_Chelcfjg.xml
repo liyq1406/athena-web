@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="chelcfjg">
+
+<!-- 
+<select id="getDDBH_CHELCFJG" resultClass="com.athena.ckx.entity.ddbh.Chelcfjg">
+   select x.ofh, g.lj, g.xhd, to_char(g.rq,'yyyy-mm-dd') rq, g.xhxs sl
+  	from ${dbSchemal3}ddbh_chelcfjgofdygx x
+  	join ${dbSchemal3}ddbh_chelcfjg g on x.coodc = g.coddc
+ 	where 1 = 1
+    <dynamic>
+			<isNotEmpty prepend=" and " property="ofh"><![CDATA[x.ofh = #ofh#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="lj"><![CDATA[g.lj = #lj#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="xhd"><![CDATA[g.xhd = #xhd#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="rq"><![CDATA[g.rq = to_date(#rq#,'yyyy-mm-dd')]]></isNotEmpty>
+	</dynamic>
+</select>
+ -->
+ 
+ <select id="getDDBH_CHELCFJG" resultClass="com.athena.ddbh.entity.Chelcfjg">
+    select x.ofh ofh, g.LINGJ lj, g.XIAOHD xhd, to_char(x.SHANGYHSJ,'yyyy-mm-dd') rq, g.XIAOHXS sl
+    from ${dbSchemal5}ddbh_CODDCxhdlj g
+    join ${dbSchemal5}ddbh_shangyhsjjh x on x.coddc = g.coddc and x.shangyhsj between g.ecomqssj and g.ecomjssj
+   where 1 = 1
+    <dynamic>
+			<isNotEmpty prepend=" and " property="ofh"><![CDATA[x.ofh = #ofh#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="lj"><![CDATA[g.LINGJ = #lj#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="xhd"><![CDATA[g.XIAOHD = #xhd#]]></isNotEmpty>
+			<isNotEmpty prepend=" and " property="rq"><![CDATA[x.SHANGYHSJ = to_date(#rq#,'yyyy-mm-dd')]]></isNotEmpty>
+	</dynamic>
+	
+	order by  lj ,xhd ,rq,ofh
+</select>
+
+	<!-- 清空中间表 -->
+	<delete id="truncateTemp">
+		delete from ${dbSchemal5}in_fenzxpcjh where flag != '1'
+	</delete>
+	
+	<!-- 将10天内的分装线计划从结果表插入到中间表 -->
+	<insert id="insertTemp" parameterClass="java.lang.String">
+		<![CDATA[
+		insert into ${dbSchemal5}in_fenzxpcjh(fenzxzsx_lixq,fenzxzsx_lixh,yujsxrq,yujxxrq,fenzsx,fenzch,dingdh,usercenter,fenzxh,hanzcx,lingjlx,lingjyt,lixd,xuqly,zhankrq,flag,creator,create_time,editor,edit_time)
+		
+		with ril as (select b.* from 
+            (select a.*,row_number() over (partition by a.usercenter,a.appobj order by rownum) rn from
+            (select g.usercenter,g.appobj,v.riq from ckx_dax d
+            inner join ${dbSchemal5}ckx_calendar_group g on d.usercenter = g.usercenter and d.daxxh = g.appobj
+            inner join ${dbSchemal5}ckx_calendar_version v on v.usercenter = g.usercenter and v.banc = g.rilbc 
+            where v.riq <= to_char(sysdate,'yyyy-MM-dd') and v.shifgzr = '1' and d.biaos = '1' order by g.usercenter,g.appobj,riq desc) a 
+            ) b where b.rn = 10)
+  		
+		select fjh.fenzxzsx_lixq,fjh.fenzxzsx_lixh,fjh.yujsxrq,fjh.yujxxrq,fjh.fenzsx,fjh.fenzch,fjh.dingdh,fjh.usercenter,fjh.fenzxh,fjh.hanzcx,fjh.lingjlx,fjh.lingjyt,fjh.lixd,fjh.xuqly,fjh.zhankrq,'0',#userName#,sysdate,#userName#,sysdate from ${dbSchemal5}xqjs_fenzxpcjh fjh
+		inner join ${dbSchemal5}ckx_fenzx fzx on fjh.usercenter = fzx.usercenter and fjh.fenzxh = fzx.fenzxh
+		inner join ril on fjh.usercenter = ril.usercenter and fzx.daxxh = ril.appobj
+		where yujsxrq >= to_date(ril.riq,'yyyy-MM-dd')
+		and dingdh is not null
+		and not exists(select 1 from ${dbSchemal5}in_fenzxpcjh i where i.fenzxzsx_lixq = fjh.fenzxzsx_lixq and i.usercenter = fjh.usercenter and i.fenzxh = fjh.fenzxh)
+		and not exists(select 1 from ${dbSchemal5}ddbh_sppvxx s where s.usercenter = fjh.usercenter and s.dingdh = fjh.dingdh and s.zongch = fjh.fenzch)
+		]]>
+	</insert>
+ 
+ 	<!-- 将中间表的分总成号按照PDS拆分信息重新匹配 -->
+    <update id="updateTempFenzch">
+	    <![CDATA[
+	    merge into ${dbSchemal5}in_fenzxpcjh tar
+		using (select i.usercenter, i.fenzxzsx_lixq, i.fenzxh, nvl(a.fenzch,'0000000000') fenzch from in_fenzxpcjh i left join (
+				select zx.usercenter,res.fenzxzsx_lixq,f.fenzxh,zc.lingj fenzch from ${dbSchemal5}in_fenzxpcjh res
+		        inner join ${dbSchemal5}in_zhuxpcjh zx on zx.usercenter = res.usercenter and zx.dingdh = res.dingdh
+		        inner join ${dbSchemal5}in_zongccfjg zc on zx.usercenter = zc.usercenter and substr(zx.daxxh, 1, 3) = zc.chej and zx.zongch = zc.zongch and zx.zhankrq >= zc.kaiszkrq and zx.zhankrq <= zc.jieszkrq
+		        inner join ${dbSchemal5}ckx_fenzx f on zc.usercenter = f.usercenter and f.daxxh = zx.daxxh and zc.xiaohd = f.xiaohdbh and f.fenzxh = res.fenzxh and f.biaos = '1'
+		        inner join ${dbSchemal5}ckx_shengcx_lingj s on zc.usercenter = s.usercenter and zc.lingj = s.lingjbh and f.fenzxh = s.shengcxbh and nvl(res.lingjlx,' ') = nvl(s.lingjlx,' ')) a 
+		       on i.fenzxzsx_lixq = a.fenzxzsx_lixq and i.usercenter = a.usercenter and i.fenzxh = a.fenzxh) res
+		on (tar.fenzxzsx_lixq = res.fenzxzsx_lixq and tar.usercenter = res.usercenter and tar.fenzxh = res.fenzxh)
+		when matched then
+		  update
+		     set tar.fenzch    = res.fenzch
+	    ]]>
+    </update>
+    
+    <!-- 更新分装线排产计划的分总成号 -->
+    <update id="updateRealFenzch">
+    	update ${dbSchemal5}xqjs_fenzxpcjh x
+		   set x.fenzch =
+		       (select i.fenzch
+		          from ${dbSchemal5}in_fenzxpcjh i
+		         where i.fenzxzsx_lixq = x.fenzxzsx_lixq
+		           and i.usercenter = x.usercenter
+		           and i.fenzxh = x.fenzxh)
+		 where exists (select 1
+		          from ${dbSchemal5}in_fenzxpcjh i
+		         where i.fenzxzsx_lixq = x.fenzxzsx_lixq
+		           and i.usercenter = x.usercenter
+		           and i.fenzxh = x.fenzxh
+		           and i.fenzch != x.fenzch)
+    </update>
+    
+    <!-- 将中间表的分总成号发生改变的计划的flag置于1 -->
+    <update id="updateFlag">
+    	update ${dbSchemal5}in_fenzxpcjh i
+		   set i.editor = #userName#, i.edit_time = sysdate, i.flag = '1'
+		 where exists (select 1
+		          from ${dbSchemal5}xqjs_fenzxpcjh x
+		         where i.fenzxzsx_lixq = x.fenzxzsx_lixq
+		           and i.usercenter = x.usercenter
+		           and i.fenzxh = x.fenzxh
+		           and i.fenzch != x.fenzch)
+    </update>
+</sqlMap>

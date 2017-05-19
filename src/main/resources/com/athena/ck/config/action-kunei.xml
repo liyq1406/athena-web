@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="kunei" extend="toft-default" namespace="/ck">
+		<!--120 纠纷创建页面 -->
+		<action name="120" class="kunAction" method="jiufcjYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/120.jsp</result>
+		</action>
+		<!-- 12001 纠纷创建 查询数据-->
+		<action name="12001" class="kunAction" method="jiufcjQuery"></action>
+		<!-- 12002 纠纷创建  纠纷保存-->
+		<action name="12002" class="kunAction" method="jiufcjSave"></action>
+		<!-- 12003 纠纷创建  纠纷提交-->
+		<action name="12003" class="kunAction" method="jiufcjSubmit"></action>
+		<!-- P12001 纠纷创建改包装-->
+		<action name="P12001" class="kunAction" method="jiufcjGbzYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/12001.jsp</result>
+		</action>
+		<!-- 12004 纠纷创建  改包装提交-->
+		<action name="12004" class="kunAction" method="jiufcjGbzSubmit"></action>
+		
+		<!-- 12005 查询实际零件仓库编号 xss_0011694-->
+		<action name="12005" class="kunAction" method="jiufcjShijljbhck"></action>
+		
+		
+		<!--121 纠纷修改页面 -->
+		<action name="121" class="kunAction" method="jiufxgYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/121.jsp</result>
+		</action>
+		<!-- 12101 纠纷修改 查询数据-->
+		<action name="12101" class="kunAction" method="jiufxgQuery"></action>
+		<!-- 12102 纠纷修改  纠纷保存-->
+		<action name="12102" class="kunAction" method="jiufxgSave"></action>
+		<!-- 12103 纠纷修改   纠纷提交-->
+		<action name="12103" class="kunAction" method="jiufxgSubmit"></action>
+		<!-- P12101 纠纷修改改包装-->
+		<action name="P12101" class="kunAction" method="jiufxgGbzYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/12101.jsp</result>
+		</action>
+		<!-- 12104 纠纷修改   改包装提交-->
+		<action name="12104" class="kunAction" method="jiufxgGbzSubmit"></action>
+		
+		
+		<!--122纠纷查询页面 -->
+		<action name="122" class="kunAction" method="jiufcxYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/122.jsp</result>
+		</action>
+		<!-- 12201 纠纷查询 查询数据-->
+		<action name="12201" class="kunAction" method="jiufcxQuery"></action>
+		
+		
+		<!--123纠纷取消页面 -->
+		<action name="123" class="kunAction" method="jiufqxYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/123.jsp</result>
+		</action>
+		<!-- 12301 纠纷取消 查询数据-->
+		<action name="12301" class="kunAction" method="jiufqxQuery"></action>
+		<!-- 12302 纠纷取消 取消纠纷单-->
+		<action name="12302" class="kunAction" method="jiufqxCancel"></action>
+		
+		
+		<!--124纠纷单查询页面 -->
+		<action name="124" class="kunAction" method="jiufdcxYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/124.jsp</result>
+		</action>
+		<!-- 12401 纠纷单查询 查询数据-->
+		<action name="12401" class="kunAction" method="jiufdcxQuery"></action>
+		<!-- 12402 纠纷单查询 查看明细数据-->
+		<action name="12402" class="kunAction" method="jiufdcxShowDetail">
+			<result name="select">/WEB-INF/pages/ck/kunei/122.jsp</result>
+		</action>
+	   
+	   
+	   	<!--125补打功能 -->
+		<action name="125" class="kunAction" method="budgn">
+			<result name="select">/WEB-INF/pages/ck/kunei/125.jsp</result>
+		</action>
+		
+
+	    <!--201 库内改包装 -->
+		<action name="201" class="kunAction" method="kungbzYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/201.jsp</result>
+		</action>
+	    <!-- 20101 库内改包装通过EL号查询-->
+		<action name="20101" class="kunAction" method="kungbzELCx"></action>
+		<!-- 20102 库内改包装通过EL号提交-->
+		<action name="20102" class="kunAction" method="kungbzELTj"></action>
+	    <!-- 20103 库内改包装通过US号查询-->
+		<action name="20103" class="kunAction" method="kungbzUSCx"></action>
+	    <!-- 20104 库内改包装通过US号提交-->
+		<action name="20104" class="kunAction" method="kungbzUSTj"></action>
+		
+		<!--202正常退库 -->
+		<action name="202" class="kunAction" method="zhangctkYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/202.jsp</result>
+		</action>
+	    <!-- 20201 正常退库通过零件或ELH查询信息-->
+		<action name="20201" class="kunAction" method="zhangctkLJQuery"></action>
+		<!-- 20202 正常退库通过推荐改包装-->
+		<action name="20202" class="kunAction" method="zhangctkLJTjgbz"></action>
+		<!-- 20203 正常退库通过零件或ELH推荐改包装  提交-->
+		<action name="20203" class="kunAction" method="zhangctkLJSumbit"></action>
+	    <!-- 20204 正常退库查询US/UC信息-->
+		<action name="20204" class="kunAction" method="zhangctkUSQuery"></action>
+		<!-- 20206 正常退库US/UC推荐改包装  提交-->
+		<action name="20206" class="kunAction" method="zhangctkUSSumbit"></action>
+		
+		
+		<!--222正常退库-POA hzg 2014.9.18 -->
+		<action name="222" class="kunAction" method="zhangctkMainPage">
+			<result name="select">/WEB-INF/pages/ck/kunei/222.jsp</result>
+		</action>
+		<!-- 22203 正常退库通过零件或ELH推荐改包装  提交 hzg 2014.9.18 -->
+		<action name="22203" class="kunAction" method="zhangctkLingjSumbit"></action>
+		
+		<!--204盘点策略新增页面-->
+		<action name="204" class="kunAction" method="pandclXzYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/204.jsp</result>
+		</action>
+	    <!-- 20401 盘点策略新增提交-->
+		<action name="20401" class="kunAction" method="pandclTj"></action>
+
+		<!--205 盘点策略查询页面 -->
+		<action name="205" class="kunAction" method="pandclCxYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/205.jsp</result>
+		</action>
+	    <!-- 20501 盘点策略查询-->
+		<action name="20501" class="kunAction" method="pandclCx"></action>
+		<!-- 20502 盘点策略删除-->
+		<action name="20502" class="kunAction" method="pandclSc"></action>
+		
+		<!--206 盘点任务新增页面 -->
+		<action name="206" class="kunAction" method="pandrwXzYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/206.jsp</result>
+		</action>
+	    <!-- 20601 盘点任务新增-->
+		<action name="20601" class="kunAction" method="pandrwXzAdd"></action>
+		<!-- 20602 盘点任务新增删除-->
+		<action name="20602" class="kunAction" method="pandrwXzDelete"></action>
+		<!-- 20603 盘点任务新增查询-->
+		<action name="20603" class="kunAction" method="pandrwXzQuery"></action>
+		<!-- 20604 盘点任务新增打印-->
+		<action name="20604" class="kunAction" method="pandrwXzPrint"></action>
+		
+		<!--207 盘点任务查询页面 -->
+		<action name="207" class="kunAction" method="pandrwCxYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/207.jsp</result>
+		</action>
+	    <!-- 20701 盘点任务查询-->
+		<action name="20701" class="kunAction" method="pandrwCxQuery"></action>
+		<!-- P20701 滚动盘点查看页面-->
+        <action name="P20701" class="kunAction" method="gundpdckYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/20701.jsp</result>
+		</action>
+		<!-- 20702 滚动盘点查看查询-->
+		<action name="20702" class="kunAction" method="gundpdckQuery"></action>
+		<!-- P20702 静态盘点查看-->
+		<action name="P20702" class="kunAction" method="jingtpdckYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/20702.jsp</result>
+		</action>
+		<!-- 20703 静态盘点查看查询-->
+		<action name="20703" class="kunAction" method="jingtpdckQuery"></action>
+		<!-- 20704  盘点任务查询打印-->
+		<action name="20704" class="kunAction" method="pandrwCxPrint"></action>
+		<!-- 20705  盘点任务查询导出-->
+		<action name="20705" class="kunAction" method="pandrwCxExport"></action>
+		
+		
+		<!--208 盘点任务删除页面 -->
+		<action name="208" class="kunAction" method="pandrwScYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/208.jsp</result>
+		</action>
+	    <!-- 20801 盘点任务删除查询-->
+		<action name="20801" class="kunAction" method="pandrwScQuery"></action>
+		<!-- 20802 盘点任务删除-->
+		<action name="20802" class="kunAction" method="pandrwScDelete"></action>
+		
+		<!--211滚动盘点维护页面 -->
+		<action name="211" class="kunAction" method="gundpdWhYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/211.jsp</result>
+		</action>
+		<!-- 21101 滚动盘点维护 登记已盘点零件-->
+		<action name="21101" class="kunAction" method="gundpdWhDj"></action>
+		<!-- 21102滚动盘点维护-创建US-查询零件信息-->
+		<action name="21102" class="kunAction" method="gundpdWhQueryLj"></action>
+		<!-- 21103滚动盘点维护-创建US-US入库-->
+		<action name="21103" class="kunAction" method="gundpdWhAddUS"></action>
+		<!-- 21104滚动盘点维护-维护US-查询US信息-->
+		<action name="21104" class="kunAction" method="gundpdWhQueryUS"></action>
+		<!-- 21105滚动盘点维护-维护US-US入库-->
+		<action name="21105" class="kunAction" method="gundpdWhAlertUS"></action>
+		<!-- 21106滚动盘点维护-更新零件的盘点日期-->
+		<action name="21106" class="kunAction" method="gundpdWhGenxpd"></action>
+		
+		<!--212静态盘点维护页面 -->
+		<action name="212" class="kunAction" method="jintpdWhYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/212.jsp</result>
+		</action>
+		<!-- 21201静态盘点维护-创建US-查询零件信息-->
+		<action name="21201" class="kunAction" method="jintpdWhQueryLj"></action>
+		<!-- 21202静态盘点维护-创建US-US入库-->
+		<action name="21202" class="kunAction" method="jintpdWhAddUS"></action>
+		<!-- 21203静态盘点维护-维护US-查询US信息-->
+		<action name="21203" class="kunAction" method="jintpdWhQueryUS"></action>
+		<!-- 21204静态盘点维护-维护US-US入库-->
+		<action name="21204" class="kunAction" method="jintpdWhAlertUS"></action>
+		<!-- 21205  创建US-US入库-->
+		<action name="21205" class="kunAction" method="chuangjusYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/21201.jsp</result>
+		</action>
+		<!-- 21206  维护US-US入库-->
+		<action name="21206" class="kunAction" method="weihusYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/21202.jsp</result>
+		</action>
+		
+		<!--213库存查询页面 -->
+		<action name="213" class="kunAction" method="KuccxYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/213.jsp</result>
+		</action>
+		<!-- 21301库存查询执行-->
+		<action name="21301" class="kunAction" method="KuccxQuery"></action>
+		<!-- 21302库存查询打印-->
+		<action name="21302" class="kunAction" method="KuccxPrint"></action>
+		
+		<!--214库存导出页面 -->
+		<action name="214" class="kunAction" method="KucdcYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/214.jsp</result>
+		</action>
+
+		<!--328 库内移库 -->
+		<action name="328" class="kunAction" method="kunykYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/328.jsp</result>
+		</action>
+		<!-- 32801 库内移库查询-->
+		<action name="32801" class="kunAction" method="kunykCx"></action>
+		<!-- 32802 库内移库提交-->
+		<action name="32802" class="kunAction" method="kunykTj"></action>
+		
+		<!--334 库内冻结 -->
+		<action name="334" class="kunAction" method="kundjYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/334.jsp</result>
+		</action>
+		<!-- 33401 库内冻结查询-->
+		<action name="33401" class="kunAction" method="kundjCx"></action>
+		<!-- 33402 库内冻结修改-->
+		<action name="33402" class="kunAction" method="kundjXg"></action>
+		
+		<!--335 库内解冻-->
+		<action name="335" class="kunAction" method="kunjdYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/335.jsp</result>
+		</action>
+		<!-- 33501 库内解冻查询-->
+		<action name="33501" class="kunAction" method="kunjdCx"></action>
+		<!-- 33502 库内解冻修改-->
+		<action name="33502" class="kunAction" method="kunjdXg"></action>
+		
+		
+		<!-- 217单取库移库         开始 -->
+		<!-- 进入单取库页面 -->
+		<action name="217" class="kunAction" method="danqkykYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/217.jsp</result>
+		</action>
+		<!-- 21701 单取库移库查询-->
+		<action name="21701" class="kunAction" method="danqkykCx"></action>
+		<!-- 21702 单取库移库确认-->
+		<action name="21702" class="kunAction" method="danqkykQr"></action>
+		<!-- 21703 单取库移库取消-->
+		<action name="21703" class="kunAction" method="danqkykQx"></action>
+		<!-- 217单取库移库          结束-->
+		<!-- 218唯一成品滚动盘点维护页面-->
+		<action name="218" class="kunAction" method="weiycpgdpdwhYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/218.jsp</result>
+		</action>
+		<!-- P21801  创建US-US入库-->
+		<action name="P21801" class="kunAction" method="P21801">
+			<result name="select">/WEB-INF/pages/ck/kunei/21801.jsp</result>
+		</action>
+		<!-- P21802  维护US-US入库-->
+		<action name="P21802" class="kunAction" method="P21802">
+			<result name="select">/WEB-INF/pages/ck/kunei/21802.jsp</result>
+		</action>
+		<!-- 21801唯一成品盘点维护查询零件信息-->
+		<action name="21801" class="kunAction" method="wycppdwhcxlj"></action>
+		<!-- 21802唯一成品盘点维护创建US确认-->
+		<action name="21802" class="kunAction" method="wycppdwhcjus"></action>
+		<!-- 21803唯一成品盘点维护查询US信息-->
+		<action name="21803" class="kunAction" method="wycppdwhcxus"></action>
+		<!-- 21804唯一成品盘点维护创建US确认-->
+		<action name="21804" class="kunAction" method="wycppdwhusqr"></action>
+		<!-- 21805唯一成品盘点维护新增序列号-->
+		<action name="21805" class="kunAction" method="wycppdwhxzxlh"></action>
+		<!-- 21806唯一成品盘点维护删除序列号-->
+		<action name="21806" class="kunAction" method="wycppdwhscxlh"></action>
+		<!-- 21807唯一成品盘点维护查询序列号-->
+		<action name="21807" class="kunAction" method="wycppdwhcxxlh"></action>
+		<!-- 219唯一成品静态盘点维护页面-->
+		<action name="219" class="kunAction" method="weiycpjtpdwhYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/219.jsp</result>
+		</action>
+		<!-- 21901 单取库移库查询-->
+		<action name="21901" class="kunAction" method="danqkykCx"></action>
+		<!-- 21902 单取库移库确认-->
+		<action name="21902" class="kunAction" method="danqkykQr"></action>
+		<!-- 21903 单取库移库取消-->
+		<action name="21903" class="kunAction" method="danqkykQx"></action>
+		<!--220  唯一成品退产线  -->
+		<action name="220" class="kunAction" method="weiycptcxYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/220.jsp</result>
+		</action>
+		<!-- 22001唯一成品退产线查询零件信息-->
+		<action name="22001" class="kunAction" method="tcxljcx"></action>
+		<!-- 22002 唯一成品退产线查询零件序列号-->
+		<action name="22002" class="kunAction" method="ljxlhcx"></action>
+		<!-- 22003 唯一成品退产线新增-->
+		<action name="22003" class="kunAction" method="wycptcxxz"></action>
+		<!-- 22004 唯一成品退产线确认-->
+		<action name="22004" class="kunAction" method="wycptxcqr"></action>
+		<!-- 22005 全选- 唯一成品退产线确认-->
+		<action name="22005" class="kunAction" method="wycptxcqrqx"></action>
+		
+		<!--221  手工触发单取库移库推荐单页面 -->
+		<action name="221" class="kunAction" method="sgcfdqkYm">
+			<result name="select">/WEB-INF/pages/ck/kunei/221.jsp</result>
+		</action>
+		<!-- 22101 手工触发单取库移库推荐单-->
+		<action name="22101" class="kunAction" method="sgcfdqktjd"></action>
+		
+		<!--224  CD零件库存查询  V4_028-->
+		<action name="224" class="kunAction" method="cdlingjkccxjr">
+			<result name="select">/WEB-INF/pages/ck/kunei/224.jsp</result>
+		</action>
+		<action name="22401" class="kunAction" method="cdlingjkccx"></action>
+		<action name="22402" class="kunAction" method="cdlingjkcdy"></action>
+		
+		<!--223  惟一成品退库  V4_030-->
+		<action name="223" class="kunAction" method="weiycptuik">
+			<result name="select">/WEB-INF/pages/ck/kunei/223.jsp</result>
+		</action>
+		<action name="22301" class="kunAction" method="weiycpcjus"></action>
+		<action name="22302" class="kunAction" method="weiyTkLjXLH"></action>
+		<action name="22303" class="kunAction" method="weiyTkLjqr"></action>
+		<action name="22304" class="kunAction" method="weiyTkUSSel"></action>
+		<action name="22305" class="kunAction" method="weiyTkUSqr"></action>
+		<action name="22306" class="kunAction" method="weiyTkUSDel"></action>
+		<!-- 22309调用22307WTC -->
+		<action name="22309" class="kunAction" method="weiyTkUSxlhsel"></action>
+		<action name="22307" class="kunAction" method="weiycpcjustz">
+			<result name="select">/WEB-INF/pages/ck/kunei/22301.jsp</result>
+		</action>
+		
+		<action name="22308" class="kunAction" method="weiycpxgustz">
+			<result name="select">/WEB-INF/pages/ck/kunei/22302.jsp</result>
+		</action>
+	</package>
+</toft>

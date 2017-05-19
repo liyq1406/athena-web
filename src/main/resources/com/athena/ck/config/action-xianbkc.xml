@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="xianbkc" extend="toft-default" namespace="/ck">
+		<!--按需线边库存盘点 -->
+		<action name="executeXbpd" class="xbcangkpdAction" method="executeXbpd">
+			<result name="select">/WEB-INF/pages/ck/anxorder/xbcangkpd.jsp</result>
+		</action>
+		<!-- 查询线边库存数据-->
+		<action name="queryxbkpd" class="xbcangkpdAction" method="queryxbkpd"></action>
+		<!-- 验证流水号-->
+		<action name="checkLsh" class="xbcangkpdAction" method="checkLsh"></action>
+		<!-- C0线边盘点编辑保存 -->
+		<action name="saveC0kc" class="xbcangkpdAction" method="saveC0kc"></action>
+		<!-- 20705  盘点任务查询导出-->
+		<action name="downLoadFilePd" class="xbcangkpdAction" method="downLoadFilePd"></action>
+	
+	
+	
+		<!-- C0 盘点历史 -->
+		<action name="initPandls" class="coPandlsAction" method="initPandls">
+			<result name="select">/WEB-INF/pages/ck/anxorder/pandls.jsp</result>
+		</action>
+		<action name="queryPandls" class="coPandlsAction" method="queryPandls"></action>
+		
+	</package>
+</toft>

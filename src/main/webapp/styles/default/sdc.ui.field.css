@@ -1,0 +1,316 @@
+@CHARSET "UTF-8";
+.youi-fieldLayout{
+	padding:0px;
+	margin:0px;
+}
+
+.youi-fieldLayout table{
+	/**empty-cells:show;*/
+	border-top:0px;
+	border-collapse:collapse;
+	table-layout:fixed;
+}
+
+.youi-fieldLayout table td{
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+}
+
+.youi-fieldLayout table.showBorder .youi-field  td {
+    border: none;
+}
+
+.youi-fieldLayout table td.contral.label-col{
+	width:85px;
+}
+.youi-fieldLayout table.showBorder{
+	margin-top:0px;
+}
+.youi-fieldLayout table.showBorder td{
+	border:1pt solid #EDEDED;
+}
+
+.youi-fieldLayout table.showBorder td.contral{
+	border:0;
+	padding:0;
+}
+
+.youi-fieldLayout table td.notNull{
+	color:red;
+}
+
+.youi-fieldLayout table td.field-label{
+	padding-left:2px;
+	text-overflow:clip;
+}
+
+
+
+.youi-fieldLayout .youi-field{
+	overflow:hidden;
+	padding-right:20px;
+	vertical-align:middle;
+	line-height:24px;
+	float:left;
+	background:white;
+}
+
+.youi-fieldLayout .youi-field.fieldTree{
+	overflow-y:auto;
+	zoom:1;
+}
+
+.youi-fieldLayout .youi-field.readonly{
+	opacity: .5;
+	filter:Alpha(Opacity=50)/*{opacityOverlay}*/;
+}
+
+.youi-fieldLayout .youi-field.fieldHidden{
+	display:none;
+}
+
+.youi-fieldLayout .youi-field.fieldLabel{
+	height:24px;
+}
+
+.youi-fieldLayout .youi-field.fieldLabel a.textShow{
+	width:150px;
+	padding:0 1px;
+	display:block;
+}
+
+.youi-fieldLayout .youi-field .field-invalid{
+	width:16px;
+	height:21px;
+	display:inline;
+	position:absolute;
+	background-repeat:no-repeat;
+	background-position:right;
+}
+
+.youi-fieldLayout .youi-field.validate-error .field-invalid,
+.youi-fieldLayout .youi-field.validating-error .field-invalid{
+	background-image:url(images/field/exclamation.gif);
+}
+
+.youi-fieldLayout .youi-field.validate-success .field-invalid{
+	background-image:url(images/field/validate-success.gif);
+}
+
+.youi-fieldLayout .youi-field.validating .field-invalid{
+	background-image:url(images/field/validating.gif);
+}
+
+.youi-field input.textInput{
+	background:#FFFFFF url(images/field/text-bg.gif) repeat-x scroll 0pt top;
+	border:1px solid #B5B8C8;
+	padding:2px;
+	height:17px;
+}
+
+/* fieldPop通用样式*/
+.youi-field .youi-icon.select-down{
+	cursor:pointer;
+}
+.youi-field .youi-icon.select-down div{
+	 height: 23px;
+	 background:#FFFFFF url(images/field/trigger.gif) repeat-x scroll 0pt 0pt;
+}
+
+.youi-field .fieldPop.textInput{
+	 *margin-top:-1px;
+	 *padding-bottom:1px;
+	 border-bottom:0;
+}
+
+
+.youi-field table{
+	background:white;
+}
+.youi-field table.fieldPop-table td{
+	border-bottom:1pt solid silver;
+}
+/* fieldSelect*/
+
+.youi-field.fieldSelect.expanded .select-down{
+	background-position:-17px 0px;
+}
+
+.field-items-panel{
+	position:absolute;
+	background:#FFFFFF;
+	display:none;
+	border:1pt solid silver;
+	
+	overflow-x:hidden;
+	overflow-y:auto;
+	z-index:1201;
+	left:0;
+	top:0;
+}
+
+div.field-items-panel.expanded{
+	display:block;
+}
+
+.field-items-panel.item-srcoll{
+	height:200px;
+	overflow-y:auto;
+}
+	
+.field-items-panel .option-item{
+	padding:2px;
+	cursor:pointer;
+	height:16px;
+	white-space:nowrap;
+}
+
+.field-items-panel .option-item.over,.field-items-panel .option-item:hover{
+	background-color:#eeddff;
+}
+
+.field-items-panel .option-item.selected{
+	background-color:#D7E9F9;
+}
+/*****************************fieldCheckboxGroup,fieldRadioGroup********************************/
+.youi-fieldLayout .youi-field.fieldCheckboxGroup{
+	padding-right:0;
+}
+.youi-fieldLayout .youi-field.fieldCheckboxGroup div,.youi-fieldLayout .youi-field.fieldRadioGroup div{
+	float:left;
+	vertical-align:middle;
+	line-height:20px;
+}
+
+.youi-fieldLayout .youi-field.fieldCheckboxGroup input{
+}
+
+/*****************************fieldPopTree********************************/
+.youi-field.fieldPopTree .select-down{
+	display:inline;
+	background:#FFFFFF url(images/field/trigger.gif) repeat-x scroll 0pt top;
+	width:17px;
+	height:22px;
+	vertical-align:top;
+	cursor:pointer;
+	border-bottom:1pt solid silver;
+	
+	*margin-top:1px;/*ie.version<8*/
+	*height:21px;/*ie.version<8*/
+}
+
+.youi-field.fieldPopTree.expanded .select-down{
+	background-position:-17px 0px;
+}
+
+.field-popTree{
+	position:absolute;
+	background:#FFFFFF;
+	border:1pt solid silver;
+	z-index:9999;
+	overflow:hidden;
+}
+
+.field-popTree .tree{
+	position:relative;
+	height:240px;
+	overflow-y:auto;
+	overflow-x:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+.field-popTree .buttons{
+	height:20px;
+}
+
+.field-popTree li.root{
+	width:600px;
+}
+
+.youi-field span.textShow{
+	display:block;
+	line-height:20px;
+	vertical-align:bottom;
+}
+
+/*********************************fieldCalendar*********************************/
+.youi-field.fieldCalendar .select-down{
+	background:#FFFFFF url(images/field/calendar.gif) repeat-x scroll 0pt top;
+}
+
+/*********************************fieldComboBox*********************************/
+.field-items-panel .datas-context{
+	height:200px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+.field-items-panel .datas-context .option-item img.youi-icon{
+	background-image:url(images/field/checkbox.gif);
+	vertical-align:middle;
+	width:13px;
+	height:13px;
+	margin:-1px 2px 1px;
+}
+
+.field-items-panel .datas-context .option-item.selected img.youi-icon{
+	background-position:0px 13px;
+}
+
+.field-items-panel{
+	overflow:hidden;
+}
+.field-items-panel.field-tree-panel .field-tree-container{
+	overflow-x:hidden;
+	overflow-y:auto;
+	width:100%;
+}
+
+.youi-field .checkbox-item{
+	float:left;	
+}
+
+.youi-field .checkbox-item input{
+	line-height:20px;
+	vertical-align:middle;
+}
+
+.youi-fieldLayout .youi-field.fieldCheckboxGroup{
+	overflow:auto;
+}
+
+
+.youi-fieldLayout .youi-field.fieldGrid{
+	border:1pt solid silver;
+	padding-right:0;
+}
+
+
+.youi-fieldLayout .youi-field.disabled{
+	color:silver;
+}
+
+#youi_message_panel{
+	position:absolute;
+	background:white;
+	border:1pt solid silver;
+	word-wrap:break-word;
+	display:none;
+}
+
+#youi_message_panel.show{
+	display:block;
+}
+/* firefox7以后，由于input长度超过像素会显示省略号（单元格中有省略设置）**/	
+.youi-fieldLayout .field-content table td{
+	text-overflow:clip;
+}
+.searchBtn {
+	 background-image: url("images/field/zoom_in.png") !important;
+	 vertical-align: middle;
+	 margin: 0 0 2px 0;
+}	
+	
+	

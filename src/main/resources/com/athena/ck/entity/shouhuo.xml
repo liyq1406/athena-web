@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="shouhuo">
+	<!--查询同步验收单以及包装数据-->
+	<resultMap class="com.athena.ck.entity.shouhuo.Tongbysdmx" id="TongbysdBzxx">
+		<result column="usercenter" property="usercenter" />
+		<result column="uth" property="uth" />
+		<result column="chengysdm" property="chengysdm" />
+		<result column="chengysmc" property="chengysmc" />
+		<result column="yaohlh" property="yaohlh" />
+		<result column="uaxh" property="uaxh" />
+		<result column="uarl" property="uarl" />
+		<result column="lingjsl" property="lingjsl" />
+		<result column="yanssl" property="yanssl" />
+		<result column="liushbegin" property="liushbegin" />
+		<result column="liushend" property="liushend" />
+	</resultMap>
+	<select id="queryTongbysdBzxx" resultMap="TongbysdBzxx" parameterClass="java.util.Map">
+	select 
+		t1.usercenter,
+		t1.uth,
+		t2.chengysdm,
+		t2.chengysmc,
+		t1.yaohlh,
+		t1.uaxh,
+		t1.uarl,
+		sum(nvl(t3.lingjsl,0)) lingjsl,
+		sum(nvl(t3.yanssl,0)) yanssl,
+		min(nvl(t3.liush,0)) liushbegin,
+		max(nvl(t3.liush,0)) liushend
+	from ${dbSchemal0}ck_uabq t1 left join ${dbSchemal0}ck_daohtzd t2 on t1.usercenter=t2.usercenter and t1.uth=t2.uth ,${dbSchemal0}ck_lingjuagx t3
+	where  t1.usercenter=t3.usercenter and t1.uth=t3.uth  and t1.usercenter=#usercenter# and t1.uth=#uth#
+	group by t1.usercenter,t1.uth,t2.chengysdm,t2.chengysmc,t1.yaohlh,t1.uaxh,t1.uarl
+	</select>
+
+	<!--查询同步验收单零件汇总信息-->
+ 	<resultMap class="com.athena.ck.entity.shouhuo.Lingjuagx" id="TongbysdLjhzxx">
+		<result column="usercenter" property="usercenter" />
+		<result column="uth" property="uth" />
+		<result column="lingjbh" property="lingjbh" />
+		<result column="lingjmc" property="lingjmc" />
+		<result column="danw" property="danw" />
+		<result column="lingjsl" property="lingjsl" />
+		<result column="yanssl" property="yanssl" />
+	</resultMap>
+	<select id="queryTongbysdLjhzxx" resultMap="TongbysdLjhzxx" parameterClass="java.util.Map">
+	select 
+		t1.usercenter,
+		t1.uth,
+		t1.lingjbh,
+		t1.lingjmc,
+		t1.danw,
+		sum(nvl(t1.lingjsl,0)) lingjsl,
+		sum(nvl(t1.yanssl,0)) yanssl
+	from ${dbSchemal0}ck_lingjuagx t1 where t1.usercenter=#usercenter# and t1.uth=#uth#
+	group by t1.usercenter,t1.uth,t1.lingjbh,t1.lingjmc,t1.danw
+	order by t1.lingjbh
+	</select> 
+	
+	<!--查询同步验收单差异信息-->
+	<resultMap class="com.athena.ck.entity.shouhuo.Lingjuagx" id="TongbysdCyxx">
+		<result column="usercenter" property="usercenter" />
+		<result column="uth" property="uth" />
+		<result column="yaohlh" property="yaohlh" />
+		<result column="lingjbh" property="lingjbh" />
+		<result column="lingjmc" property="lingjmc" />
+		<result column="danw" property="danw" />
+		<result column="lingjsl" property="lingjsl" />
+		<result column="yanssl" property="yanssl" />
+	</resultMap>
+	<select id="queryTongbysdCyxx" resultMap="TongbysdCyxx" parameterClass="java.util.Map">
+	select 
+		t1.usercenter,
+		t1.uth,
+		t1.yaohlh,
+		t2.lingjbh,
+		t2.lingjmc,
+		t2.danw,
+		nvl(t2.lingjsl,0) lingjsl,
+		nvl(t2.yanssl,0) yanssl
+	from ${dbSchemal0}ck_uabq t1 inner join ${dbSchemal0}ck_lingjuagx t2 on t1.usercenter=t2.usercenter and t1.uth=t2.uth
+	where t1.usercenter=#usercenter# and t1.uth=#uth# and nvl(t2.lingjsl,0) != nvl(t2.yanssl,0)
+	order by t1.yaohlh,t2.lingjbh
+	</select>
+  
+   <!-- 147降级生成包装单元卡导出   -->
+   <select id="queryTbbzdyk"  parameterClass="java.util.Map" resultClass="com.athena.ck.entity.shouhuo.Tongbyhl">
+	SELECT DISTINCT A.YAOHLH       yaohlh,
+	                B.WEIZ         weizh,
+	                B.ZHENGCLSH    zhengclsh,
+	                B.LINGJBH      lingjbh,
+	                B.LINGJMC      lingjmc,
+	                B.GONGYSDM     gongysdm,
+	                B.GONGYSMC     gongysmc,
+	                B.ZHENGCSXSJ   zhengcsxsj,
+	                B.LINGJSL      lingjsl,
+	                B.DANW         danw,
+	                A.YAOHLZT      yaohlztxx,
+	                A.BAOZXH       baozxh,
+	                A.USXH         usxh
+			  FROM ${dbSchemal0}CK_YAOHL A, ${dbSchemal0}CK_TONGBJPD B
+			 WHERE A.YAOHLH = B.YAOHLH
+			   AND A.USERCENTER = B.USERCENTER
+			   AND A.USERCENTER =#usercenter#
+			   AND A.CANGKBH = #cangkbh#
+			   AND A.YAOHLH in ($ylist$)
+	</select>
+	
+	<!-- 102使用序列生成BL号 -->
+	<select id="queryBLH" resultClass="java.lang.String" >
+	SELECT 'BL'|| lpad(${dbSchemal0}bl_seqno.nextval,8,0) as blh  FROM DUAL
+	</select>
+	<!-- 150同步配送类别查询客户 -->
+	<select id="150keh" resultClass="java.lang.String"  parameterClass="java.util.Map">
+     
+     select xiaohd from (
+     
+     select  t2.shangxd xiaohd
+       from ${dbSchemal0}ckx_tongbjplj t1,
+            ${dbSchemal0}ckx_peislb t2
+      where t1.usercenter=t2.usercenter 
+        and t1.peislx=t2.peislx
+	    and t1.lingjbh=#lingjbh# 
+	    and t2.cangkbh=#cangkbh#
+	    and t1.usercenter=#usercenter#
+	    and t2.peislx=#peislx#
+	     order by t1.usercenter,t1.lingjbh,t1.shengcxbh,t1.nclass
+	    )
+	    where  rownum = 1
+      
+    </select>
+    
+
+       
+    
+     <!-- 17503 卷料激光打印 -->
+     <select id="daohuosbdy_main"  parameterClass="java.util.Map" resultClass="com.athena.ck.entity.shouhuo.Daohtzd">
+     SELECT 
+       a.blh blh,
+       a.uth uth,
+       nvl(a.yuanblh,' ') yblh,
+       nvl(a.yuansblh,' ') ysblh,
+       nvl(a.yuanuth,' ') yuth,
+       nvl(a.utscsj, '') as utscsj,
+       nvl(a.blscsj, '') as  blscsj, 
+       a.cangkbh cangkbh,
+       a.xiehzt xiehzt,
+       a.tch tch ,
+       a.chengysdm chengysdm,
+       a.creator  creator
+      FROM ${dbSchemal0}ck_daohtzd a
+     WHERE a.usercenter = #usercenter#
+       AND a.uth = #uth#
+       AND a.cangkbh = #cangkbh#
+       AND a.dayzt = '0'
+       
+	</select>
+    
+    
+       <!-- 17503 卷料激光打印 -->
+     <select id="daohuosbdy_list1"  parameterClass="java.util.Map" resultClass="com.athena.ck.entity.shouhuo.Uabq">
+  SELECT b.gongysdm gongysdm,
+        b.gongysmc gongysmc,
+        b.ulh ulh,
+        b.elh elh,
+        b.lingjbh lingjbh,
+        b.lingjsl lingjsl,
+        ( select count(*)
+           from ${dbSchemal0}ck_uabq
+          WHERE usercenter = b.usercenter
+            AND uth = b.uth
+            AND cangkbh = b.cangkbh
+            AND (baozzt = '2' OR baozzt = '3')
+            AND elh = b.elh 
+         )iBaozgs,
+        ( select sum(lingjsl)
+           from ${dbSchemal0}ck_uabq
+          WHERE usercenter = b.usercenter
+            AND uth = b.uth
+            AND cangkbh = b.cangkbh
+            AND (baozzt = '2' OR baozzt = '3')
+            AND elh = b.elh
+         )ljsj,
+        nvl(b.yansts,' ') tishi,
+        b.danw danw,
+        b.xuh xuh,
+        b.uah uah,
+       nvl(b.yaohlh,' ') yaohlh,
+        b.uaxh uaxh,
+        b.ucxh ucxh,
+        b.ucgs ucgs,
+        b.uchl uchl,
+        b.yanssl yanssl,
+        b.danw danw,
+        nvl(b.shifdyus,' ') shifdyus,
+        nvl(b.beiz,' ') beiz
+   FROM ${dbSchemal0}ck_uabq b
+   where b.usercenter = #usercenter# 
+   		  AND b.uth = #uth#
+		  AND b.cangkbh = #cangkbh#
+		  AND (baozzt = '2' OR baozzt = '3')
+  order by b.xuh 
+	</select>
+	
+	
+        <!-- 17703 卷料激光打印 -->
+     <select id="daohuoysdy_main"  parameterClass="java.util.Map" resultClass="com.athena.ck.entity.shouhuo.Daohtzd">
+		 select 
+		    a.uth uth,
+		    a.chengysdm  chengysdm,
+		    a.tch tch,
+		    a.blh blh,
+		    a.xiehzt xiehzt,
+		    a.chengysmc chengysmc,
+		    a.cangkbh cangkbh,
+		    a.creator creator
+		   from ${dbSchemal0}ck_daohtzd a
+		  where a.usercenter = #usercenter#
+		    and (a.zhuangt = 3 or a.zhuangt = 4)
+		    and nvl(a.dayzt, '0') = '1'
+		    and a.cangkbh = #cangkbh#
+		    and a.shiftb = '0'
+		    and a.blh = #blh# 
+		  order by a.blh
+	</select>
+	
+	 <!-- 17703 卷料激光打印 -->
+     <select id="daohuoysdy_list1"  parameterClass="java.util.Map" resultClass="com.athena.ck.entity.shouhuo.Uabq">
+     select
+        b.gongysdm gongysdm,
+        b.ulh ulh,
+        b.elh elh,
+        b.lingjbh lingjbh,
+        substr(b.lingjmc, 0,7) lingjmc,
+        b.lingjsl lingjsl, 
+        CASE
+           WHEN b.baozzt='6' THEN
+                0
+            ELSE
+				b.yanssl 
+		END yanssl, 
+         CASE
+           WHEN b.gaibzbs='1' THEN
+                b.beiz || ',' || 'RC'
+            ELSE 
+                b.beiz  
+		END tishi,  
+        b.danw danw,
+        b.xuh xuh,
+        b.uah uah, 
+        b.danw danw,
+        b.shifdyus shifdyus
+   FROM ${dbSchemal0}ck_uabq b
+   where b.usercenter = #usercenter#
+      and b.uth = #uth#
+      AND b.cangkbh = #cangkbh#
+      AND nvl(b.baozzt,'0') != '1'
+      ORDER BY b.xuh
+	</select>
+	
+	 <!-- 17703 卷料激光打印 -->
+     <select id="daohuoysdy_list2"  parameterClass="java.util.Map" resultClass="com.athena.ck.entity.shouhuo.Uabq">
+  	SELECT  uaxh , count(uaxh) uasl
+			FROM ${dbSchemal0}ck_uabq
+		 WHERE usercenter= #usercenter#
+			AND uth = #uth#
+			AND cangkbh = #cangkbh#
+			AND nvl(baozzt,'0') != '1'
+			AND nvl(baozzt,'0') != '3'
+			AND nvl(baozzt,'0') != '6'
+			AND yanssl>0
+			group by  uaxh 
+	</select>
+	
+	 <!-- 17703 卷料激光打印 -->
+     <select id="daohuoysdy_list3"  parameterClass="java.util.Map" resultClass="com.athena.ck.entity.shouhuo.Uabq">
+  	SELECT  ucxh , sum(ucgs) ucsl
+			FROM ${dbSchemal0}ck_uabq
+		 WHERE usercenter= #usercenter#
+			AND uth = #uth#
+			AND cangkbh = #cangkbh#
+			AND nvl(baozzt,'0') != '1'
+			AND nvl(baozzt,'0') != '3'
+			AND nvl(baozzt,'0') != '6'
+			AND yanssl>0 
+			AND ucxh!=uaxh
+			group by ucxh
+	</select>
+	
+	
+	        <!-- 17903 卷料激光打印 -->
+     <select id="shuxlrdy_main"  parameterClass="java.util.Map" resultClass="com.athena.ck.entity.shouhuo.Usbq">
+   SELECT 
+       a.tangc tangc,
+       nvl(a.xiangd,' ') xiangd,
+       nvl(a.xiaohd,' ') xiaohd,
+       a.gongysdm gongysdm,
+       a.gongysmc gongysmc,
+       nvl(a.pich,' ') pich,
+       a.lingjbh lingjbh,
+       a.lingjsl lingjsl,
+       a.lingjmc lingjmc,
+       a.zhuangtsx zhuangtsx,
+       TO_CHAR(a.gongzr,'yyyy-MM-dd hh24:mi:ss') gongzr,
+       a.usxh usxh,
+       nvl(a.xianbck,' ') xianbck,
+       nvl(a.xianbckkw,' ') xianbckkw,
+       a.cangkbh cangkbh,
+       a.kuwbh kuwbh,
+       a.blh blh,
+       a.rukrq rukrq,
+       a.elh elh,
+       nvl(a.yaohlh,' ') yaohlh,
+       a.yuanbqbh yuanbqbh,
+       a.usrl usrl,
+       nvl(a.xiaohcbh,' ') xiaohcbh,
+       a.shixrq shixrq ,
+       nvl(a.juanh , ' ') juanh,
+       nvl(a.ggph , ' ') ggph
+     FROM ${dbSchemal0}ck_usbq a
+    WHERE a.usercenter = #usercenter#
+      AND a.ush = #ush#
+
+	</select>
+</sqlMap>

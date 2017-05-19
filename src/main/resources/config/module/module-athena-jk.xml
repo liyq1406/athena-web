@@ -1,0 +1,19 @@
+<components namespace="jk">
+
+	<component class="com.toft.core3.biz.module.ModuleConfig">
+		<property name="name" value="jk" />
+		<property name="path" value="com/athena/jk" />
+		<property name="actions">
+			<list>
+				<value>action-jiekou.xml</value>
+			</list>
+		</property>
+		<property name="sqlMaps">
+			<list>
+				<value>sqlmap-config-jk.xml</value>
+			</list>
+		</property>
+	</component>
+	
+</components>
+

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="xinanxpd">
+
+<!-- 判断CS的流水号是否正确 -->
+	<!-- 判断C0的流水号是否存在
+		（1）查询零件所对应的总装流水号（或焊装流水号）是否存在
+	-->
+	<!-- 总装 -->
+	<select id="zzcheckLsh" resultClass="java.lang.Integer">
+           select count(1) as sl
+           from ${dbSchemal1}ck_zhengcgd z 
+           where z.usercenter=#usercenter# 
+           and z.wuld='6000'
+           and z.zongzlsh=#zhengclsh# 
+           and z.shengcx=#shengcxbh#
+	</select>
+	
+	<!-- 焊装 20160825 by CSY 分装线有值的生产线取分装线 没值的取大线 -->
+	<select id="hzcheckLsh" resultClass="java.lang.Integer">
+           select count(1) as sl
+           from ${dbSchemal1}ck_zhengcgd z 
+           where z.usercenter=#usercenter# 
+           and z.wuld=DECODE(SUBSTR(#shengcxbh#,4,1),'F','1','1000')
+           and z.zongzlsh=#zhengclsh# 
+           and z.shengcx=#shengcxbh#
+	</select>
+	
+	<!-- 找出对应的整车序号
+		（2）如果是总装流水号则根据总装流水号、过点数6000在整车过点表（ck_zhengcgd）中找出对应的整车序号。
+	 -->
+	 <!-- 总装序号 -->
+	<select id="zzzhengcxh" resultClass="java.lang.Integer">
+		select zhengcxh
+		from
+			(select z.zhengcxh 
+			from ${dbSchemal1}ck_zhengcgd z 
+			where z.wuld='6000' 
+			and z.usercenter=#usercenter# 
+			and z.zongzlsh=#zhengclsh# 
+			and z.shengcx=#shengcxbh#
+			order by z.guodsj desc)
+		where
+			rownum  <![CDATA[ <= ]]>1
+    </select>
+    
+    <!-- 焊装序号 20160825 by CSY 分装线有值的生产线取分装线 没值的取大线 -->
+	<select id="hzzhengcxh" resultClass="java.lang.Integer">
+		select zhengcxh
+		from
+			(select z.zhengcxh 
+			from ${dbSchemal1}ck_zhengcgd z 
+			where z.wuld = DECODE(SUBSTR(#shengcxbh#,4,1),'F','1','1000')
+			and z.usercenter=#usercenter# 
+			and z.zongzlsh=#zhengclsh# 
+			and z.shengcx=#shengcxbh#		
+			order by z.guodsj desc)
+		where
+			rownum  <![CDATA[ <= ]]>1
+    </select>
+
+	<!-- 
+	（3）如果是焊装流水号则根据焊装流水号、过点数1000在焊装过点表（ck_hanzgd）中找出对应的焊装序号。
+	 -->
+	 
+	<!--
+		确定小火车、趟次
+	（4）根据根据用户中心、生产线、消耗点、整车序号在小火车-消耗点模板表ddbh_xiaohcxhdmb中找出对应的小火车的起始流水号、结束流水号，并确定小火车、趟次。
+	 -->
+	 <select id="xiaohcAndTangc" resultClass="com.athena.ck.entity.anxorder.Xiaohcxhdmb">
+	 	select x.usercenter,
+		       x.shengcxbh,
+		       x.xiaohdbh,
+		       x.xiaohcbh,
+		       x.tangc,
+		       x.xiaohcrq,
+		       x.kaislsh,
+		       x.jieslsh
+		  from ${dbSchemal1}ddbh_xiaohcxhdmb x, ${dbSchemal1}ckx_lingjxhd l
+		 where 1 = 1
+		   AND x.usercenter = l.usercenter
+		   AND x.xiaohdbh = l.xiaohdbh
+		   AND x.xiaohcbh = l.xiaohcbh
+		   AND l.lingjbh = #lingjbh#
+		   AND x.usercenter = #usercenter#
+		   and x.shengcxbh = #shengcxbh#
+		   and x.xiaohdbh = #xiaohd#
+		   and (x.kaislsh &lt;= #zhengcxh# and x.jieslsh &gt;= #zhengcxh#)
+		   and rownum = 1
+		 order by x.xiaohcrq DESC
+	 </select>
+	
+	<!-- 
+		待消耗
+	（5）根据用户中心、小火车日期、小火车、趟次、零件、消耗点找出JL毛需求表中所有打标的零件数量即待消耗。 
+	 20160825 by CSY 分装线有值的生产线取分装线 没值的取大线
+	-->
+	<select id="queryPandinfo" resultClass="com.athena.ck.entity.anxorder.XinAnxpd">
+		SELECT 
+		    DISTINCT 
+		    L.USERCENTER as usercenter,
+		    L.LINGJBH as lingjbh,
+		    L.SHENGCXBH as shengcxbh,
+		    L.MOS as mos,
+		    D.XIAOHDBH as xiaohd,
+		    D.XIAOHCBH as xiaohcbh
+		    FROM 
+		(select
+		      DISTINCT 
+		       W.USERCENTER,
+		       W.FENPQH,
+		       W.LINGJBH,
+		       DECODE(W.FENZXH,NULL,W.SHENGCXBH,W.FENZXH) SHENGCXBH,
+		       case when  W.mos = 'MD' OR W.WAIBMS = 'CD' THEN
+	              'CD'
+	           else
+	              W.mos
+	           end as mos
+		  from ${dbSchemal1}ckx_wullj w
+		 where 
+		 w.mos = 'MD' OR W.WAIBMS = 'CD' OR W.MOS = 'CS'
+		   ) L,${dbSchemal1}CKX_LINGJXHD D
+		 WHERE 
+		 	  d.biaos = '1' and
+		      L.USERCENTER=D.USERCENTER 
+		      AND 
+		      L.LINGJBH=D.LINGJBH 
+		      AND 
+		      L.SHENGCXBH=DECODE(D.FENZXH, NULL, D.SHENGCXBH, D.FENZXH)
+		      AND 
+		      L.FENPQH=D.FENPQBH
+	      <dynamic>
+	           <isNotEmpty prepend=" and " property="usercenter">L.usercenter=#usercenter#</isNotEmpty>
+	           <isNotEmpty prepend=" and " property="lingjbh">L.lingjbh=#lingjbh#</isNotEmpty>
+	           <isNotEmpty prepend=" and " property="shengcxbh">L.shengcxbh=#shengcxbh#</isNotEmpty>
+	           <isNotEmpty prepend=" and " property="xiaohd">D.xiaohdbh=#xiaohd#</isNotEmpty>
+	      </dynamic>
+	      order by L.USERCENTER,L.LINGJBH,L.SHENGCXBH,D.XIAOHDBH 
+	</select>
+	
+	<!-- 查询待消耗-->
+	<select id="queryDaixh" resultClass="java.math.BigDecimal">
+		select nvl(sum(nvl(xiaohxs, 0)), 0) as dxh 
+		from ${dbSchemal3}xqjs_anxmaoxq_jl m  
+		WHERE 1=1
+		AND FLAG = '2'
+			<dynamic>
+				<isNotEmpty prepend=" and " property="usercenter">m.usercenter = #usercenter#</isNotEmpty>
+				<isNotEmpty prepend=" and " property="lingjbh">m.lingjbh = #lingjbh#</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xiaohdbh">m.xiaohd = #xiaohdbh#</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xiaohcbh">m.xiaohcbh = #xiaohcbh#</isNotEmpty>
+				<isNotNull prepend=" and " property="tangc">
+			    	((m.tangc  <![CDATA[ >= ]]>  #tangc# and m.xiaohcrq <![CDATA[ = ]]>  #xiaohcrq#)
+			    	or
+			    	m.xiaohcrq <![CDATA[ > ]]>  #xiaohcrq#  )    
+			  	</isNotNull>
+				
+			</dynamic>
+	</select>
+	
+	<!-- 查询上次CD计算时间 -->
+	<select id="queryCDscjssj" resultClass="java.lang.String">
+		select nvl(to_char(dingdjssj,'yyyy-mm-dd HH24:mi:ss'),'') as cdscjssj
+		from ${dbSchemal3}xqjs_dingdjssj 
+		where dingdbh = #dingdh#
+		and usercenter = #usercenter#
+	</select>
+	
+	<!-- 查找待交付 2016-07-22 by CSY 将查询要货令的条数改为查询要货令的要货数量的总和，将参数mudd改为xiaohd，去掉muddlx -->
+	<select id="queryDefaultDaijf" resultClass="java.math.BigDecimal">
+	    select SUM(Y.YAOHSL) 
+		from ${dbSchemal1}ck_yaonbhl y
+		where y.yaohlzt !='00' and y.yaohlzt !='05'
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">y.usercenter = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">y.lingjbh = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">substr(y.mudd,1,9) = #xiaohd#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查找SPPV消耗量 -->
+	<select id="queryDefaultXiaohl" resultClass="java.math.BigDecimal">
+		 <!-- select nvl(sum(lingjsl),0) 
+		 from ${dbSchemal1}ddbh_caifjg_cs 
+		 where 1=1 		 
+		 <![CDATA[ and zhengcxh>=#targetxh# and zhengcxh < #maxxh# ]]> -->
+		 
+		select sum(lingjsl) 
+		from ${dbSchemal1}ddbh_caifjginfo c 
+		join ${dbSchemal1}ck_zhengcgd z 
+		on z.usercenter = c.usercenter 
+			and z.shengcx = c.chanx
+ 			and z.zongzlsh = c.zhongzlxh 
+ 		where 1=1 
+ 		 <![CDATA[ and z.zhengcxh>=#targetxh# and z.zhengcxh < #maxxh# ]]>
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter"> z.usercenter = #usercenter# </isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh"> c.lingjbh = #lingjbh# </isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd"> c.xiaohd = #xiaohd# </isNotEmpty>
+			<isNotEmpty prepend=" and " property="shengcx"> z.shengcx = #shengcx# </isNotEmpty> 
+			<isNotEmpty prepend=" and " property="chanx"> c.chanx = #chanx# </isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 计算上次盈余-->
+	<select id="Shangcyy" resultClass="java.math.BigDecimal">
+		select xb.yingy 
+		from ${dbSchemal3}xqjs_xianbkc xb 
+		where 1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">xb.usercenter = #usercenter# </isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">xb.lingjbh = #lingjbh# </isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">xb.mudd = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="shengcxbh">xb.chanx = #shengcxbh#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+	<!-- CD盘点数据保存-->
+	<statement id="saveCDpandModel" parameterClass="com.athena.ck.entity.anxorder.XinAnxpd">
+	<![CDATA[
+	 merge into ${dbSchemal3}xqjs_kucjscsb a
+		using (select count(*) co
+		         from ${dbSchemal3}xqjs_kucjscsb a
+		        where a.lingjbh = #lingjbh#
+		          and a.usercenter = #usercenter#
+		          and a.xiaohd = #xiaohd#
+		          and a.flag = '2'
+		          and a.jilrq > to_date(#anxscjssj#, 'YYYY-MM-DD HH24:MI:SS')) b
+		on (b.co <> 0)
+		when matched then
+		  update
+		     set a.yicxhl    = #chay#,
+		         a.jilrq     = to_date(#pandtime#, 'yyyy-mm-dd HH24:mi:ss'),
+		         a.creator   = #creator#,
+		         a.zhongzlxh = #zhengclsh#,
+		         a.kucsldxh  = #daixh#,
+		         a.pdsjkc    = #pandljsl#,
+		         a.panddxh   = #xiaohl#,
+		         a.pandycxh  = #yicdxh#,
+		         a.pandckl   = #daijf#,
+		         a.xianbllkc = #yingyl#,
+		         a.anxscjssj = to_date(#anxscjssj#, 'yyyy-mm-dd HH24:mi:ss')
+		   where a.lingjbh = #lingjbh#
+		     and a.usercenter = #usercenter#
+		     and a.jilrq > to_date(#anxscjssj#, 'YYYY-MM-DD HH24:MI:SS')
+		     and a.xiaohd = #xiaohd#
+		     and a.flag = '2'
+		when not matched then
+		  insert
+		    (USERCENTER,
+		     LINGJBH,
+		     YICXHL,
+		     XIAOHD,
+		     FLAG,
+		     JILRQ,
+		     CREATOR,
+		     CREATE_TIME,
+		     ZHONGZLXH,
+		     KUCSLDXH,
+		     PDSJKC,
+		     PANDDXH,
+		     PANDYCXH,
+		     PANDCKL,
+		     XIANBLLKC,
+		     ANXSCJSSJ)
+		  values
+		    (#usercenter#,
+		     #lingjbh#,
+		     #chay#,
+		     #xiaohd#,
+		     '2',
+		     to_date(#pandtime#, 'YYYY-MM-DD HH24:MI:SS'),
+		     #creator#,
+		     to_date(#create_time#, 'YYYY-MM-DD HH24:MI:SS'),
+		     #zhengclsh#,
+		     #daixh#,
+		     #pandljsl#,
+		     #xiaohl#,
+		     #yicdxh#,
+		     #daijf#,
+		     #yingyl#,
+		     to_date(#anxscjssj#, 'YYYY-MM-DD HH24:MI:SS'))
+	]]>
+	</statement>
+	
+	<!-- CS盘点数据保存-->
+	<statement id="saveCSpandModel" parameterClass="com.athena.ck.entity.anxorder.XinAnxpd">
+	<![CDATA[	insert into ${dbSchemal1}CK_XIANBLLKCLS_CS (
+		USERCENTER,
+		CHANX,
+		XIAOHD,
+		LINGJBH ,
+		LINGJSL,
+		PANDLJSL,
+		CHAY,
+		ZHENGCLSH,
+		CREATOR,
+		CREATE_TIME,
+		EDITOR,
+		EDIT_TIME,
+		KUCSLDXH,
+		XIANBLLKC,
+		DAIJF,
+		XIAOHL,
+		YINGYL,
+		FLAG,
+		PANDTIME
+		)
+		values(
+		#usercenter# ,
+		#shengcxbh#,
+		#xiaohd#,
+		#lingjbh#,
+		0,
+		#pandljsl#,
+		#chay#,
+		#zhengclsh#,
+		#creator#,
+		to_date(#create_time#,'YYYY-MM-DD HH24:MI:SS'),
+		#creator#,
+		to_date(#create_time#,'YYYY-MM-DD HH24:MI:SS'),
+		#yicdxh#,
+		0,
+		#daijf#,
+		#xiaohl#,
+		#yingyl#,
+		'0',
+		to_date(#pandtime#,'YYYY-MM-DD HH24:MI:SS')
+		)
+	]]>
+	</statement>
+	
+	<select id="queryDefaultYicdxhCS" resultClass="java.math.BigDecimal">
+	    SELECT nvl(sum(nvl(CAOZSL,0)),0) as yicdxh
+	    FROM ${dbSchemal1}ck_yicsbcz
+	    WHERE flag = '0' 
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">substr(SHENGBD,0,9) = #xiaohd#</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<!-- 查找盈余量 mantis:  20161202 by CSY CS模式直接查询执行层线边库存CS表 -->
+	<select id="queryDefaultYingyl" resultClass="java.math.BigDecimal">
+	    SELECT
+	      nvl(YINGY,0) as yingyl
+	    FROM 
+	      ${dbSchemal1}ck_xianbkc_cs
+	    WHERE 
+	    1 = 1
+		<dynamic>
+			<isNotEmpty prepend=" and " property="usercenter">USERCENTER = #usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh">LINGJBH = #lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohd">XIAOHD = #xiaohd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="shengcxbh">CHANX = #shengcxbh#</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>

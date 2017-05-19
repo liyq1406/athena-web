@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CacheConfig>
+	<component name="SelectMap" isEnabled="true" description="下拉框缓存组件" globName="glob_component_select" >
+		<property sqlName="select.queryUserCenterMap" cacheName="queryUserCenterMap" description="用户中心" isEnabled="true" />
+		<property sqlName="authority.getAllPostGroup" cacheName="getAllPostGroup" description="用户组分类" isEnabled="true" />
+
+		<property sqlName="authority.getJihz" cacheName="getJihz" description="计划员组" isEnabled="true" />
+		<property sqlName="authority.queryDicCache" cacheName="queryDicCode" description="字典信息" isEnabled="true" />
+		<property sqlName="authority.queryPostDicCache" cacheName="queryPostDicCache" description="用户组字典信息" isEnabled="true" />
+		<property sqlName="authority.getAllCachePageButton" cacheName="getAllCachePageButton" description="按钮信息" isEnabled="true" />
+		<property sqlName="authority.queryAllDept" cacheName="queryAllDept" description="部门" isEnabled="true" />
+		<!-- xu qiu ji suan -->
+		<property sqlName="common.queryYclx" cacheName="queryYclx" description="异常类型" isEnabled="true"></property>
+	   	<property sqlName="common.queryJsmk" cacheName="queryJsmk" description="计算类型" isEnabled="true"></property>
+	   	<property sqlName="common.queryYhlsj" cacheName="queryYhlsj" description="时间" isEnabled="true"></property>
+	   	<property sqlName="common.queryYhlddzt" cacheName="queryYhlddzt" description="到达状态" isEnabled="true"></property>
+	   	<property sqlName="common.queryWghms" cacheName="queryWghms" description="外部供货模式" isEnabled="true"></property>
+	   	<property sqlName="common.queryNghms" cacheName="queryNghms" description="内部供货模式" isEnabled="true"></property>
+	   	<property sqlName="common.queryYhlzt" cacheName="queryYhlzt" description="要货令状态" isEnabled="true"></property>
+		<property sqlName="common.queryDingdzt" cacheName="queryDingdzt" description="订单状态" isEnabled="true" />
+		<property sqlName="common.queryDingdlx" cacheName="queryDingdlx" description="订单类型" isEnabled="true" />
+		<property sqlName="common.queryDblShzt" cacheName="queryDblShzt" description="调拨令审核状态" isEnabled="true" />
+		<property sqlName="common.queryDblZZzt" cacheName="queryDblZZzt" description="调拨令终止状态" isEnabled="true" />
+		<property sqlName="common.queryDblzt" cacheName="queryDblzt" description="调拨令状态" isEnabled="true" />
+	    <property sqlName="common.queryZhizlx" cacheName="queryZhizlx" description="制造路线" isEnabled="true" />
+	    <property sqlName="common.queryJslx" cacheName="cacheJslx" description="资源跟踪类型计算类型" isEnabled="true"/>
+	    <property sqlName="zygzbj.queryZiyhqrl" cacheName="cacheZiyhqrl" description="资源获取日历" isEnabled="true"/>
+		<property sqlName="lingjcx.queryYunswuld" cacheName="queryYunswuld" description="运输物理点" isEnabled="true" />
+		<property sqlName="lingjcx.queryWuldlx" cacheName="queryWuldlx" description="物理点类型" isEnabled="true" />
+		<property sqlName="lingjcx.queryWuld" cacheName="queryWuld" description="物理点" isEnabled="true" />
+		<property sqlName="common.queryShifyjsyhl" cacheName="queryShifyjsyhl" description="是否计算要货令" isEnabled="true"/>
+		<property sqlName="common.shiwtxLx" cacheName="shiwtxLx" description="事务提醒类型" isEnabled="true"/> 
+		<property sqlName="common.convertXqlyForChn" cacheName="convertXqlyForChn" description="需求来源-中文" isEnabled="true"/> 
+		<property sqlName="common.convertXqlyForEng" cacheName="convertXqlyForEng" description="需求来源-英字" isEnabled="true"/> 
+		
+		
+	     <!-- 供货模式 2016-01-13 -->
+	     <property sqlName="common.queryGHMS1" cacheName="queryGHMS1" description="供货模式1" isEnabled="true" />
+	     <property sqlName="common.queryGHMS2" cacheName="queryGHMS2" description="供货模式2" isEnabled="true" />
+	     <property sqlName="common.queryGHMS3" cacheName="queryGHMS3" description="供货模式3" isEnabled="true" />
+	     <property sqlName="common.queryKBNBMS" cacheName="queryKBNBMS" description="供货模式" isEnabled="true" />
+	     <property sqlName="common.queryKBWBMS" cacheName="queryKBWBMS" description="供货模式" isEnabled="true" />
+	     <property sqlName="common.queryGHMS4" cacheName="queryGHMS4" description="供货模式4" isEnabled="true" />
+	     <property sqlName="common.queryGHMS5" cacheName="queryGHMS5" description="供货模式5" isEnabled="true" />
+	     <!-- 临时订单类别  2016-01-25 -->
+	     <property sqlName="ckx.queryLSDDLB" cacheName="queryLSDDLB" description="临时订单类别" isEnabled="true" />
+	     
+	     <!-- 是否混托  mantis:0013085 by CSY 2017-01-04 -->
+	     <property sqlName="ckx.querySFHT" cacheName="querySFHT" description="是否混托" isEnabled="true" />
+		
+		<!-- 参考系 -->
+		<!-- 仓库参考系 denggq 2012-02-29 -->
+		<!-- gswang 2015-03-23 0011278单据类型的配置被人在2014年5月删除掉了，导致仓库单据设置有问题，无法使用 -->
+		${kactimerstart.label}
+		<property sqlName="ckx.queryDjlx" cacheName="queryDjlx" description="单据类型" isEnabled="true" />
+		${kactimerend.label}
+		<property sqlName="ckx.queryLjlx" cacheName="queryLjlx" description="零件类型" isEnabled="true" />
+		<property sqlName="ckx.queryCklx" cacheName="queryCklx" description="仓库类型" isEnabled="true" />
+		<!-- 工厂 hanwu 2015-07-18 -->
+		<property sqlName="ckx.queryGC" cacheName="queryGC" description="工厂" isEnabled="true" />
+		
+	  	<!-- 需求计算参考系 2012-03-05 -->
+	    <property sqlName="ckx.queryCzlx" cacheName="queryCzlx" description="材质类型" isEnabled="true" />
+	    <property sqlName="ckx.queryBzlb" cacheName="queryBzlb" description="包装类别" isEnabled="true" />
+	    <property sqlName="ckx.queryLxjlb" cacheName="queryLxjlb" description="零星件类别" isEnabled="true" />
+	    <property sqlName="ckx.queryBffx" cacheName="queryBffx" description="摆放方向" isEnabled="true" />
+		<property sqlName="ckx.queryLjsx" cacheName="queryLjsx" description="零件属性" isEnabled="true" />
+	    <property sqlName="ckx.queryLjdw" cacheName="queryLjdw" description="零件单位" isEnabled="true" />
+	    <property sqlName="ckx.queryGuanjljjb" cacheName="queryGuanjljjb" description="关键零件级别" isEnabled="true" />
+	    <property sqlName="ckx.queryGslx" cacheName="queryGslx" description="供应商类型" isEnabled="true" />
+	    <property sqlName="ckx.queryNianxm" cacheName="queryNianxm" description="年型码" isEnabled="true" />
+	    
+	    <property sqlName="ckx.queryDinghzq" cacheName="queryDinghzq" description="订货周期" isEnabled="true" />
+	    <property sqlName="ckx.queryGonghms" cacheName="queryGonghms" description="供货模式" isEnabled="true" />
+	    <property sqlName="ckx.queryPeisbz" cacheName="queryPeisbz" description="配送标识" isEnabled="true" />
+	    <property sqlName="ckx.queryXuqly" cacheName="queryXuqly" description="需求来源" isEnabled="true" />
+		<property sqlName="ckx.queryYilgx" cacheName="queryYilgx" description="依赖关系" isEnabled="true" />
+		<property sqlName="ckx.queryWaibghms" cacheName="queryWaibghms" description="外部供货模式" isEnabled="true" />
+		<property sqlName="ckx.queryJisff" cacheName="queryJisff" description="计算方法" isEnabled="true" />
+		<property sqlName="ckx.queryChej" cacheName="queryChej" description="车间" isEnabled="true" />
+		<property sqlName="ckx.queryDanwlx" cacheName="queryDanwlx" description="单位类型" isEnabled="true" />
+		<property sqlName="ckx.queryDinghlx" cacheName="queryDinghlx" description="订货路线" isEnabled="true"/> 
+		<property sqlName="ckx.queryZuoyy" cacheName="queryZuoyy" description="作用域" isEnabled="true" />
+		
+	    <!-- 排产发交参考系 2012-02-29 -->
+	    <property sqlName="ckx.queryBHLX" cacheName="queryBHLX" description="备货类型" isEnabled="true" />
+	    <property sqlName="ckx.queryDGDW" cacheName="queryDGDW" description="大纲时间" isEnabled="true" />
+	    <property sqlName="ckx.queryXQ" cacheName="queryXQ" description="星期" isEnabled="true" />
+	    <property sqlName="ckx.queryZZLX" cacheName="queryZZLX" description="制造路线" isEnabled="true" />
+	    
+	     <!-- 物流路径参考系 2012-02-29 -->
+	     <property sqlName="ckx.queryCKMS" cacheName="queryCKMS" description="仓库模式" isEnabled="true" /> 	    
+	     <property sqlName="ckx.queryYSMS" cacheName="queryYSMS" description="运输模式" isEnabled="true" /> 	    
+	     <property sqlName="ckx.queryNBMS" cacheName="queryNBMS" description="内部模式" isEnabled="true" /> 	    
+	     <property sqlName="ckx.queryWBMS" cacheName="queryWBMS" description="外部模式" isEnabled="true" /> 	     
+	     <property sqlName="ckx.querySXMS" cacheName="querySXMS" description="生线模式" isEnabled="true" /> 	    
+	     <property sqlName="ckx.queryXDMS" cacheName="queryXDMS" description="线定模式" isEnabled="true" />
+	    
+	     <!-- 仓库 -->
+	     <property sqlName="common.queryPltTrscode" cacheName="queryPltTrscode" description="平台交易配置表" isEnabled="true" /> 	
+	</component>
+
+	<component name="PrintModule" isEnabled="true" description="打印模板缓存组件" globName="glob_component_print" >
+		<propertyModule path="/config/module/uc.xml" cacheName="p1" description="打印模板1" isEnabled="true" />
+	</component>
+	
+</CacheConfig>

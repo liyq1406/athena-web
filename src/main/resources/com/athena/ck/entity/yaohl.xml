@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- CD/MD上线全程跟踪 要货令查询  hzg 2014.10.31  mantis:10586-->
+<sqlMap namespace="yaohls">
+
+	<!-- 按照查询条件查询外部要货令 -->
+	<select id="queryYaohlOfcd" parameterClass="java.util.Map"
+		resultClass="com.athena.ck.entity.yaohl.Yaohls">
+		select t.yaohlh as qiandYaohlh,
+       t.yaohlzt as qiandYaohlhzt,
+       t1.yaohlh as houdYaohlh,
+       t1.yaohlzt as houdYaohlhzt,
+       t.chanx,
+       substr(t1.mudd, 1, 9) mudd,
+       t.lingjbh,
+       t.lingjmc,
+       t.baozxh,
+       t.yaohsl,
+       case when t.yaohlzt ='00' then
+       t.daijfsl 
+       else null end as qiandJiaofsl,
+       '' as houdJiaofsl,
+       t.dingdh,
+       t.gongysdm,
+       t.chengysdm,
+       t.cangkbh as dinghCangkbh,
+       t.zickbh as dinghZick,
+       t1.cangkbh as xianbCangkbh,
+       t1.zickbh  as xianbZick,
+       t.yaohlscsj as yaohlbdsj,
+       t.zuiwsj as qiandYjjfsj,
+       t.jiaofj as qiandSjjfsj,
+       t.jiaofzt as qiandDdzt,
+       t1.beihsj as xiaohcBhsj,
+       t1.shangxsj as xiaohcYjsxsj,
+       t1.jiaofj as xiaohcSjsxsj,
+       t1.xiaohch ,
+       t1.tangc,
+       t1.chex
+  from ck_yaohl t, ck_yaonbhl t1
+ where t1.beiz = t.yaohlh and t.usercenter=t1.usercenter
+		<dynamic>
+		    <isEqual  property="shij" compareValue="0">
+		            <isNotEmpty prepend=" and " property="qissj">t.YAOHLSCSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t.YAOHLSCSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    <isEqual   property="shij" compareValue="1">
+		            <isNotEmpty prepend=" and " property="qissj">t.zuiwsj &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t.zuiwsj &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		     <isEqual   property="shij" compareValue="2">
+		            <isNotEmpty prepend=" and " property="qissj">t.jiaofj &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t.jiaofj &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    <isEqual   property="shij" compareValue="3">
+		            <isNotEmpty prepend=" and " property="qissj">t1.BEIHSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t1.BEIHSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    
+		     <isEqual   property="shij" compareValue="4">
+		            <isNotEmpty prepend=" and " property="qissj">t1.SHANGXSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t1.SHANGXSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		     <isEqual   property="shij" compareValue="5">
+		            <isNotEmpty prepend=" and " property="qissj">t1.JIAOFJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t1.JIAOFJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+			
+			<isNotEmpty prepend=" and " property="usercenter"> t.usercenter=#usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="yaohllx"> t.yaohllx =#yaohllx#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh"> t.lingjbh=#lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="mudd">substr(t1.mudd, 1, 9)= #mudd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="qiandYaohlh"> t.yaohlh=#qiandYaohlh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="qiandYaohlzt"> t.yaohlzt=#qiandYaohlzt#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="houdYaohlh"> t1.yaohlh=#houdYaohlh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="houdYaohlzt"> t1.yaohlzt=#houdYaohlzt#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="gongysdm"> t.gongysdm = #gongysdm#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="chengysdm"> t.chengysdm=#chengysdm#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohch"> t1.xiaohch=#xiaohch#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="tangc"> t1.tangc=#tangc#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="chanx"> t.chanx=#chanx#</isNotEmpty>
+		</dynamic>
+		order by  t.lingjbh,t1.mudd,t.zuiwsj desc,t1.shangxsj desc 
+	</select>
+
+	<!-- 按照查询条件查询外部要货令 -->
+	<select id="queryYaohlOfcdcount" parameterClass="java.util.Map"
+		resultClass="java.lang.Integer">
+		$head$
+		select t.yaohlh as qiandYaohlh,
+       t.yaohlzt as qiandYaohlhzt,
+       t1.yaohlh as houdYaohlh,
+       t1.yaohlzt as houdYaohlhzt,
+       t.chanx,
+       substr(t1.mudd, 1, 9) mudd,
+       t.lingjbh,
+       t.lingjmc,
+       t.baozxh,
+       t.yaohsl,
+       case when t.yaohlzt ='00' then
+       t.daijfsl 
+       else null end as qiandJiaofsl,
+       '' as houdJiaofsl,
+       t.dingdh,
+       t.gongysdm,
+       t.chengysdm,
+       t.cangkbh as dinghCangkbh,
+       t.zickbh as dinghZick,
+       t1.cangkbh as xianbCangkbh,
+       t1.zickbh  as xianbZick,
+       t.yaohlscsj as yaohlbdsj,
+       t.zuiwsj as qiandYjjfsj,
+       t.jiaofj as qiandSjjfsj,
+       t.jiaofzt as qiandDdzt,
+       t1.beihsj as xiaohcBhsj,
+       t1.shangxsj as xiaohcYjsxsj,
+       t1.jiaofj as xiaohcSjsxsj,
+       t1.xiaohch ,
+       t1.tangc,
+       t1.chex
+  from ck_yaohl t, ck_yaonbhl t1
+ where t1.beiz = t.yaohlh and t.usercenter=t1.usercenter
+		<dynamic>
+		    <isEqual  property="shij" compareValue="0">
+		            <isNotEmpty prepend=" and " property="qissj">t.YAOHLSCSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t.YAOHLSCSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    <isEqual   property="shij" compareValue="1">
+		            <isNotEmpty prepend=" and " property="qissj">t.zuiwsj &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t.zuiwsj &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		     <isEqual   property="shij" compareValue="2">
+		            <isNotEmpty prepend=" and " property="qissj">t.jiaofj &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t.jiaofj &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    <isEqual   property="shij" compareValue="3">
+		            <isNotEmpty prepend=" and " property="qissj">t1.BEIHSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t1.BEIHSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    
+		     <isEqual   property="shij" compareValue="4">
+		            <isNotEmpty prepend=" and " property="qissj">t1.SHANGXSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t1.SHANGXSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		     <isEqual   property="shij" compareValue="5">
+		            <isNotEmpty prepend=" and " property="qissj">t1.JIAOFJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">t1.JIAOFJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+			
+			<isNotEmpty prepend=" and " property="usercenter"> t.usercenter=#usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="yaohllx"> t.yaohllx =#yaohllx#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh"> t.lingjbh=#lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="mudd">substr(t1.mudd, 1, 9)= #mudd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="qiandYaohlh"> t.yaohlh=#qiandYaohlh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="qiandYaohlzt"> t.yaohlzt=#qiandYaohlzt#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="houdYaohlh"> t1.yaohlh=#houdYaohlh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="houdYaohlzt"> t1.yaohlzt=#houdYaohlzt#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="gongysdm"> t.gongysdm = #gongysdm#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="chengysdm"> t.chengysdm=#chengysdm#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohch"> t1.xiaohch=#xiaohch#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="tangc"> t1.tangc=#tangc#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="chanx"> t.chanx=#chanx#</isNotEmpty>
+		</dynamic>
+		order by  t.lingjbh,t1.mudd,t.zuiwsj desc,t1.shangxsj desc 
+		$foot$
+	</select>
+	
+	<!--  g1前段  g后段   -->
+<select id="queryYaohlOfmd" parameterClass="java.util.Map"
+		resultClass="com.athena.ck.entity.yaohl.Yaohls">
+			select g1.yaohlh as qiandYaohlh,
+       g1.yaohlzt as qiandYaohlhzt,
+       g.yaohlh as houdYaohlh,
+       g.yaohlzt as houdYaohlhzt,
+       g1.chanx,
+       substr(g.mudd, 1, 9) mudd,
+       g1.lingjbh,
+       g1.lingjmc,
+       g1.baozxh,
+       g1.yaohsl,
+       '' qiandJiaofsl,
+       '' houdJiaofsl,
+       
+       case when g1.yaohlzt ='00' then 
+       case when g1.jiaofj &gt; g1.zuiwsj then 0 
+       else
+       		case when g1.jiaofj &lt;= g1.zuiwsj  and g1.jiaofj &gt;= g1.zuizsj then 2 
+       		else case when g1.jiaofj &lt; g1.zuizsj then 1 else null end  end 
+       end
+       else null end as qiandDdzt,
+       
+       g1.dingdh,
+       g.gongysdm,
+       '' chengysdm,
+       g1.dinghck as dinghCangkbh,
+       g1.dinghzck as dinghZick,
+       g.cangkbh as xianbCangkbh,
+       g.zickbh as  xianbZick,
+       g1.yaohlscsj as yaohlbdsj,
+       g1.zuiwsj as qiandYjjfsj,
+       g1.jiaofj as qiandSjjfsj,
+       g.beihsj as xiaohcBhsj,
+       g.shangxsj as xiaohcYjsxsj,
+       g.jiaofj as xiaohcSjsxsj,
+       g.xiaohch,
+       g.tangc,
+       g.chex
+  from ck_yaonbhl g,
+       (select t.yaohlh,
+       			t.usercenter,
+               t.yaohlzt,
+               t.chanx,
+               t.lingjbh,
+               t.lingjmc,
+               t.baozxh,
+               t.yaohsl,
+               t.dingdh,
+               t.cangkbh   dinghck,
+               t.zickbh    dinghzck,
+               t.yaohlscsj,
+               t.zuiwsj,
+                t.zuizsj,
+               t.jiaofj,
+               t.beiz
+          from ck_yaonbhl t
+         where t.yaohllx = 'MD'
+           and t.beiz is not null) g1
+ where g.yaohlh = g1.beiz  and g.usercenter=g1.usercenter
+		<dynamic>
+		    <isEqual  property="shij" compareValue="0">
+		            <isNotEmpty prepend=" and " property="qissj">g1.YAOHLSCSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g1.YAOHLSCSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    <isEqual   property="shij" compareValue="1">
+		            <isNotEmpty prepend=" and " property="qissj">g1.zuiwsj &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g1.zuiwsj &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		     <isEqual   property="shij" compareValue="2">
+		            <isNotEmpty prepend=" and " property="qissj">g1.jiaofj &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g1.jiaofj &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    <isEqual   property="shij" compareValue="3">
+		            <isNotEmpty prepend=" and " property="qissj">g.BEIHSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g.BEIHSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    
+		     <isEqual   property="shij" compareValue="4">
+		            <isNotEmpty prepend=" and " property="qissj">g.SHANGXSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g.SHANGXSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		     <isEqual   property="shij" compareValue="5">
+		            <isNotEmpty prepend=" and " property="qissj">g.JIAOFJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g.JIAOFJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+			
+			<isNotEmpty prepend=" and " property="usercenter"> g.usercenter=#usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh"> g.lingjbh=#lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="mudd"> substr(g.mudd, 1, 9) = #mudd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="qiandYaohlh"> g1.yaohlh=#qiandYaohlh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="qiandYaohlzt"> g1.yaohlzt=#qiandYaohlzt#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="houdYaohlh"> g.yaohlh=#houdYaohlh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="houdYaohlzt"> g.yaohlzt=#houdYaohlzt#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="gongysdm"> g.gongysdm = #gongysdm#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohch"> g.xiaohch=#xiaohch#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="tangc"> g.tangc=#tangc#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="chanx"> g1.chanx=#chanx#</isNotEmpty>
+		</dynamic>
+			order by  g.lingjbh,g.mudd,g1.zuiwsj desc,g.shangxsj desc 
+	</select>
+
+
+
+	<!--  g1前段  g后段   -->
+<select id="queryYaohlOfmdcount" parameterClass="java.util.Map"
+		resultClass="java.lang.Integer">
+		$head$ 
+			select g1.yaohlh as qiandYaohlh,
+       g1.yaohlzt as qiandYaohlhzt,
+       g.yaohlh as houdYaohlh,
+       g.yaohlzt as houdYaohlhzt,
+       g1.chanx,
+       substr(g.mudd, 1, 9) mudd,
+       g1.lingjbh,
+       g1.lingjmc,
+       g1.baozxh,
+       g1.yaohsl,
+       '' qiandJiaofsl,
+       '' houdJiaofsl,
+       
+       case when g1.yaohlzt ='00' then 
+       case when g1.jiaofj &gt; g1.zuiwsj then 0 
+       else
+       		case when g1.jiaofj &lt;= g1.zuiwsj  and g1.jiaofj &gt;= g1.zuizsj then 2 
+       		else case when g1.jiaofj &lt; g1.zuizsj then 1 else null end  end 
+       end
+       else null end as qiandDdzt,
+       
+       g1.dingdh,
+       g.gongysdm,
+       '' chengysdm,
+       g1.dinghck as dinghCangkbh,
+       g1.dinghzck as dinghZick,
+       g.cangkbh as xianbCangkbh,
+       g.zickbh as  xianbZick,
+       g1.yaohlscsj as yaohlbdsj,
+       g1.zuiwsj as qiandYjjfsj,
+       g1.jiaofj as qiandSjjfsj,
+       g.beihsj as xiaohcBhsj,
+       g.shangxsj as xiaohcYjsxsj,
+       g.jiaofj as xiaohcSjsxsj,
+       g.xiaohch,
+       g.tangc,
+       g.chex
+  from ck_yaonbhl g,
+       (select t.yaohlh,
+       			t.usercenter,
+               t.yaohlzt,
+               t.chanx,
+               t.lingjbh,
+               t.lingjmc,
+               t.baozxh,
+               t.yaohsl,
+               t.dingdh,
+               t.cangkbh   dinghck,
+               t.zickbh    dinghzck,
+               t.yaohlscsj,
+               t.zuiwsj,
+                t.zuizsj,
+               t.jiaofj,
+               t.beiz
+          from ck_yaonbhl t
+         where t.yaohllx = 'MD'
+           and t.beiz is not null) g1
+ where g.yaohlh = g1.beiz  and g.usercenter=g1.usercenter
+		<dynamic>
+		    <isEqual  property="shij" compareValue="0">
+		            <isNotEmpty prepend=" and " property="qissj">g1.YAOHLSCSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g1.YAOHLSCSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    <isEqual   property="shij" compareValue="1">
+		            <isNotEmpty prepend=" and " property="qissj">g1.zuiwsj &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g1.zuiwsj &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		     <isEqual   property="shij" compareValue="2">
+		            <isNotEmpty prepend=" and " property="qissj">g1.jiaofj &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g1.jiaofj &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    <isEqual   property="shij" compareValue="3">
+		            <isNotEmpty prepend=" and " property="qissj">g.BEIHSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g.BEIHSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		    
+		     <isEqual   property="shij" compareValue="4">
+		            <isNotEmpty prepend=" and " property="qissj">g.SHANGXSJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g.SHANGXSJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+		     <isEqual   property="shij" compareValue="5">
+		            <isNotEmpty prepend=" and " property="qissj">g.JIAOFJ &gt;= to_date(#qissj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		            <isNotEmpty prepend=" and " property="jiessj">g.JIAOFJ &lt;= to_date(#jiessj#,'yyyy-mm-dd HH24:mi:ss')</isNotEmpty>
+		    </isEqual>
+			
+			<isNotEmpty prepend=" and " property="usercenter"> g.usercenter=#usercenter#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="lingjbh"> g.lingjbh=#lingjbh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="mudd"> substr(g.mudd, 1, 9) = #mudd#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="qiandYaohlh"> g1.yaohlh=#qiandYaohlh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="qiandYaohlzt"> g1.yaohlzt=#qiandYaohlzt#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="houdYaohlh"> g.yaohlh=#houdYaohlh#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="houdYaohlzt"> g.yaohlzt=#houdYaohlzt#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="gongysdm"> g.gongysdm = #gongysdm#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="xiaohch"> g.xiaohch=#xiaohch#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="tangc"> g.tangc=#tangc#</isNotEmpty>
+			<isNotEmpty prepend=" and " property="chanx"> g1.chanx=#chanx#</isNotEmpty>
+		</dynamic>
+			order by  g.lingjbh,g.mudd,g1.zuiwsj desc,g.shangxsj desc 
+			$foot$
+	</select>	
+</sqlMap>

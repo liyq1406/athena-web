@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+.youi-datepicker-panel{
+	width:200px;
+	border:1pt solid silver;
+	padding:2px;
+	background-color:#FFFFFF;
+}
+
+.youi-datepicker-panel.datepicker-hide{
+	display:none;
+}
+
+.youi-datepicker-panel.datepicker-pop{
+	z-index:9999;
+	position:absolute;
+}
+
+.youi-datepicker-panel .datepicker-header a{
+	background-color:#FEF9FF;
+	text-decoration:none;
+}
+
+.youi-datepicker-panel .datepicker-header a:active{
+	color:black;
+}
+
+.youi-datepicker-panel .datepicker-footer{
+	background:url(images/field/calendar-vista-hd.gif);
+	padding-left:1px;
+}
+
+.youi-datepicker-panel .datepicker-content table{
+	background-color:white;
+}
+
+.youi-datepicker-panel .datepicker-content table td{
+	background-color:white;
+	text-align:center;
+	padding:1px 0;
+	cursor:pointer;
+}
+
+.youi-datepicker-panel .datepicker-content table a.datapicker-days{
+	padding:2px 4px;
+}
+
+.youi-datepicker-panel .datepicker-content table a.datapicker-days.small{
+	padding:2px 7px;
+}
+
+.youi-datepicker-panel .datepicker-content table a.datapicker-days:hover{
+	background-color:silver;
+}
+
+.youi-datepicker-panel .datepicker-content table a.datapicker-days.selected{
+	color:red;
+	background-color:#ccddef;
+}
+
+.youi-datepicker-panel .datepicker-content table a.datapicker-days.today{
+	color:blue;
+	background-color:#eeddee;
+}
+
+.youi-datepicker-panel .datepicker-content table th{
+	background:url(images/field/calendar-vista-hd.gif);
+	text-align:center;
+	padding:2px 0;
+}
+
+.youi-datepicker-panel  .datepicker-dateInfo span{
+	padding:0 2px;
+}
+
+.youi-datepicker-icon{
+	background:url(images/field/calendar.gif) no-repeat center;
+}
+
+.aButton{
+	cursor:pointer;
+	border:1pt solid silver;
+	margin:1px;
+}
+
+input.datepicker-time{
+	width:15px;
+	border:0;
+}

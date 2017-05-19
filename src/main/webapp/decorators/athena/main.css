@@ -1,0 +1,148 @@
+@CHARSET "UTF-8";
+
+body{
+	padding:0;
+	margin:0 0 0 -5px;
+}
+
+.header-logo-bg{
+	width:100%;
+	background:url(images/header-bg.png) -2px;
+}
+
+.main-navigator{
+	height:30px;
+	padding-left:10px;
+	background:url(images/navigator.png) no-repeat;
+}
+
+.main-navigator-right{
+	height:30px;
+	/**background:url(images/main.gif) no-repeat right 0;*/
+	padding-right:360px;
+}
+
+.main-navigator-content{
+	height:30px;
+	line-height:30px;
+	padding-left:6px;
+	vertical-align:middle;
+	/**background:url(images/main.gif) no-repeat -10px 0;*/
+	color:#481717;
+}
+
+.main-body{
+	padding-left:12px;
+	/**background:url("images/main-border.gif") repeat-y scroll 8px 0;*/
+}
+
+.main-body-right{
+	/**background:url(images/main-border.gif) repeat-y right;*/
+	padding-right:12px;
+}
+
+.main-footer{
+	height:10px;
+	padding-left:10px;
+	/**background:url(images/main.gif) no-repeat bottom;*/
+}
+
+.main-footer-right{
+	height:10px;
+	/**background:url(images/main.gif) no-repeat right bottom;*/
+	padding-right:360px;
+}
+
+.main-footer-content{
+	height:10px;
+	/**background:url(images/main.gif) no-repeat -10px bottom;*/
+	width:360px;
+}
+
+.page-split-y{
+	width:13px;
+	/**background:url(images/page-split-y.gif) repeat-y ;*/
+}
+
+.page-split-y div{
+	width:13px;
+}
+
+.youi-page-footer{
+	height:32px;
+	line-height:32px;
+	vertical-align:middle;
+	text-align:center;
+	background:url(images/bottom-bg.png);
+}
+
+.header-content{
+	height:64px;
+	width:80%;
+}
+.header-inner-left{
+	background:url(images/logo.png) no-repeat;
+}
+.header-inner-left div.header-div{
+	width:341px;
+}
+
+.header-inner-right{
+	background:url(images/logo-right.png) no-repeat right top;
+}
+
+.header-inner-right div{
+	width:180px;
+}
+
+.header-inner-center{
+	
+}
+
+.header-h-split{
+	background:#E6F6FA;
+}
+
+.header-bottom{
+	background:url(images/bottom_bj.png);
+	color:white;
+	font-weight:bold;
+}
+
+.header-welcome{
+	background:url(images/welcome.png);
+}
+
+.header-btn{
+	padding-left:2px;
+	/*background-image:url(images/header-btn.gif);*/
+}
+
+#system-title{
+	font-weight:bold;
+}
+
+.layout-panel.panel-center{
+	padding:2px;
+}
+
+.youi-page-content{
+	margin:0 6px;
+}
+
+.youi-layout.borderLayout {
+	background:none repeat scroll 0 0 white;
+	position:relative;	
+}
+
+td.td-west{
+	background:url(images/menu-bg.png) top;
+}
+.page-split-y,.page-split-y div{
+	width:1px;
+}
+
+td.field-label {
+	width:100px;
+}
+	

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="rongqi">
+	<resultMap class="com.athena.ck.entity.rongqi.Rongqjs" id="rongqjsd">
+		<result column="jsfhdh" property="jsfhdh" />
+		<result column="jiesrq" property="jiesrq" />
+		<result column="edit_time" property="edit_time" />
+		<result column="zhizs" property="zhizs" />
+		<result column="tch" property="tch" />
+		<result column="rongqxh" property="rongqxh" />
+		<result column="rongqsl" property="rongqsl" />
+		<result column="rongqye" property="rongqye" />
+		<result column="zaiy" property="zaiy" />
+	</resultMap>
+	
+	<select id="queryRongqjsd" resultClass="com.athena.ck.entity.rongqi.Rongqjs"  parameterClass="java.util.Map">
+	    select 
+	      t.jsfhdh,
+	      t.jiesrq,
+	      t.edit_time,
+	      t.zhizs,
+	      t.tch,
+	      t.rongqxh,  
+	      t.rongqsl,
+	      t.rongqye,
+	      t.zaiy as zaiy,
+	      t.danjlx,
+	      t.songhr
+	    from
+	      ${dbSchemal0}ck_rongqjs t
+	    where
+	      t.USERCENTER = #usercenter#
+	      and t.jsfhdh = #jsfhdh# 
+	      and t.danjlx = '1'
+	      and t.zhuangt = '1'
+	      and t.danjsx=#danjlx#	     
+	</select>
+	
+	<select id="queryRongqjsd_634" resultClass="com.athena.ck.entity.rongqi.RongQiPring_634"  parameterClass="java.util.Map">		
+		select a.jsfhdh as jsfhdh,
+		       a.chengysbh as chengysdm,
+               a.chengysmc as chengysmc,
+               a.gongysdm as gongysdm,
+               a.gongysmc as gongysmc,
+		       a.tch as kach,
+		       a.rongqxh as rongqxh,
+		       a.rongqsl as rongqsl,
+		       a.rongqye as rongqye,
+		       a.zaiy as zhaiy,
+		       substr(to_char(a.jiesrq, 'YYYY-MM-DD HH24:MI:SS'), 0, 11) as riq,
+		       substr(to_char(a.jiesrq, 'YYYY-MM-DD HH24:MI:SS'),
+		              11,
+		              LENGTH(a.jiesrq)) as shij
+		  from ${dbSchemal0}ck_rongqjs a
+		 where a.jsfhdh = #jsfhdh#
+		   and a.usercenter = #usercenter#
+		   and a.danjlx = '1'
+		   and a.zhuangt = '1'
+		   and a.danjsx = #danjlx#
+	</select>
+	
+	<resultMap class="com.athena.ck.entity.rongqi.Rongqjs" id="rongqfhd">
+        <result column="jsfhdh" property="jsfhdh" />
+        <result column="edit_time" property="edit_time" />
+        <result column="gongysdm" property="gongysdm" />
+        <result column="chengys" property="chengys" />
+        <result column="tch" property="tch" />
+        <result column="rongqxh" property="rongqxh" />
+        <result column="rongqsl" property="rongqsl" />
+        <result column="rongqye" property="rongqye" />
+        <result column="zaiy" property="zaiy" />
+    </resultMap>
+    
+    <select id="queryRongqfhd" resultMap="rongqfhd">
+    	select a.danjbh as jsfhdh,
+       		a.edit_time,
+       		a.gongysdm,
+       		a.wulsdm as chengys,
+      		a.tch,
+       		a.rongqlx as rongqxh,
+       		a.rongqsl,
+      		b.rongqsl as rongqye,
+       		a.zaiy
+  		from ${dbSchemal0}ck_rongqdj a,${dbSchemal0}ck_rongqzz b 
+ 		where a.danjlx = '3'
+ 		and a.usercenter=b.usercenter
+ 		and a.rongqlx=b.rongqlb
+ 		and a.gongysdm=b.gongysdm
+ 		and a.wulsdm=b.chengys
+ 		and b.wuld=(select c.jizqbh from ${dbSchemal0}ckx_rongqc c where a.wuld=c.rongqcbh and a.usercenter=b.usercenter)
+ 		and b.jzlx='2'
+ 		and a.zhuangt='1'
+ 		and a.danjbh=#jsfhdh#
+    </select>
+    
+
+    <select id="queryRongqwxd" resultClass="com.athena.ck.entity.rongqi.Rongqwx"  parameterClass="java.util.Map">
+	      select t.weixdh,
+	       to_char(t.create_time, 'yyyy-mm-dd') as riq,
+	       to_char(t.create_time, 'hh24:mi:ss') as shij,
+	       t1.rqxh,
+	       t1.shul,
+	       t.wld,
+	       t.yuany,
+	       to_char(t.yujwcrq, 'yyyy-mm-dd') as yjwcsj,       
+	       t.weixs as shenqbm
+	 	   FROM ${dbSchemal0}CK_RONGQWX t,${dbSchemal0}CK_RONGQWXMX t1
+		   WHERE t.WEIXDH = t1.weixdh
+		   AND t.USERCENTER = t1.USERCENTER
+		   AND t.USERCENTER = #usercenter#
+		   AND t.WEIXDH = #weixdh#
+		   and  t.zhuangt = '1'
+    </select>    
+    <select id="queryRongqbfsqd" resultClass="com.athena.ck.entity.rongqi.Rongqdj"  parameterClass="java.util.Map">
+	    select 
+	      t.danjbh,
+	      to_char(t.edit_time,'yyyy-mm-dd') as riq,
+	      to_char(t.edit_time,'hh24:mi:ss') as shij,
+	      t.rongqlx,
+	      t.rongqsl,
+	      t.wuld,
+	      t.zhizsdm,
+	      t.zaiy
+	    from
+	      ${dbSchemal0}ck_rongqdj t
+	    where
+	      t.danjbh =#danjbh# 
+	      and t.danjlx = '2'
+	      and t.zhuangt = '1'
+    </select>
+    <!--容器报废申请单打印-->
+	<select id="print_63701" resultClass="com.athena.ck.entity.rongqi.Rongqdbd"  parameterClass="java.util.Map">
+		select 
+	        t1.diaobdh,
+     	    t1.gongysdm as gongys,
+       		t1.chengysbh as wuls,
+      		t1.diaorwld as diaordw,
+      		t1.diaocwld as diaocdw,
+      		t1.diaobsj,
+      		t1.creator,
+       		t1.shengqr,
+       		t2.chuksl as shenqsl,
+        	t2.rqxh as rongqbh
+   		FROM ${dbSchemal0}CK_DIAOBD t1, ${dbSchemal0}CK_DIAOBDMX t2
+	 	WHERE t1.DIAOBDH = t2.DIAOBDH
+	   	AND t1.USERCENTER = t2.USERCENTER
+	   	AND t1.ZHUANGT!='4'
+	  	AND t1.DIAOBDH = #diaobdh#
+	  	AND t1.USERCENTER = #usercenter#
+	</select>
+    <!--容器报废申请单打印-->
+	<select id="printrongqidiaobo" resultClass="com.athena.ck.entity.rongqi.Rongqdbd"  parameterClass="java.util.Map">
+		select 
+	        t1.diaobdh,
+     	    t1.gongysdm as gongys,
+       		t1.chengysbh as wuls,
+      		t1.diaorwld as diaordw,
+      		t1.diaocwld as diaocdw,
+      		t1.diaobsj,
+       		t1.shengqr,
+       		t2.chuksl as shenqsl,
+        	t2.rqxh as rongqbh
+   		FROM ${dbSchemal0}CK_DIAOBD t1, ${dbSchemal0}CK_DIAOBDMX t2
+	 	WHERE t1.DIAOBDH = t2.DIAOBDH
+	   	AND t1.USERCENTER = t2.USERCENTER
+	   	AND t1.ZHUANGT!='4'
+	  	AND t1.DIAOBDH = #diaobdh#
+	  	AND t1.USERCENTER = #usercenter#
+	  	AND T2.CHUKSL>0
+	</select>
+	<!--容器盘点指导单-->
+	<select id="querypandzdxls" resultClass="com.athena.ck.entity.rongqi.rongqzdjgd"  parameterClass="java.util.Map">
+	select t.id as pandbh,t.wuld,t.qid_time as shij,t.qidr as caozy,t.rongqlx as rongqxh,t.gongysdm,t.wulsdm as chengysdm,t.qicsl as rongqsl from ${dbSchemal0}CK_RONGQLSXX t where t.Wuld=#wuld# and t.USERCENTER=#usercenter#
+	</select>
+			<!--容器盘点结果单-->
+	<select id="querypandjgxls" resultClass="com.athena.ck.entity.rongqi.rongqzdjgd"  parameterClass="java.util.Map">
+		SELECT t.id as pandbh,t.wuld,t.jies_time as shij
+			   ,t.qidr as caozy,t.rongqlx as rongqxh,t.gongysdm,t.wulsdm as wuls,t.qicsl as rongqsl,
+			   t.qicsl as pandqsl,t.rongqsl as pandhsl,t.rongqce as pandcy 
+			   FROM ${dbSchemal0}CK_RONGQPDLS t 
+	    WHERE t.WULD=#wuld#
+			AND t.USERCENTER=#usercenter#
+			AND t.ID=(SELECT MAX(b.ID) 
+			   FROM ${dbSchemal0}CK_RONGQPDLS b 
+			   WHERE b.WULD=#wuld# AND b.USERCENTER=#usercenter#)
+    </select>
+    
+    
+     <!-- 64206  容器出库单打印  主区域  0013142-->
+    <select id="rongqtgysdy_00" resultClass="com.athena.ck.entity.rongqi.Rongqfh"  parameterClass="java.util.Map">		
+			select  a.fanhdh as fanhdh,
+					a.fanhs as fanhs,
+					a.fanhsmc as fanhsmc,
+					a.tch as tch,
+					a.fanhjzq as fanhjzq,
+					a.cishu as cishu,
+					substr(to_char(a.create_time, 'YYYY-MM-DD HH24:MI:SS'), 0, 11) as riq,
+			    substr(to_char(a.create_time, 'YYYY-MM-DD HH24:MI:SS'),
+			              11,
+			              LENGTH(a.create_time)) as shij				
+			from ${dbSchemal0}ck_rongqfh a 
+	       	where a.fanhdh = #fanhdh#
+			      and a.usercenter = #usercenter#
+			      and a.danjzt = '2'
+	</select>
+    
+    
+   <!-- 64206  容器出库单打印  列表1  0013142-->
+    <select id="rongqtgysdy_01" resultClass="com.athena.ck.entity.rongqi.RongQiPring_634"  parameterClass="java.util.Map">				      
+			      select a.rongqbh as rongqbh,
+			      count(a.rongqbh) as  rongqsl ,
+			      a.gcbh as gongysdm,
+				  a.gcmc as gongysmc
+					  from ${dbSchemal0}ck_rongqfhmx a
+					 where a.fanhdh = #fanhdh#
+					   and a.usercenter = #usercenter#
+					   and a.rongqbh is not null 
+					  group by a.fanhdh , a.usercenter ,a.rongqbh ,a.gcbh ,a.gcmc
+			      
+			      
+	</select>
+	
+	<!-- 64206  容器出库单打印  列表2 0011516 按照容器型号升序  0013142-->
+    <select id="rongqtgysdy_02" resultClass="com.athena.ck.entity.rongqi.RongQiPring_634"  parameterClass="java.util.Map">		
+			select  c.rongqxh as rongqxh,
+				c.rongqsl as rongqsl , 
+				c.gcbh as gongysdm,
+				c.gcmc as gongysmc
+			from ${dbSchemal0}ck_rongqfhmx c 
+			where c.fanhdh = #fanhdh#
+			    and c.usercenter = #usercenter#
+			    and c.rongqxh is not null 
+			    order by c.rongqxh 
+	</select>
+		
+	<!-- 64206  容器出库单打印  序号：  记账区+承运商编-->
+    <select id="rongqtgysdy_xuh" resultClass="java.lang.Integer"  parameterClass="java.util.Map">
+             select beiz from ${dbSchemal0}ck_rongqfh a 
+				 where a.fanhdh = #fanhdh#
+				 and a.usercenter = #usercenter#
+	</select>
+	
+	<!-- 642-643  返还单打印次数--> 
+	<update id="rongqtgysdy_cs" parameterClass="java.util.Map" >
+		update ${dbSchemal0}ck_rongqfh  set cishu=cishu+1
+		where  usercenter = #usercenter#
+		and    fanhdh=#fanhdh# 
+	</update>	
+	
+	
+	
+	<!-- 644 11891 -->
+	<select id="getUsercenterByFanhdh" resultClass="java.lang.String" parameterClass="java.lang.String">
+		select usercenter from ${dbSchemal0}ckx_usercenter
+			where substr(usercenter,2,1) = substr(#fanhdh#,1,1)
+	</select>
+	
+    
+    <!-- 11891 644 -->
+    <insert id="savezwls">
+    	insert into ${dbSchemal0}ck_rongqzwls(usercenter,jsfhdh,flag,rongqxh,gongysdm,chengysbh,gongysmc,chengysmc,wuld,diaorwld,rongqsl,jiesrq,caozy,zaiy,creator,edit_time,caozm,tch)
+    	values(#usercenter#,#jsfhdh#,#flag#,#rongqxh#,#gongysdm#,#chengysbh#,#gongysmc#,#chengysmc#,#wuld#,#diaorwld#,#rongqsl#,to_date(#jiesrq#,'YYYY-MM-dd hh24:mi:ss'),#caozy#,#zaiy#,#creator#,to_date(#create_time#,'YYYY-MM-dd hh24:mi:ss'),#caozm#,#tch#)
+    </insert>
+    
+        <!-- 11891 644 -->
+    <insert id="savezwls_s">
+    	insert into ${dbSchemal0}ck_rongqzwls(usercenter,jsfhdh,flag,rongqxh,gongysdm,chengysbh,gongysmc,chengysmc,wuld,diaorwld,rongqsl,jiesrq,caozy,zaiy,creator,edit_time,caozm,tch)
+    	values(#usercenter#,#jsfhdh#,#flag#,#rongqxh#,#gongysdm#,#chengysbh#,#gongysmc#,#chengysmc#,#wuld#,#diaorwld#,#rongqsl#,to_date(#jiesrq#,'YYYY-MM-dd hh24:mi:ss'),#caozy#,#zaiy#,#creator#,to_date(#create_time#,'YYYY-MM-dd hh24:mi:ss'),#caozm#,#tch#)
+    </insert>
+    <!-- 11891 644 -->
+    <select id="getLiush" resultClass="java.lang.String">
+    	select RQZZ_SEQNO.nextval from dual
+    </select>
+            <!-- 11891 644 -->
+    <insert id="savezz_l">
+    	insert into ${dbSchemal0}ck_rongqzz_l(usercenter,liush,flag,jzlx,rongqlb,gongysdm,chengys,wuld,rongqsl,edit_time)
+    	values(#usercenter#,#liush#,#flag#,#jzlx#,#rongqlb#,#gongysdm#,#chengys#,#wuld#,#rongqsl#,to_date(#edit_time#,'YYYY-MM-dd hh24:mi:ss'))
+    </insert>
+        <!-- 11891 644 -->
+    <select id="getJizq" resultClass="java.lang.String" parameterClass="java.util.HashMap">
+    	select jizqbh from ${dbSchemal0}ckx_rongqc where usercenter=#usercenter# and rongqcbh=#wuld#
+    </select>
+</sqlMap>

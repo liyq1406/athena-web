@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+.youi-tree ul li.treeNode span.button{
+	background-image:url(../icon/btn.gif);
+}
+
+.youi-tree ul li.treeNode span.check.add a{
+	background:url('../icon/add.gif') no-repeat 0px 1px;
+	padding-left:16px;
+}
+
+.youi-tree ul li.treeNode span.check.edit a{
+	background:url('../icon/edit.gif') no-repeat 0px 1px;
+	padding-left:16px;
+}
+
+.youi-tree ul li.treeNode span.check.remove a{
+	background:url('../icon/remove.gif') no-repeat 0px 1px;
+	padding-left:16px;
+}
+
+.youi-tree ul li.treeNode span.btn{
+	background:url('../icon/btn.gif') no-repeat 0px 1px;
+	padding-left:16px;
+}
+
+#tree_menu_authorize li.treeNode{
+	display:none;
+}
+
+#tree_menu_part  li.treeNode.hide,#tree_menu_result li.treeNode{
+	display:none;
+}
+
+#tree_menu_result li.treeNode.show,#tree_menu_result li.treeNode.root{
+	display:block;
+}
+
+.menu-tree-title{
+	height:20px;
+	border:1pt silver solid;
+	margin:2px;
+	background:#CCEEDD;
+	text-align:center;
+	font-weight:bold;
+}
+
+.menu-tree-container{
+	height:330px;
+	overflow:auto;
+}
+
+.btn-container{
+	margin-top:90px;
+}
+
+.btn-container td{
+	height:28px;
+}
+
+.btn-container .btn{
+	padding:2px 10px;
+	border:1pt silver solid;
+	cursor:pointer;
+}

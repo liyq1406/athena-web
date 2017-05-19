@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" maxRequests="32" maxSessions="10"
+		maxTransactions="5" useStatementNamespaces="true" />
+	<sqlMap resource="com/toft/core2/dao/TableUtils.xml"/>
+	
+	<properties resource="com/athena/ck/config/sqlmap.properties" />
+	
+	<!--整合ck 添加ck的sql配置 -->
+	<sqlMap resource="com/athena/ck/entity/common.xml"/>
+	<sqlMap resource="com/athena/ck/entity/shouhuo.xml"/>
+	<sqlMap resource="com/athena/ck/entity/beihuo.xml"/>
+	<sqlMap resource="com/athena/ck/entity/rongqi.xml"/>
+	<sqlMap resource="com/athena/ck/entity/yichang.xml"/>
+	<sqlMap resource="com/athena/ck/entity/shenbao.xml"/>
+	<sqlMap resource="com/athena/ck/entity/kunei.xml"/>
+	<sqlMap resource="com/athena/ck/entity/kdys.xml"/>
+	<sqlMap resource="com/athena/ck/entity/xianbkc.xml"/>
+	<sqlMap resource="com/athena/ck/entity/xinanxpd.xml"/>
+	<sqlMap resource="com/athena/ck/entity/clrc.xml"/>	
+	
+	<!--整合ck 添加ck的sql配置 -->
+	<sqlMap resource="com/athena/ck/entity/yaohl.xml"/>
+</sqlMapConfig>

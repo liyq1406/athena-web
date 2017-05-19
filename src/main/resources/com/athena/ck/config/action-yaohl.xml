@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+
+<!-- CD/MD上线全程跟踪 要货令查询  hzg 2014.10.31  mantis:10586-->
+	<package name="yaohl" extend="toft-default" namespace="/yaohl">
+		<!-- 要货令查询初始化 -->
+		<action name="yaohlcdmd" class="yaohlsAction" method="accessInitPages">
+			<result name="select">/WEB-INF/pages/ck/yaohl/yaohlCdmd.jsp</result>
+		</action>
+		
+		<action name="queryYaohlOfCdmd" class="yaohlsAction" method="queryYaohlOfCdmd" />
+		
+		<!--手动拼下拉框集合-->
+		<action name="selectQdYhlzt" class="yaohlsAction" method="selectQdYhlzt"></action>
+		<action name="downLoadFileYhlCDMD" class="yaohlsAction" method="downLoadFileYhlCDMD"></action>
+		<action name="expcheck" class="yaohlsAction" method="expcheck"></action>
+	</package>
+</toft>

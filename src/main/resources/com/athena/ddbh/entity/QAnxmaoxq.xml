@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="maoXqCompare">
+<select id="selAnxMxqs" resultClass="com.athena.ddbh.entity.Anxmaoxq" parameterClass="com.athena.ddbh.entity.Anxmaoxq">
+		
+select usercenter,ofh,zongzlsh,decode(hanzzzbz,'1','总装','2','焊装') hanzzzbz,
+<!-- 0007182 将emon 转换成字符模式-->
+to_char(emonsj,'yyyy-MM-dd hh24:mi:ss') emonsj,shunxh,lingj,danw,xiaohd,to_char(xiaohsj,'yyyy-MM-dd hh24:mi:ss') xiaohsj,
+xiaohxs, decode(xuqly,'1','CLV','3','SPPV')  xuqly,chej,xianh,zhizlx,to_char(chaifsj ,'yyyy-MM-dd hh24:mi:ss') chaifsj 
+ from ${dbSchemal5}ddbh_chaifjgxx x 
+		<dynamic prepend="where">
+				<isNotEmpty prepend=" and " property="xhsjTo">
+					<![CDATA[xiaohsj >= to_date(#xhsjTo#,'yyyy-MM-dd hh24:mi:ss') ]]> 
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xhsjFrom">
+					<![CDATA[xiaohsj <= to_date(#xhsjFrom#,'yyyy-MM-dd hh24:mi:ss')  ]]> 
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="usercenter">
+					usercenter = #usercenter#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="lingj">
+					lingj = #lingj#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xianh">
+					xianh = #xianh#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xiaohd">
+					xiaohd = #xiaohd#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xuqly">
+					xuqly = #xuqly#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="ofh">
+					ofh = #ofh#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="zongzlsh">
+					zongzlsh = #zongzlsh#
+				</isNotEmpty>
+			</dynamic>
+			
+			<!-- 0007182 按照用户中心、零件、消耗点、消耗时间升序，需求来源降序 -->
+		 order by usercenter,lingj,xiaohd,xiaohsj,zongzlsh asc 
+	</select>
+	<select id="selAnxMxqsExport" resultClass="com.athena.ddbh.entity.Anxmaoxq" parameterClass="com.athena.ddbh.entity.Anxmaoxq">
+		
+select usercenter,ofh,zongzlsh,decode(hanzzzbz,'1','总装','2','焊装') hanzzzbz,
+<!-- 0007182 将emon 转换成字符模式-->
+to_char(emonsj,'yyyy-MM-dd hh24:mi:ss') emonsj,shunxh,lingj,danw,xiaohd,to_char(xiaohsj,'yyyy-MM-dd hh24:mi:ss') xiaohsj,
+xiaohxs, decode(xuqly,'1','CLV','3','SPPV')  xuqly,chej,xianh,zhizlx,to_char(chaifsj ,'yyyy-MM-dd hh24:mi:ss') chaifsj
+ from ${dbSchemal5}ddbh_chaifjgxx x 
+		<dynamic prepend="where">
+				<isNotEmpty prepend=" and " property="xhsjTo">
+					<![CDATA[xiaohsj >= to_date(#xhsjTo#,'yyyy-MM-dd hh24:mi:ss') ]]> 
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xhsjFrom">
+					<![CDATA[xiaohsj <= to_date(#xhsjFrom#,'yyyy-MM-dd hh24:mi:ss')  ]]> 
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="usercenter">
+					usercenter = #usercenter#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="lingj">
+					lingj = #lingj#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xianh">
+					xianh = #xianh#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xiaohd">
+					xiaohd = #xiaohd#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="xuqly">
+					xuqly = #xuqly#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="ofh">
+					ofh = #ofh#
+				</isNotEmpty>
+				<isNotEmpty prepend=" and " property="zongzlsh">
+					zongzlsh = #zongzlsh#
+				</isNotEmpty>
+			</dynamic>
+			<!-- 0007182 根据条件筛选获取数据量，如果数据量小于5000，则导出全部，否则导出0条 -->
+			<![CDATA[and  rownum <= case when (
+			             select count(*) from ${dbSchemal5}ddbh_chaifjgxx ]]> 
+							<dynamic prepend="where">
+							<isNotEmpty prepend=" and " property="xhsjTo">
+								<![CDATA[xiaohsj >= to_date(#xhsjTo#,'yyyy-MM-dd hh24:mi:ss') ]]> 
+							</isNotEmpty>
+							<isNotEmpty prepend=" and " property="xhsjFrom">
+								<![CDATA[xiaohsj <= to_date(#xhsjFrom#,'yyyy-MM-dd hh24:mi:ss')  ]]> 
+							</isNotEmpty>
+							<isNotEmpty prepend=" and " property="usercenter">
+								usercenter = #usercenter#
+							</isNotEmpty>
+							<isNotEmpty prepend=" and " property="lingj">
+								lingj = #lingj#
+							</isNotEmpty>
+							<isNotEmpty prepend=" and " property="xianh">
+								xianh = #xianh#
+							</isNotEmpty>
+							<isNotEmpty prepend=" and " property="xiaohd">
+								xiaohd = #xiaohd#
+							</isNotEmpty>
+							<isNotEmpty prepend=" and " property="xuqly">
+								xuqly = #xuqly#
+							</isNotEmpty>
+							<isNotEmpty prepend=" and " property="ofh">
+								ofh = #ofh#
+							</isNotEmpty>
+							<isNotEmpty prepend=" and " property="zongzlsh">
+								zongzlsh = #zongzlsh#
+							</isNotEmpty>
+						</dynamic>
+			     <![CDATA[   )>5000 then 0 else  5000 end ]]> 
+			<!-- 0007182 按照用户中心、零件、消耗点、消耗时间升序，需求来源降序 -->
+		 order by usercenter,lingj,xiaohd,xiaohsj,zongzlsh asc 
+	</select>
+</sqlMap>

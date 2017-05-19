@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toft>
+	<package name="shenbao" extend="toft-default" namespace="/ck">
+		<!-- 集装箱申报开始 -->
+		<!-- 重箱申报页面 -->
+		<action name="501" class="shenbAction" method="zhongxsbym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/501.jsp</result>
+		</action>
+        <!-- 重箱申报 -->
+		<action name="50101" class="shenbAction" method="zhongxsb"></action>
+        <!-- 空箱申报页面 -->
+		<action name="502" class="shenbAction" method="kongxsbym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/502.jsp</result>
+		</action>
+        <!-- 空箱申报 -->
+		<action name="50201" class="shenbAction" method="kongxsb"></action>
+        <!-- 返箱申报页面 -->
+		<action name="503" class="shenbAction" method="fanxsbym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/503.jsp</result>
+		</action>
+        <!-- 返箱申报 -->
+		<action name="50301" class="shenbAction" method="fanxsb"></action>
+		 <!-- 返箱申报打印 -->
+		<action name="50305" class="shenbAction" method="fanxsbPrint"></action>
+		
+		
+        <!-- 重箱纠纷页面 -->
+		<action name="504" class="shenbAction" method="zhongxjfym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/504.jsp</result>
+		</action>
+        <!-- 重箱纠纷  -->
+		<action name="50401" class="shenbAction" method="zhongxjf"></action>
+        <!-- 重箱申报取消页面 -->
+		<action name="505" class="shenbAction" method="zhongxsbqxym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/505.jsp</result>
+		</action>
+        <!-- 重箱申报取消 -->
+		<action name="50501" class="shenbAction" method="zhongxsbqx"></action>
+        <!-- 重箱申报查询页面 -->
+		<action name="506" class="shenbAction" method="zhongxsbcxym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/506.jsp</result>
+		</action>
+        <!-- 重箱申报查询 -->
+		<action name="50601" class="shenbAction" method="zhongxsbcx"></action>
+        <!-- 空箱申报取消页面 -->
+		<action name="507" class="shenbAction" method="kongxsbqxym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/507.jsp</result>
+		</action>
+        <!-- 空箱申报取消 -->
+		<action name="50701" class="shenbAction" method="kongxsbqx"></action>
+        <!-- 返箱申报单查询页面 -->
+		<action name="508" class="shenbAction" method="fanxsbdcxym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/508.jsp</result>
+		</action>
+        <!-- 返箱申报单查询 -->
+		<action name="50801" class="shenbAction" method="fanxsbdcx"></action>
+        <!-- 返箱申报取消页面 -->
+		<action name="509" class="shenbAction" method="fanxsbqxym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/509.jsp</result>
+		</action>
+        <!-- 返箱申报取消-->
+		<action name="50901" class="shenbAction" method="fanxsbqx"></action>
+        <!-- 空箱申报查询页面 -->
+		<action name="510" class="shenbAction" method="kongxsbqxym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/510.jsp</result>
+		</action>
+        <!-- 空箱申报查询 -->
+		<action name="51001" class="shenbAction" method="kongxsbcx"></action>
+        <!-- 集装箱查询页面 -->
+		<action name="511" class="shenbAction" method="jizxcxym">
+			<result name="select">/WEB-INF/pages/ck/shenbao/511.jsp</result>
+		</action>
+        <!-- 集装箱查询 -->
+		<action name="51101" class="shenbAction" method="jizxcx"></action>
+		 <!-- 集装箱打印 -->
+		<action name="51105" class="shenbAction" method="jizxPrint"></action>
+        
+	</package>
+</toft>

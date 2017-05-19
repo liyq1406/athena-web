@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="beihuo">
+	<resultMap class="com.athena.ck.entity.beihuo.Beihdtbyhl" id="beihdtbyhl">
+		<result column="yaohlh" property="yaohlh" />
+		<result column="peislb" property="peislb" />
+		<result column="chanx" property="chanx" />
+		<result column="xiaohd" property="xiaohd" />
+		<result column="yaohslsum" property="yaohslsum" />
+		<result column="beihslsum" property="beihslsum" />
+	</resultMap>
+	
+	<select id="queryTongbyhl" resultMap="beihdtbyhl">
+    select
+      bx.yaohlh,
+      bx.peislb,
+      bx.chanx,
+      bx.xiaohd,
+      sum(bx.yaohsl) as yaohslsum,
+      sum(bx.beihsl) as beihslsum
+    from 
+      ${dbSchemal0}ck_beihd bd,
+      ${dbSchemal0}ck_beihdmx bx
+    where
+      bd.beihdh = bx.beihdh and
+      bd.beihdh = #beihdh#
+    group by
+      bx.yaohlh,
+      bx.peislb,
+      bx.chanx,
+      bx.xiaohd
+	</select>
+	
+   <resultMap class="com.athena.ck.entity.beihuo.Beihdtbyhlmx" id="beihdtbyhlmx">
+        <result column="xuh" property="xuh" />
+        <result column="lingjbh" property="lingjbh" />
+        <result column="liush" property="liush" />
+        <result column="lingjmc" property="lingjmc" />
+        <result column="yaohsl" property="yaohsl" />
+        <result column="xiaosxsj" property="xiaosxsj" />
+        <result column="elh" property="elh" />
+    </resultMap>
+    
+    <select id="queryTongbyhlmx" resultMap="beihdtbyhlmx">
+    select 
+      bx.yaohlh,
+      bx.xuh,
+      bx.lingjbh,
+      bx.liush,
+      bx.lingjmc,
+      bx.yaohsl,
+      bx.xiaosxsj,
+      bx.elh
+    from
+      ${dbSchemal0}ck_beihdmx bx
+    where
+      bx.yaohlh = #yaohlh#
+    </select>
+    
+    <resultMap class="com.athena.ck.entity.beihuo.Kuccx" id="kuccx">
+        <result column="cangkbh" property="cangkbh" />
+        <result column="ush" property="ush" />
+        <result column="ucgs" property="ucgs" />
+        <result column="gongysdm" property="gongysdm" />
+        <result column="kuwbh" property="kuwbh" />
+        <result column="lingjsl" property="lingjsl" />
+        <result column="danw" property="danw" />
+        <result column="elh" property="elh" />
+        <result column="pich" property="pich" />
+        <result column="ruklx" property="ruklx" />
+        <result column="rukrq" property="rukrq" />
+        <result column="shixrq" property="shixrq" />
+        <result column="kucts" property="kucts" />
+        <result column="zhuangtsx" property="zhuangtsx" />
+    </resultMap>
+    <select id="queryKuccx" resultMap="kuccx" parameterClass="java.util.Map">
+    <![CDATA[
+    select 
+      t.cangkbh,
+      t.ush,
+      t.ucgs,
+      t.gongysdm,
+      t.kuwbh,
+      t.lingjsl,
+      t.danw,
+      t.elh,
+      t.pich,
+      t.ruklx,
+      t.rukrq,
+      t.shixrq,
+      trunc(sysdate)-trunc(t.rukrq) as kucts,
+      t.zhuangtsx
+    from
+      ${dbSchemal0}ck_usbq t
+    where
+         t.usercenter=#usercenter#
+    and  t.cangkbh=#cangkbh#
+    and  t.lingjsl>0 
+    and  t.baozzt is not null
+    ]]> 
+      <dynamic>
+      <isNotEmpty prepend=" and " property="lingjbh"><![CDATA[t.lingjbh = #lingjbh#]]></isNotEmpty>
+     <!--  <isNotEmpty prepend=" and " property="cangkbh"><![CDATA[t.cangkbh = #cangkbh#]]></isNotEmpty> -->
+      <isNotEmpty prepend=" and " property="zickbh"><![CDATA[t.zickbh = #zickbh#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="gongysdm"><![CDATA[t.gongysdm = #gongysdm#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="rukrq1"><![CDATA[rukrq >= TO_DATE(#rukrq1# ,'YYYY-MM-DD')]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="rukrq2"><![CDATA[rukrq < TO_DATE(#rukrq2# ,'YYYY-MM-DD')+1]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="baozzt1"><![CDATA[t.baozzt = #baozzt1#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="zhuangtsx1"><![CDATA[t.zhuangtsx = #zhuangtsx1#]]></isNotEmpty>
+      </dynamic>
+     </select>
+    
+     <resultMap class="com.athena.ck.entity.beihuo.Saokcx" id="saokcx">
+		<result column="xunhbm" property="xunhbm"/>
+		<result column="dangqxhgm" property="dangqxhgm"/>
+		<result column="gonghms" property="gonghms"/>
+		<result column="yaohlh" property="yaohlh"/>
+		<result column="yaohlzt" property="yaohlzt"/>
+		<result column="lingjbh" property="lingjbh"/>
+		<result column="lingjmc" property="lingjmc"/>
+		<result column="yaohsl" property="yaohsl"/>
+		<result column="danw" property="danw"/>
+		<result column="shiflsk" property="shiflsk"/>
+		<result column="quxbs" property="quxbs"/>
+		<result column="keh" property="keh"/>
+		<result column="saoksj" property="saoksj"/>
+		<result column="zuiwsj" property="zuiwsj"/>
+		<result column="jiaofsj" property="jiaofsj"/>
+		<result column="oper_no" property="oper_no"/>
+		<result column="gongysdm" property="gongysdm"/>
+		<result column="fasbh" property="fasbh"/>
+    </resultMap>
+    <select id="querySaokcx" resultMap="saokcx" parameterClass="java.util.Map">
+    <![CDATA[
+    select 
+		t.xunhbm,
+		t.dangqxhgm,
+		t.gonghms,
+		t.yaohlh,
+		t.yaohlzt,
+		t.lingjbh,
+		t.lingjmc,
+		t.yaohsl,
+		t.danw,
+		t.shiflsk,
+		t.quxbs,
+		t.keh,
+		t.saoksj,
+		t.zuiwsj,
+		t.jiaofsj,
+		t.oper_no,
+		t.gongysdm,
+		t.fasbh
+    from 
+        ${dbSchemal0}ck_kbskls t
+    where
+      t.usercenter=#usercenter#
+    and t.lingjbh=#lingjbh#
+    ]]> 
+     <dynamic>
+      <!-- <isNotEmpty prepend=" and " property="lingjbh"><![CDATA[t.lingjbh = #lingjbh#]]></isNotEmpty> -->
+      <isNotEmpty prepend=" and " property="keh"><![CDATA[t.keh = #keh#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="xunhbm"><![CDATA[t.xunhbm = #xunhbm#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="oper_no"><![CDATA[t.oper_no = #oper_no#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="saoksj1"><![CDATA[t.saoksj >= TO_DATE(#saoksj1# ,'YYYY-MM-DD hh24:mi:ss')]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="saoksj2"><![CDATA[t.saoksj <= TO_DATE(#saoksj2# ,'YYYY-MM-DD hh24:mi:ss')]]></isNotEmpty>
+      </dynamic>
+     </select>
+    
+     <resultMap class="com.athena.ck.entity.beihuo.Chuklscx" id="chuklscx">
+        <result column="yaohlh" property="yaohlh" />
+        <result column="beihdh" property="beihdh" />
+        <result column="cangkbh" property="cangkbh" />
+        <result column="ush" property="ush" />
+        <result column="usxh" property="usxh" />
+        <result column="lingjbh" property="lingjbh" />
+        <result column="lingjmc" property="lingjmc" />
+        <result column="gongysdm" property="gongysdm" />
+        <result column="lingjsl" property="lingjsl" />
+        <result column="pich" property="pich" />
+        <result column="chukrq" property="chukrq" />
+        <result column="kucts" property="kucts" />
+        <result column="danw" property="danw" />
+        <result column="elh" property="elh" />
+        <result column="keh" property="keh" />
+        <result column="shangxfs" property="shangxfs" />
+        <result column="zhengclsh" property="zhengclsh" />
+        <result column="peislb" property="peislb" />
+        <result column="usercode" property="usercode" />
+        <result column="beihybh" property="beihybh" />
+    </resultMap>
+    <select id="queryChuklscx" resultMap="chuklscx" parameterClass="java.util.Map">
+    <![CDATA[
+         select c.yaohlh,
+                       c.beihdh,
+                       c.cangkbh,
+                       c.ush,
+                       c.usxh,
+                       c.lingjbh,
+                       c.lingjmc,
+                       c.lingjsl    as lingjsl,
+                       c.gongysdm,
+                       c.elh,
+                       c.pich,
+                       c.keh,
+                       c.shangxfs,
+                       c.chukrq,
+                       c.peislb,
+                       c.beihybh,
+                       c.usercode,
+                       c.tongbkslsh as zhengclsh,
+                       c.danw       as danw,
+                       c.shangxms,
+                       trunc(sysdate)-trunc(c.chukrq) as kucts
+                  from ${dbSchemal0}ck_ucbq c
+                 where c.usercenter = #usercenter#
+     ]]> 
+      <dynamic>
+      <isNotEmpty prepend=" and " property="lingjbh"><![CDATA[c.lingjbh = #lingjbh#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="gongysdm"><![CDATA[c.gongysdm = #gongysdm#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="cangkbh"><![CDATA[c.cangkbh = #cangkbh#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="zickbh"><![CDATA[c.zickbh = #zickbh#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="shangxms"><![CDATA[c.shangxms = #shangxms#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="shangxfs"><![CDATA[c.shangxfs = #shangxfs#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="peislb"><![CDATA[c.peislb = #peislb#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="chukrq1"><![CDATA[c.chukrq >= TO_DATE(#chukrq1# ,'YYYY-MM-DD HH24:MI:SS')]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="chukrq2"><![CDATA[c.chukrq <= TO_DATE(#chukrq2# ,'YYYY-MM-DD HH24:MI:SS')]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="zhengclsh1"><![CDATA[c.tongbkslsh >= #zhengclsh1#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="zhengclsh2"><![CDATA[c.tongbkslsh <= #zhengclsh2#]]></isNotEmpty>
+      </dynamic>
+     </select>
+    <!-- 查询承运商 -->
+     <select id="queryChengysdm" resultClass="com.athena.ck.entity.shouhuo.Tongbyhl" parameterClass="java.util.Map">
+    select 
+     chengysbh chengysdm
+    from
+      ${dbSchemal0}ckx_keh_chengpk 
+    where
+      usercenter=#usercenter#
+       <dynamic>
+      <isNotEmpty prepend=" and " property="cangkbh"><![CDATA[cangkbh = #cangkbh#]]></isNotEmpty>
+      <isNotEmpty prepend=" and " property="keh"><![CDATA[kehbh = #keh#]]></isNotEmpty>
+      </dynamic>
+    </select>
+    
+    <!-- C模式出库查询-->
+	<select  id="chukqrcmsDyfhtz4_5" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+	 SELECT 1 FROM ${dbSchemal0}CKX_LINGJXHD
+		WHERE USERCENTER=#usercenter#
+		AND LINGJBH=#lingjbh#
+		AND SUBSTR(XIAOHDBH,1,5)=#keh#
+		AND BIAOS='1'
+		AND ROWNUM = 1
+	</select>
+	
+	   
+    <!-- C模式出库查询-->
+	<select  id="chukqrcmsDyfhtz4_9" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+	 SELECT 1 FROM ${dbSchemal0}CKX_LINGJXHD
+		WHERE USERCENTER=#usercenter#
+		AND LINGJBH=#lingjbh#
+		AND SUBSTR(XIAOHDBH,1,9)=#keh#
+		AND BIAOS='1'
+		AND ROWNUM = 1
+	</select>
+    
+    
+    
+    
+</sqlMap>

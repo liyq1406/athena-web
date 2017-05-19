@@ -1,0 +1,30 @@
+<components namespace="ck">
+
+	<component class="com.toft.core3.biz.module.ModuleConfig">
+		<property name="name" value="ck" />
+		<property name="path" value="com/athena/ck" />
+		<property name="actions">
+			<list>
+				<value>config/action-shouhuo.xml</value>
+				<value>config/action-beihuo.xml</value>
+				<value>config/action-kunei.xml</value>
+				<value>config/action-common.xml</value>
+				<value>config/action-rongqi.xml</value>
+				<value>config/action-yichang.xml</value>
+				<value>config/action-zhijian.xml</value>
+			    <value>config/action-shenbao.xml</value> 
+			 	<value>config/action-xianbkc.xml</value> 
+			 	<value>config/action-xinanxpd.xml</value> 
+			 	<value>config/action-yaohl.xml</value>
+			 	<value>config/action-clrc.xml</value>
+			</list>
+		</property>
+	</component>
+	
+	
+	<!-- 和授权结合的日记 
+	<component id="logHandler" class="com.athena.ck.log.AthenaLogHandler">
+	
+	</component>
+	-->	
+</components>

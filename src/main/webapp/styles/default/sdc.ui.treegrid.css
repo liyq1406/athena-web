@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+
+
+.youi-treeGrid .grid-content{
+	overflow:auto;
+	height:330px;
+	margin-top:-2px;
+}
+
+.youi-treeGrid .grid-header table.grid-table td{
+	text-align:center;
+	font-weight:bold;
+}
+
+.youi-treeGrid table.grid-table{
+	background:white;
+}
+
+.youi-treeGrid table.grid-table .tree-row{
+	background:#F5F5FE;
+}
+
+.youi-treeGrid table.grid-table .tree-row td.cell{
+	padding:0px 2px;
+	height:23px;
+}
+
+.youi-treeGrid table.grid-table .tree-row td.edited{
+	color:#1122AA;
+}
+
+.youi-treeGrid table.grid-table td.row-contral{
+	font-size:0pt;
+	height:0px;
+	padding:0;
+}
+
+
+.youi-treeGrid table .tree-row.selected{
+    background-color: #4DBDEF !important;
+}
+
+.youi-treeGrid td.treeNode span.expand-handler{
+	padding-left:12px;
+}
+
+.youi-treeGrid .expandable td.treeNode span.expand-handler{
+	cursor:pointer;
+}
+
+.youi-treeGrid td.treeNode span.cell{
+	padding:2px;
+}
+
+.youi-treeGrid .expandable td.treeNode span.expand-handler{
+	background:url(images/grid/group-expand-sprite.gif) 0 0px no-repeat;
+}
+
+.youi-treeGrid .expandable.expanded td.treeNode span.expand-handler{
+	background-position:0 -50px;
+}
+
+.youi-treeGrid .tree-row.hide{
+	display:none;
+}
+/*新增的行样式*/
+.youi-treeGrid table.grid-table .tree-row.row-new td.treeNode{
+	color:green;
+}
+
+.youi-treeGrid .node-level-1 td.treeNode{padding-left:16px;}
+.youi-treeGrid .node-level-2 td.treeNode{padding-left:32px;}
+.youi-treeGrid .node-level-3 td.treeNode{padding-left:48px;}
+.youi-treeGrid .node-level-4 td.treeNode{padding-left:64px;}
+.youi-treeGrid .node-level-5 td.treeNode{padding-left:80px;}
+.youi-treeGrid .node-level-6 td.treeNode{padding-left:96px;}
+.youi-treeGrid .node-level-7 td.treeNode{padding-left:112px;}
+.youi-treeGrid .node-level-8 td.treeNode{padding-left:128px;}
+.youi-treeGrid .node-level-9 td.treeNode{padding-left:144px;}
